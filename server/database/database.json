@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "usr_admin_001",
+      "name": "Pankaj Kumar (Author & Admin)",
+      "email": "pankajsolanki1707@gmail.com",
+      "passwordHash": "$2a$12$K89s1h...placeholder...",
+      "role": "Administrator",
+      "verified": true,
+      "twoFactorEnabled": false,
+      "failedLoginAttempts": 0,
+      "lockoutUntil": null,
+      "createdAt": "2026-07-31T11:48:07.328Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-PK-892104",
+      "razorpayOrderId": "order_live_892104",
+      "razorpayPaymentId": "pay_live_892104",
+      "userId": "usr_admin_001",
+      "bookId": "think-on-paper",
+      "bookTitle": "Think on Paper",
+      "amount": 149,
+      "currency": "INR",
+      "status": "VERIFIED",
+      "customerName": "Pankaj Kumar Reader",
+      "customerEmail": "pankajsolanki1707@gmail.com",
+      "createdAt": "2026-07-31T11:48:07.329Z"
+    }
+  ],
+  "downloadLogs": [],
+  "auditLogs": [],
+  "contactMessages": [],
+  "idempotencyKeys": {}
+}
