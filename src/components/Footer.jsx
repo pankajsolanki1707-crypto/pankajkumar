@@ -128,17 +128,12 @@ export default function Footer({ setActivePage, onShowToast }) {
             </ul>
           </div>
 
-          {/* SEO & Trust Column */}
+          {/* SEO & Trust Column (Customer Facing Only) */}
           <div className="space-y-3">
             <h4 className="font-serif font-bold text-sm text-ink-900 uppercase tracking-wider">
               SEO & Trust
             </h4>
             <ul className="space-y-2 text-xs font-medium text-ink-600">
-              <li>
-                <button onClick={() => setActivePage('admin-console')} className="hover:text-authorAccent flex items-center space-x-1 font-bold text-emerald-800">
-                  <span>Security Center 🔒</span>
-                </button>
-              </li>
               <li><button onClick={() => setActivePage('sitemap')} className="hover:text-authorAccent">XML Sitemap</button></li>
               <li><button onClick={() => setActivePage('image-sitemap')} className="hover:text-authorAccent">Image Sitemap</button></li>
               <li><button onClick={() => setActivePage('robots')} className="hover:text-authorAccent">Robots.txt</button></li>
@@ -153,26 +148,26 @@ export default function Footer({ setActivePage, onShowToast }) {
 
         </div>
 
-        {/* Professional Trust Bar */}
+        {/* High-Level Trust Bar (Customer Facing Only) */}
         <div className="pt-8 border-t border-paper-300 space-y-4">
           <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs font-medium text-ink-700 bg-paper-100 p-4 rounded-2xl border border-paper-300 shadow-sm">
-            <span className="flex items-center space-x-1 text-emerald-800 font-semibold">
+            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
               <span>SSL Encrypted</span>
             </span>
-            <span className="flex items-center space-x-1 text-emerald-800 font-semibold">
+            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
               <span>Razorpay Secure Payments</span>
             </span>
-            <span className="flex items-center space-x-1 text-emerald-800 font-semibold">
+            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
               <span>Instant PDF Delivery</span>
             </span>
-            <span className="flex items-center space-x-1 text-emerald-800 font-semibold">
+            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
-              <span>Built Following OWASP Security Best Practices</span>
+              <span>Secure Downloads</span>
             </span>
-            <span className="flex items-center space-x-1 text-emerald-800 font-semibold">
+            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
               <span>Privacy Protected</span>
             </span>
@@ -180,7 +175,7 @@ export default function Footer({ setActivePage, onShowToast }) {
 
           <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-ink-500 gap-2 pt-2">
             <p>© {new Date().getFullYear()} Pankaj Kumar. All rights reserved.</p>
-            <p className="font-mono text-[11px]">Security-First Architecture • High Reliability Publishing Platform</p>
+            <p className="font-sans text-xs text-ink-400">Official Author Platform & Digital Book Store</p>
           </div>
         </div>
 
