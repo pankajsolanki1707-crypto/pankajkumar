@@ -6,17 +6,17 @@ import { db } from '../database/db.js';
 const JWT_SECRET = process.env.JWT_SECRET || 'pk_sec_jwt_auth_98741029384710293847102938471029';
 
 /**
- * Production Helmet Security Headers (OWASP Compliant)
+ * Production Helmet Security Headers (OWASP Compliant + GA Support)
  */
 export const configureSecurityHeaders = helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com", "https://www.googletagmanager.com"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https://images.unsplash.com", "https://checkout.razorpay.com"],
-      connectSrc: ["'self'", "https://lumberjack.razorpay.com", "https://api.razorpay.com"],
+      imgSrc: ["'self'", "data:", "https://images.unsplash.com", "https://checkout.razorpay.com", "https://www.google-analytics.com"],
+      connectSrc: ["'self'", "https://lumberjack.razorpay.com", "https://api.razorpay.com", "https://www.google-analytics.com", "https://region1.google-analytics.com"],
       frameSrc: ["'self'", "https://api.razorpay.com", "https://checkout.razorpay.com"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: []
