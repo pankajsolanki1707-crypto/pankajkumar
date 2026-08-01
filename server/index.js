@@ -20,14 +20,13 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 
 // 1. Production Security Headers (Helmet, CSP, HSTS, Anti-Clickjacking)
 app.use(configureSecurityHeaders);
 
-// 2. CORS Configuration (Restricted to trusted client origin)
+// 2. CORS Configuration (Allow Vercel and local origins)
 app.use(cors({
-  origin: CLIENT_URL,
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
@@ -105,7 +104,7 @@ app.post('/api/admin/update-role', requireRole(['Administrator']), updateUserRol
 // ==========================================
 // PRODUCTION STATIC SERVING & FALLBACK
 // ==========================================
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
   const distPath = path.join(__dirname, '..', 'dist');
   app.use(express.static(distPath));
 
@@ -125,12 +124,16 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(` PANKAJ KUMAR AUTHOR PLATFORM — CASHFREE HARDENED SERVER`);
-  console.log(` Status: Server active on http://localhost:${PORT}`);
-  console.log(` Environment: ${process.env.NODE_ENV || 'production'}`);
-  console.log(` Payment Gateway Channel: Cashfree Payments (INR)`);
-  console.log(` Protected PDF Storage: server/protected_storage/`);
-  console.log(`====================================================`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(` PANKAJ KUMAR AUTHOR PLATFORM — CASHFREE HARDENED SERVER`);
+    console.log(` Status: Server active on http://localhost:${PORT}`);
+    console.log(` Environment: ${process.env.NODE_ENV || 'production'}`);
+    console.log(` Payment Gateway Channel: Cashfree Payments (INR)`);
+    console.log(` Protected PDF Storage: server/protected_storage/`);
+    console.log(`====================================================`);
+  });
+}
+
+export default app;
