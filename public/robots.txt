@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/downloads/
+Disallow: /admin
+
+Sitemap: https://pankajkumar.com/sitemap.xml
+Sitemap: https://pankajkumar.com/image-sitemap.xml
