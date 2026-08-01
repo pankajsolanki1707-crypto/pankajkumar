@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti';
 export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [processing, setProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [completedOrder, setCompletedOrder] = useState(null);
@@ -15,8 +16,14 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!name || !email) {
-      setErrorMessage('Please enter your name and email address.');
+    if (!name || !email || !phone) {
+      setErrorMessage('Please enter your full name, email, and 10-digit mobile number.');
+      return;
+    }
+
+    const cleanPhoneDigits = phone.replace(/\D/g, '');
+    if (cleanPhoneDigits.length < 10) {
+      setErrorMessage('Please enter a valid 10-digit mobile number.');
       return;
     }
 
@@ -44,6 +51,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         pricePaid: currentPrice,
         customerName: name,
         customerEmail: email,
+        customerPhone: cleanPhoneDigits,
         purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
         secureDownloadUrl: `/api/downloads/request-token/${book.id}?email=${encodeURIComponent(email)}`,
         expiresAt: expireTime,
@@ -62,7 +70,8 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         body: JSON.stringify({
           bookId: book.id,
           customerName: name,
-          customerEmail: email
+          customerEmail: email,
+          customerPhone: cleanPhoneDigits
         })
       });
 
@@ -118,7 +127,6 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         return;
       }
 
-      // If Cashfree SDK is not loaded or session ID missing, require real SDK response
       setProcessing(false);
       setErrorMessage('Cashfree Payment SDK is connecting to production server. Please configure Vercel environment variables.');
 
@@ -244,9 +252,9 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             {/* Contact details */}
             <div className="space-y-3">
               <label className="block text-xs font-sans uppercase font-bold text-ink-700 tracking-wider">
-                Customer Details for PDF Receipt
+                Customer Details for PDF Receipt & Cashfree Gateway
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3">
                 <div>
                   <input
                     type="text"
@@ -257,7 +265,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
                     className="w-full px-3.5 py-2.5 bg-paper-50 border border-paper-300 rounded-xl text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-authorAccent"
                   />
                 </div>
-                <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
                     type="email"
                     required
@@ -265,6 +273,14 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email Address *"
                     className="w-full px-3.5 py-2.5 bg-paper-50 border border-paper-300 rounded-xl text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-authorAccent"
+                  />
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="10-Digit Mobile No *"
+                    className="w-full px-3.5 py-2.5 bg-paper-50 border border-paper-300 rounded-xl text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-authorAccent font-mono"
                   />
                 </div>
               </div>

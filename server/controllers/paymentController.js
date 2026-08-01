@@ -10,9 +10,10 @@ const CASHFREE_ENVIRONMENT = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
  */
 export async function createPaymentOrder(req, res) {
   try {
-    const { bookId, customerName, customerEmail } = req.body;
+    const { bookId, customerName, customerEmail, customerPhone } = req.body;
     const cleanEmail = sanitizeInput(customerEmail);
     const cleanName = sanitizeInput(customerName);
+    const cleanPhone = (customerPhone || '').replace(/\D/g, '') || '9999999999';
 
     if (!bookId || !cleanEmail) {
       return res.status(400).json({ error: 'Book ID and customer email are required.' });
@@ -45,7 +46,7 @@ export async function createPaymentOrder(req, res) {
       ? 'https://api.cashfree.com/pg'
       : 'https://sandbox.cashfree.com/pg';
 
-    // Call Cashfree PG v3 Create Order API
+    // Call Cashfree PG v3 Create Order API with real customer phone
     const cfResponse = await fetch(`${baseUrl}/orders`, {
       method: 'POST',
       headers: {
@@ -62,7 +63,7 @@ export async function createPaymentOrder(req, res) {
           customer_id: `cust_${Date.now()}`,
           customer_name: cleanName || 'Customer',
           customer_email: cleanEmail,
-          customer_phone: '9999999999'
+          customer_phone: cleanPhone
         },
         order_meta: {
           return_url: `${process.env.CLIENT_URL || 'https://pankajkumar.com'}/dashboard?order_id={order_id}`
@@ -94,6 +95,7 @@ export async function createPaymentOrder(req, res) {
       status: 'PENDING',
       customerName: cleanName,
       customerEmail: cleanEmail,
+      customerPhone: cleanPhone,
       createdAt: new Date().toISOString()
     };
 
@@ -104,7 +106,8 @@ export async function createPaymentOrder(req, res) {
       paymentSessionId: cfData.payment_session_id,
       bookId,
       amount: serverPrice,
-      email: cleanEmail
+      email: cleanEmail,
+      phone: cleanPhone
     });
 
     res.json({
