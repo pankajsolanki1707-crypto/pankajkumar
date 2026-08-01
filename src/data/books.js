@@ -685,35 +685,6 @@ When you open a physical book, there are no notifications waiting in the margin.
     sampleExcerpt: `अध्याय 1: कोलाहल से शांति की ओर
 
 किताब का हर पन्ना एक शांत कमरे की तरह है जहाँ आप बिना किसी विघ्न के स्वयं से मिल सकते हैं।`
-  },
-  {
-    id: "road-to-entrepreneurship",
-    title: "The Road to Entrepreneurship Starts With Why",
-    subtitle: "Decisive Steps to Build a Purpose-Driven Business",
-    tagline: "Build a lasting venture rooted in core principles rather than fleeting hype.",
-    category: "Decision Making",
-    secondaryCategories: ["Productivity"],
-    coverBg: "from-blue-900 to-slate-950",
-    coverAccent: "#2563EB",
-    coverText: "text-blue-50",
-    coverStyle: "business",
-    coverImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
-    featured: false,
-    bestseller: false,
-    pages: 235,
-    publishedYear: 2023,
-    language: "English",
-    prices: { pdf: 149, usd: 1.99 },
-    formats: ["PDF Digital"],
-    oneLiner: "Discover the foundational purpose that keeps your business resilient through economic storms.",
-    description: "Starting a business is easy; sustaining it requires clarity of purpose. Pankaj Kumar shares a strategic framework for modern founders.",
-    whoShouldRead: ["Aspiring entrepreneurs and early-stage founders."],
-    whatYoullLearn: ["Finding your core business Why"],
-    tableOfContents: [{ chapter: "Chapter 1", title: "The Why Filter" }],
-    faqs: [{ q: "Can I download PDF?", a: "Yes, instant PDF download upon purchase." }],
-    sampleExcerpt: `Chapter 1: The Why Filter
-
-A business without a clear 'Why' is merely a temporary transaction mechanism.`
   }
 ];
 
