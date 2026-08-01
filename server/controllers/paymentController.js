@@ -6,7 +6,7 @@ const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
 const CASHFREE_ENVIRONMENT = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
 
 /**
- * 1. Server-Side Cashfree Order Creation Endpoint
+ * 1. Server-Side Cashfree Order Creation Endpoint (Live Cashfree PG v3 API)
  */
 export async function createPaymentOrder(req, res) {
   try {
@@ -41,9 +41,52 @@ export async function createPaymentOrder(req, res) {
     const serverPrice = priceMap[bookId] || 149;
     const orderId = `CF_ORD_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`;
 
+    const baseUrl = CASHFREE_ENVIRONMENT === 'PRODUCTION'
+      ? 'https://api.cashfree.com/pg'
+      : 'https://sandbox.cashfree.com/pg';
+
+    // Call Cashfree PG v3 Create Order API
+    const cfResponse = await fetch(`${baseUrl}/orders`, {
+      method: 'POST',
+      headers: {
+        'x-client-id': CASHFREE_APP_ID || '',
+        'x-client-secret': CASHFREE_SECRET_KEY || '',
+        'x-api-version': '2023-08-01',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        order_id: orderId,
+        order_amount: serverPrice,
+        order_currency: 'INR',
+        customer_details: {
+          customer_id: `cust_${Date.now()}`,
+          customer_name: cleanName || 'Customer',
+          customer_email: cleanEmail,
+          customer_phone: '9999999999'
+        },
+        order_meta: {
+          return_url: `${process.env.CLIENT_URL || 'https://pankajkumar.com'}/dashboard?order_id={order_id}`
+        }
+      })
+    });
+
+    const cfData = await cfResponse.json();
+
+    if (!cfResponse.ok || !cfData.payment_session_id) {
+      db.logSecurityEvent('CASHFREE_API_ORDER_FAILED', {
+        status: cfResponse.status,
+        cfData
+      }, 'CRITICAL');
+
+      return res.status(400).json({
+        error: cfData.message || 'Failed to generate session from Cashfree API. Verify APP_ID and SECRET_KEY.'
+      });
+    }
+
     const orderData = {
       orderId,
-      cashfreeOrderId: orderId,
+      cashfreeOrderId: cfData.order_id || orderId,
+      paymentSessionId: cfData.payment_session_id,
       userId: req.user?.id || 'guest',
       bookId,
       amount: serverPrice,
@@ -56,8 +99,9 @@ export async function createPaymentOrder(req, res) {
 
     db.createOrder(orderData);
 
-    db.logSecurityEvent('CASHFREE_LIVE_ORDER_CREATED', {
+    db.logSecurityEvent('CASHFREE_LIVE_SESSION_CREATED', {
       orderId,
+      paymentSessionId: cfData.payment_session_id,
       bookId,
       amount: serverPrice,
       email: cleanEmail
@@ -65,16 +109,15 @@ export async function createPaymentOrder(req, res) {
 
     res.json({
       orderId,
-      paymentSessionId: `session_${Date.now()}_${Math.random().toString(36).substr(2, 8)}`,
+      paymentSessionId: cfData.payment_session_id,
       amount: serverPrice,
       currency: 'INR',
-      appId: CASHFREE_APP_ID,
       environment: CASHFREE_ENVIRONMENT
     });
 
   } catch (error) {
-    db.logSecurityEvent('CASHFREE_ORDER_FAILED', { error: error.message }, 'CRITICAL');
-    res.status(500).json({ error: 'Failed to create Cashfree payment order.' });
+    db.logSecurityEvent('CASHFREE_ORDER_EXCEPTION', { error: error.message }, 'CRITICAL');
+    res.status(500).json({ error: 'Internal server error processing Cashfree order session.' });
   }
 }
 
