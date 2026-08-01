@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'pk_sec_jwt_auth_98741029384710293847102938471029';
 const DOWNLOAD_TOKEN_SECRET = process.env.DOWNLOAD_TOKEN_SECRET || 'pk_sec_download_sig_102938471029384710293847';
-const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY || 'cfsecret_live_9812739102938102938';
+const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
 
 /**
  * Password Hashing (Bcrypt with salt rounds = 12)
@@ -25,7 +25,7 @@ export async function comparePassword(password, hash) {
  * Prevents client-side payment spoofing.
  */
 export function verifyCashfreeSignature({ orderId, orderAmount, referenceId, signature }) {
-  if (!orderId || !signature) {
+  if (!orderId || !signature || !CASHFREE_SECRET_KEY) {
     return false;
   }
   const body = `${orderId}${orderAmount || ''}${referenceId || ''}`;

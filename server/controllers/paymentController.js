@@ -1,8 +1,8 @@
 import { db } from '../database/db.js';
 import { verifyCashfreeSignature, generateSignedDownloadToken, sanitizeInput } from '../utils/crypto.js';
 
-const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID || 'TEST1038291083910';
-const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY || 'cfsecret_live_9812739102938102938';
+const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID;
+const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
 const CASHFREE_ENVIRONMENT = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
 
 /**
@@ -56,7 +56,7 @@ export async function createPaymentOrder(req, res) {
 
     db.createOrder(orderData);
 
-    db.logSecurityEvent('CASHFREE_ORDER_CREATED', {
+    db.logSecurityEvent('CASHFREE_LIVE_ORDER_CREATED', {
       orderId,
       bookId,
       amount: serverPrice,
@@ -115,7 +115,7 @@ export async function verifyPaymentSignature(req, res) {
       expiresInMins: 60
     });
 
-    db.logSecurityEvent('CASHFREE_VERIFIED_SUCCESS', {
+    db.logSecurityEvent('CASHFREE_LIVE_VERIFIED_SUCCESS', {
       orderId,
       referenceId,
       bookId,
