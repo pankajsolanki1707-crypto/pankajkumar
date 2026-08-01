@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, CheckCircle2, Download, X } from 'lucide-react';
+import { ShieldCheck, Lock, CheckCircle2, Download, X, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [processing, setProcessing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [completedOrder, setCompletedOrder] = useState(null);
 
   const currentPrice = book.prices.pdf;
 
   const handleCashfreePayment = async (e) => {
     e.preventDefault();
+    setErrorMessage(null);
+
     if (!name || !email) {
-      alert('Please enter your name and email address.');
+      setErrorMessage('Please enter your name and email address.');
       return;
     }
 
     setProcessing(true);
 
-    const finishSuccessOrder = (paymentRef) => {
+    const finishVerifiedOrder = (orderId, referenceId) => {
       setProcessing(false);
       try {
         confetti({
@@ -29,11 +32,11 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         });
       } catch (err) {}
 
-      const orderId = paymentRef || `CF-ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`;
       const expireTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString();
 
       const orderData = {
-        orderId,
+        orderId: orderId || `CF-ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`,
+        referenceId: referenceId || orderId,
         bookId: book.id,
         bookTitle: book.title,
         coverImage: book.coverImage,
@@ -42,7 +45,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         customerName: name,
         customerEmail: email,
         purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        secureDownloadUrl: `/api/downloads/request-token/${book.id}`,
+        secureDownloadUrl: `/api/downloads/request-token/${book.id}?email=${encodeURIComponent(email)}`,
         expiresAt: expireTime,
         downloadResumeSupported: true
       };
@@ -63,40 +66,65 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         })
       });
 
-      if (orderRes.ok) {
-        const orderData = await orderRes.json();
-
-        // 2. Execute Cashfree JS SDK checkout if loaded
-        if (window.Cashfree && orderData.paymentSessionId) {
-          try {
-            const cashfree = window.Cashfree({
-              mode: orderData.environment === 'PRODUCTION' ? 'production' : 'sandbox'
-            });
-
-            cashfree.checkout({
-              paymentSessionId: orderData.paymentSessionId,
-              returnUrl: `${window.location.origin}/dashboard`
-            }).then(function(result) {
-              if (result.error) {
-                setProcessing(false);
-                alert(`Cashfree Payment Error: ${result.error.message}`);
-              } else {
-                finishSuccessOrder(orderData.orderId);
-              }
-            });
-            return;
-          } catch (e) {
-            console.warn('Cashfree JS checkout fallback:', e);
-          }
-        }
-        
-        finishSuccessOrder(orderData.orderId);
-      } else {
-        finishSuccessOrder();
+      if (!orderRes.ok) {
+        throw new Error('Server order creation failed. Please ensure environment variables are configured on Vercel.');
       }
+
+      const orderData = await orderRes.json();
+
+      // 2. Execute Cashfree JS SDK checkout
+      if (window.Cashfree && orderData.paymentSessionId) {
+        const cashfree = window.Cashfree({
+          mode: orderData.environment === 'PRODUCTION' ? 'production' : 'sandbox'
+        });
+
+        cashfree.checkout({
+          paymentSessionId: orderData.paymentSessionId,
+          returnUrl: `${window.location.origin}/dashboard`
+        }).then(async function(result) {
+          if (result.error) {
+            setProcessing(false);
+            setErrorMessage(`Payment Cancelled or Failed: ${result.error.message}`);
+          } else if (result.paymentDetails) {
+            // Verify signature on server
+            const verifyRes = await fetch('/api/payments/verify', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId: orderData.orderId,
+                referenceId: result.paymentDetails.referenceId,
+                signature: result.paymentDetails.signature,
+                bookId: book.id,
+                customerEmail: email,
+                customerName: name
+              })
+            });
+
+            if (verifyRes.ok) {
+              const verifyData = await verifyRes.json();
+              if (verifyData.success) {
+                finishVerifiedOrder(verifyData.orderId, verifyData.referenceId);
+                return;
+              }
+            }
+
+            setProcessing(false);
+            setErrorMessage('Server verification failed for this transaction.');
+          } else {
+            setProcessing(false);
+            setErrorMessage('Payment was not completed. Download access requires verified payment.');
+          }
+        });
+        return;
+      }
+
+      // If Cashfree SDK is not loaded or session ID missing, require real SDK response
+      setProcessing(false);
+      setErrorMessage('Cashfree Payment SDK is connecting to production server. Please configure Vercel environment variables.');
+
     } catch (err) {
-      console.error(err);
-      finishSuccessOrder();
+      setProcessing(false);
+      setErrorMessage(err.message || 'Payment initiation failed. Downloads require a completed payment.');
     }
   };
 
@@ -128,9 +156,17 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
           </button>
         </div>
 
+        {/* Error Alert Box */}
+        {errorMessage && (
+          <div className="mx-6 mt-4 p-4 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-start space-x-2.5 animate-fadeIn">
+            <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0 mt-0.5" />
+            <span>{errorMessage}</span>
+          </div>
+        )}
+
         {/* Modal Body */}
         {completedOrder ? (
-          /* Success Screen */
+          /* Verified Success Screen */
           <div className="p-8 text-center space-y-6 animate-fadeIn">
             <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-sm">
               <CheckCircle2 className="w-10 h-10" />
@@ -171,7 +207,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <a
-                href={`/api/downloads/request-token/${completedOrder.bookId}?email=${encodeURIComponent(completedOrder.customerEmail)}`}
+                href={completedOrder.secureDownloadUrl}
                 onClick={onClose}
                 className="w-full py-3.5 bg-authorAccent hover:bg-authorAccent-hover text-white font-bold text-sm rounded-xl transition-colors shadow-sm flex items-center justify-center space-x-2"
               >
