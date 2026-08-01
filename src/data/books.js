@@ -32,7 +32,8 @@ export const BOOKS = [
     publishedYear: 2026,
     language: "English",
     prices: {
-      pdf: 149
+      pdf: 149,
+      usd: 1.99
     },
     formats: ["PDF Digital"],
     oneLiner: "Freedom is not a feeling or philosophical realization. It is a daily discipline trained under pressure.",
@@ -69,7 +70,7 @@ In **The Courage to Practice Freedom**, engineer and author Pankaj Kumar breaks 
     ],
     faqs: [
       { q: "Is this a theoretical philosophical book?", a: "No. It is a practical behavior manual with specific daily practices at the end of each chapter." },
-      { q: "When do I get the PDF version?", a: "Instantly upon completion of payment via Cashfree. The PDF will also be saved in your 'My Library' dashboard." }
+      { q: "When do I get the PDF version?", a: "Instantly upon completion of payment via Cashfree or PayPal. The PDF will also be saved in your 'My Library' dashboard." }
     ],
     sampleExcerpt: `Introduction: Why Understanding Freedom Is Not Enough
 
@@ -105,7 +106,8 @@ Freedom, as it turns out, is not a realization. It is a discipline. This book be
     publishedYear: 2025,
     language: "English",
     prices: {
-      pdf: 149
+      pdf: 149,
+      usd: 1.99
     },
     formats: ["PDF Digital"],
     oneLiner: "Stop thinking inside your head. Offload your thoughts onto paper and engineer your life with precision.",
@@ -164,7 +166,8 @@ The solution is not to try harder inside your head. The solution is externalizat
     publishedYear: 2025,
     language: "English",
     prices: {
-      pdf: 129
+      pdf: 129,
+      usd: 1.69
     },
     formats: ["PDF Digital"],
     oneLiner: "Being busy is not the same as being effective. Learn how to stop preparing and start delivering results.",
@@ -214,7 +217,8 @@ If you read 10 diet books, you are in motion. If you eat a healthy meal, you are
     publishedYear: 2024,
     language: "English",
     prices: {
-      pdf: 199
+      pdf: 199,
+      usd: 2.49
     },
     formats: ["PDF Digital"],
     oneLiner: "A rigorous engineering analysis of India's leap toward indigenous defense self-reliance, AMCA, TEDBF, Gaganyaan 2027, and Bharatiya Antariksh Station.",
@@ -265,7 +269,8 @@ Stealth is not invisibility. Stealth is radar delay—buying precious extra seco
     publishedYear: 2026,
     language: "Hindi",
     prices: {
-      pdf: 129
+      pdf: 129,
+      usd: 1.69
     },
     formats: ["PDF Digital"],
     oneLiner: "व्यस्त रहने और असरदार काम करने में बड़ा फर्क है। प्रगति के भ्रम से बाहर निकलें।",
@@ -308,7 +313,7 @@ Stealth is not invisibility. Stealth is radar delay—buying precious extra seco
     pages: 105,
     publishedYear: 2024,
     language: "English",
-    prices: { pdf: 129 },
+    prices: { pdf: 129, usd: 1.69 },
     formats: ["PDF Digital"],
     oneLiner: "Where your attention goes, your energy flows. Master focus to master your life craft.",
     description: "In attention lies everything. Pankaj Kumar synthesizes ancient contemplative wisdom with modern cognitive science to help you build an impenetrable focus ritual.",
@@ -337,7 +342,7 @@ Attention is the ultimate lens through which human reality is perceived.`
     pages: 119,
     publishedYear: 2024,
     language: "Hindi",
-    prices: { pdf: 129 },
+    prices: { pdf: 129, usd: 1.69 },
     formats: ["PDF Digital"],
     oneLiner: "बिना ज़ोर लगाए फोकस, अनुशासन और गहराई वापस पाने की व्यावहारिक कला।",
     description: "एक ऐसी दुनिया में जहाँ ध्यान बिखराने के लिए सब कुछ बना है, यह पुस्तक आपको बिना ज़ोर लगाए फोकस और आन्तरिक अनुशासन वापस पाने का वैज्ञानिक मार्ग सिखाती है।",
@@ -367,7 +372,8 @@ Attention is the ultimate lens through which human reality is perceived.`
     publishedYear: 2024,
     language: "English",
     prices: {
-      pdf: 129
+      pdf: 129,
+      usd: 1.69
     },
     formats: ["PDF Digital"],
     oneLiner: "Stop relying on motivation cycles. Design environments where desired actions become friction-free physics.",
@@ -409,7 +415,8 @@ Do not elevate your willpower. Lower your friction.`
     publishedYear: 2025,
     language: "English",
     prices: {
-      pdf: 149
+      pdf: 149,
+      usd: 1.99
     },
     formats: ["PDF Digital"],
     oneLiner: "A pragmatic blueprint for business owners to automate ops, boost margins, and harness AI without spending a fortune.",
@@ -448,7 +455,8 @@ Artificial Intelligence is neither a mystical sentient magic worker nor a useles
     publishedYear: 2025,
     language: "English",
     prices: {
-      pdf: 139
+      pdf: 139,
+      usd: 1.79
     },
     formats: ["PDF Digital"],
     oneLiner: "You are only one honest page of writing away from resolving your deepest mental knot.",
@@ -489,7 +497,8 @@ Truth has a distinct physical weight on paper.`
     publishedYear: 2024,
     language: "English",
     prices: {
-      pdf: 119
+      pdf: 119,
+      usd: 1.49
     },
     formats: ["PDF Digital"],
     oneLiner: "Understand the math behind engagement optimization and protect your brain from algorithmic manipulation.",
@@ -528,7 +537,8 @@ If you do not explicitly define your own attention priorities, a server farm in 
     publishedYear: 2024,
     language: "English",
     prices: {
-      pdf: 169
+      pdf: 169,
+      usd: 2.19
     },
     formats: ["PDF Digital"],
     oneLiner: "A strategic blueprint for how India can leverage technology, supply chains, and soft power in the Asian Century.",
@@ -567,7 +577,8 @@ Geopolitics is fundamentally driven by physical geography and technological leve
     publishedYear: 2024,
     language: "English",
     prices: {
-      pdf: 139
+      pdf: 139,
+      usd: 1.79
     },
     formats: ["PDF Digital"],
     oneLiner: "Reclaim your attention span from short-form videos and rediscover the meditative power of long-form literature.",
@@ -605,7 +616,7 @@ When you open a physical book, there are no notifications waiting in the margin.
     pages: 134,
     publishedYear: 2024,
     language: "Hindi",
-    prices: { pdf: 129 },
+    prices: { pdf: 129, usd: 1.69 },
     formats: ["PDF Digital"],
     oneLiner: "अनुमति, स्वीकृति और डर के बिना अपना जीवन जीने की कला।",
     description: "यह पुस्तक जीवन की चुनौतियों के सामने झुकने की बजाय धैर्य, स्वीकृति और अदम्य साहस के साथ खड़े रहने की प्रेरणा देती है।",
@@ -634,7 +645,7 @@ When you open a physical book, there are no notifications waiting in the margin.
     pages: 175,
     publishedYear: 2024,
     language: "Hindi",
-    prices: { pdf: 139 },
+    prices: { pdf: 139, usd: 1.79 },
     formats: ["PDF Digital"],
     oneLiner: "शब्द केवल लिखे नहीं जाते, वे इंसान की आत्मा की छाप होते हैं।",
     description: "एक अनोखी दार्शनिक यात्रा जो पाठक को शब्दों के जादू और जीवन के गूढ़ अर्थों से रूबरू कराती है।",
@@ -663,7 +674,7 @@ When you open a physical book, there are no notifications waiting in the margin.
     pages: 171,
     publishedYear: 2024,
     language: "Hindi",
-    prices: { pdf: 129 },
+    prices: { pdf: 129, usd: 1.69 },
     formats: ["PDF Digital"],
     oneLiner: "डिजिटल कोलाहल से दूर पन्नों की शांत दुनिया में लौटने का निमंत्रण।",
     description: "स्मार्टफोन और स्क्रीन की दुनिया से मानसिक सुकून और अध्ययन की ओर लौटने का मार्ग।",
@@ -692,7 +703,7 @@ When you open a physical book, there are no notifications waiting in the margin.
     pages: 235,
     publishedYear: 2023,
     language: "English",
-    prices: { pdf: 149 },
+    prices: { pdf: 149, usd: 1.99 },
     formats: ["PDF Digital"],
     oneLiner: "Discover the foundational purpose that keeps your business resilient through economic storms.",
     description: "Starting a business is easy; sustaining it requires clarity of purpose. Pankaj Kumar shares a strategic framework for modern founders.",

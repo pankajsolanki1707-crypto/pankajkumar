@@ -71,9 +71,12 @@ export default function BookCard({ book, onSelectBook, onOpenSample, onBuyBook }
           <div className="flex items-center justify-between mb-4">
             <div>
               <span className="text-xs text-ink-500 block font-medium">Instant Digital PDF</span>
-              <div className="flex items-baseline space-x-1">
+              <div className="flex items-baseline space-x-1.5">
                 <span className="text-xl font-bold text-ink-900">
                   ₹{book.prices.pdf}
+                </span>
+                <span className="text-xs text-ink-500 font-semibold">
+                  / ${book.prices.usd || '1.99'} USD
                 </span>
               </div>
             </div>

@@ -139,6 +139,7 @@ export default function BookDetailsPage({ book, onBack, onSelectBook, onOpenSamp
               </div>
               <div className="text-right">
                 <span className="font-serif text-3xl font-bold text-ink-900">₹{book.prices.pdf}</span>
+                <span className="text-xs font-sans font-semibold text-ink-500 block">/ ${book.prices.usd || '1.99'} USD</span>
               </div>
             </div>
 
@@ -149,7 +150,7 @@ export default function BookDetailsPage({ book, onBack, onSelectBook, onOpenSamp
                 className="w-full sm:w-1/2 py-4 bg-authorAccent hover:bg-authorAccent-hover text-white font-bold text-base rounded-xl transition-all shadow-md flex items-center justify-center space-x-2"
               >
                 <ShoppingBag className="w-5 h-5" />
-                <span>Buy PDF Edition (₹{book.prices.pdf})</span>
+                <span>Buy PDF (₹{book.prices.pdf} / ${book.prices.usd || '1.99'})</span>
               </button>
 
               <button
@@ -164,12 +165,10 @@ export default function BookDetailsPage({ book, onBack, onSelectBook, onOpenSamp
             <div className="flex items-center justify-center space-x-4 text-xs text-ink-500 pt-2">
               <span className="flex items-center space-x-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Razorpay Encrypted</span>
+                <span>Cashfree (INR) & PayPal (USD) Secured</span>
               </span>
               <span>•</span>
               <span>Instant Download Link</span>
-              <span>•</span>
-              <span>Download Resume Support</span>
             </div>
 
           </div>
