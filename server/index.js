@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 
 import { configureSecurityHeaders, authRateLimiter, checkoutRateLimiter, downloadRateLimiter, generalApiLimiter, authenticateToken, requireRole } from './middleware/security.js';
 import { registerUser, loginUser, logoutUser, getCurrentUser } from './controllers/authController.js';
-import { createPaymentOrder, verifyPaymentSignature, handleRazorpayWebhook } from './controllers/paymentController.js';
+import { createPaymentOrder, verifyPaymentSignature, handleCashfreeWebhook } from './controllers/paymentController.js';
 import { requestDownloadToken, downloadFileWithToken } from './controllers/downloadController.js';
 import { getSecurityOverview, updateUserRole } from './controllers/adminController.js';
 import { db } from './database/db.js';
@@ -35,7 +35,7 @@ app.use(cors({
 // 3. Cookie Parser & Body Parsers
 app.use(cookieParser());
 
-// Special Raw Body Saver for Razorpay Webhooks Signature Verification
+// Special Raw Body Saver for Webhooks Signature Verification
 app.use(express.json({
   verify: (req, res, buf) => {
     req.rawBody = buf.toString();
@@ -59,10 +59,10 @@ app.post('/api/auth/login', authRateLimiter, loginUser);
 app.post('/api/auth/logout', logoutUser);
 app.get('/api/auth/me', getCurrentUser);
 
-// Payment Routes (Razorpay Server-Side Verification)
+// Payment Routes (Cashfree Server-Side Verification)
 app.post('/api/payments/create-order', checkoutRateLimiter, createPaymentOrder);
 app.post('/api/payments/verify', checkoutRateLimiter, verifyPaymentSignature);
-app.post('/api/payments/webhook', handleRazorpayWebhook);
+app.post('/api/payments/webhook', handleCashfreeWebhook);
 
 // Protected Digital Downloads (Signed Expiring Tokens)
 app.get('/api/downloads/request-token/:bookId', downloadRateLimiter, requestDownloadToken);
@@ -117,7 +117,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Global Custom Error Handler (OWASP Exception Masking)
+// Global Custom Error Handler
 app.use((err, req, res, next) => {
   db.logSecurityEvent('UNHANDLED_SERVER_ERROR', { error: err.message, stack: err.stack }, 'CRITICAL');
   res.status(500).json({
@@ -127,9 +127,10 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(` PANKAJ KUMAR AUTHOR PLATFORM — SECURITY HARDENED SERVER`);
+  console.log(` PANKAJ KUMAR AUTHOR PLATFORM — CASHFREE HARDENED SERVER`);
   console.log(` Status: Server active on http://localhost:${PORT}`);
   console.log(` Environment: ${process.env.NODE_ENV || 'production'}`);
+  console.log(` Payment Gateway Channel: Cashfree Payments (INR)`);
   console.log(` Protected PDF Storage: server/protected_storage/`);
   console.log(`====================================================`);
 });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import GlobalSearchModal from './components/GlobalSearchModal';
-import RazorpayModal from './components/RazorpayModal';
+import CashfreeModal from './components/CashfreeModal';
 import SampleReaderModal from './components/SampleReaderModal';
 
 import HomePage from './pages/HomePage';
@@ -27,7 +27,7 @@ export default function App() {
   const [selectedBook, setSelectedBook] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Productivity');
   const [sampleModalBook, setSampleModalBook] = useState(null);
-  const [razorpayModalBook, setRazorpayModalBook] = useState(null);
+  const [cashfreeModalBook, setCashfreeModalBook] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
@@ -94,12 +94,12 @@ export default function App() {
   };
 
   const handleBuyBook = (book) => {
-    setRazorpayModalBook(book);
+    setCashfreeModalBook(book);
   };
 
   const handlePaymentSuccess = (orderData) => {
     setPurchasedBooks((prev) => [orderData, ...prev]);
-    showToast(`Order ${orderData.orderId} verified server-side! Added to My Library.`);
+    showToast(`Order ${orderData.orderId} verified via Cashfree! Added to My Library.`);
   };
 
   return (
@@ -225,11 +225,11 @@ export default function App() {
         onSelectBlog={() => setActivePage('blog')}
       />
 
-      {/* Razorpay Simulated & Live Checkout Modal */}
-      {razorpayModalBook && (
-        <RazorpayModal
-          book={razorpayModalBook}
-          onClose={() => setRazorpayModalBook(null)}
+      {/* Cashfree Payments Modal */}
+      {cashfreeModalBook && (
+        <CashfreeModal
+          book={cashfreeModalBook}
+          onClose={() => setCashfreeModalBook(null)}
           onPaymentSuccess={handlePaymentSuccess}
         />
       )}

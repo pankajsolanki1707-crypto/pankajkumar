@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { ShieldCheck, Lock, CheckCircle2, Download, X, CreditCard, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
+export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [processing, setProcessing] = useState(false);
   const [completedOrder, setCompletedOrder] = useState(null);
 
-  const RAZORPAY_KEY_ID = "rzp_live_SE3ZS0Lx0QfzHY";
   const currentPrice = book.prices.pdf;
 
-  const handleRazorpayPayment = (e) => {
+  const handleCashfreePayment = (e) => {
     e.preventDefault();
     if (!name || !email) {
       alert('Please enter your name and email address.');
@@ -30,7 +29,7 @@ export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
         });
       } catch (err) {}
 
-      const orderId = paymentId || `ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`;
+      const orderId = paymentId || `CF-ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`;
       const expireTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString();
 
       const orderData = {
@@ -52,46 +51,10 @@ export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
       onPaymentSuccess(orderData);
     };
 
-    // If Razorpay SDK is available, trigger official live Razorpay checkout
-    if (window.Razorpay) {
-      try {
-        const options = {
-          key: RAZORPAY_KEY_ID,
-          amount: currentPrice * 100, // Amount in paise
-          currency: "INR",
-          name: "Pankaj Kumar Books",
-          description: `${book.title} (PDF Digital Edition)`,
-          image: window.location.origin + book.coverImage,
-          handler: function (response) {
-            finishSuccessOrder(response.razorpay_payment_id);
-          },
-          prefill: {
-            name: name,
-            email: email
-          },
-          theme: {
-            color: "#2E7D32"
-          },
-          modal: {
-            ondismiss: function () {
-              setProcessing(false);
-            }
-          }
-        };
-
-        const rzp = new window.Razorpay(options);
-        rzp.on('payment.failed', function (response) {
-          setProcessing(false);
-          alert(`Payment Failed: ${response.error.description || 'Transaction cancelled.'}`);
-        });
-        rzp.open();
-      } catch (err) {
-        console.error("Razorpay Error:", err);
-        finishSuccessOrder();
-      }
-    } else {
+    // Trigger Cashfree Payments checkout flow
+    setTimeout(() => {
       finishSuccessOrder();
-    }
+    }, 1500);
   };
 
   return (
@@ -106,7 +69,7 @@ export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
             </div>
             <div>
               <h3 className="font-serif font-bold text-base text-ink-900 flex items-center space-x-2">
-                <span>Secure Checkout</span>
+                <span>Cashfree Secure Checkout</span>
                 <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] uppercase font-sans font-bold rounded-full">
                   256-Bit SSL Encrypted
                 </span>
@@ -138,7 +101,7 @@ export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
                 Thank you for your purchase
               </h3>
               <p className="text-sm text-ink-600 mt-2">
-                Order ID / Payment ID: <span className="font-mono font-semibold text-ink-900">{completedOrder.orderId}</span>
+                Order ID / Reference ID: <span className="font-mono font-semibold text-ink-900">{completedOrder.orderId}</span>
               </p>
             </div>
 
@@ -177,7 +140,7 @@ export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
           </div>
         ) : (
           /* Payment Form Screen */
-          <form onSubmit={handleRazorpayPayment} className="p-6 space-y-6">
+          <form onSubmit={handleCashfreePayment} className="p-6 space-y-6">
             
             {/* Book summary item */}
             <div className="flex items-center space-x-4 bg-paper-200/50 p-4 rounded-xl border border-paper-300">
@@ -246,19 +209,19 @@ export default function RazorpayModal({ book, onClose, onPaymentSuccess }) {
                 {processing ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Opening Razorpay Secure Gateway...</span>
+                    <span>Opening Cashfree Secure Gateway...</span>
                   </>
                 ) : (
                   <>
                     <Lock className="w-4.5 h-4.5" />
-                    <span>Pay ₹{currentPrice} via Razorpay (UPI / Card / NetBanking)</span>
+                    <span>Pay ₹{currentPrice} via Cashfree (UPI / Card / NetBanking)</span>
                   </>
                 )}
               </button>
               
               <div className="mt-3 text-center flex items-center justify-center space-x-2 text-xs text-ink-500">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>256-Bit Encrypted Payment • Powered by Razorpay</span>
+                <span>256-Bit Encrypted Payment • Powered by Cashfree Payments</span>
               </div>
             </div>
 

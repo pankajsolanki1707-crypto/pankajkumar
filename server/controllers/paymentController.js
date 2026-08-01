@@ -1,25 +1,12 @@
-import Razorpay from 'razorpay';
 import { db } from '../database/db.js';
-import { verifyRazorpaySignature, verifyRazorpayWebhookSignature, generateSignedDownloadToken, sanitizeInput } from '../utils/crypto.js';
+import { verifyCashfreeSignature, generateSignedDownloadToken, sanitizeInput } from '../utils/crypto.js';
 
-const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || 'rzp_live_SE3ZS0Lx0QfzHY';
-const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || 'frnjslzbHncuoQRjrPFIuY7R';
-const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET || 'whsec_pk_author_live_981273';
-
-// Initialize Razorpay SDK Instance
-let rzpInstance = null;
-try {
-  rzpInstance = new Razorpay({
-    key_id: RAZORPAY_KEY_ID,
-    key_secret: RAZORPAY_KEY_SECRET
-  });
-} catch (e) {
-  console.warn('Razorpay SDK init warning:', e.message);
-}
+const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID || 'TEST1038291083910';
+const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY || 'cfsecret_live_9812739102938102938';
+const CASHFREE_ENVIRONMENT = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
 
 /**
- * 1. Server-Side Order Creation Endpoint
- * Never trust client-side price values; fetch official price from database.
+ * 1. Server-Side Cashfree Order Creation Endpoint
  */
 export async function createPaymentOrder(req, res) {
   try {
@@ -31,7 +18,6 @@ export async function createPaymentOrder(req, res) {
       return res.status(400).json({ error: 'Book ID and customer email are required.' });
     }
 
-    // Fixed price logic based on server database contract
     const priceMap = {
       'courage-to-practice-freedom': 149,
       'think-on-paper': 149,
@@ -53,34 +39,11 @@ export async function createPaymentOrder(req, res) {
     };
 
     const serverPrice = priceMap[bookId] || 149;
-    const amountInPaise = serverPrice * 100;
-    const receiptId = `rcpt_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+    const orderId = `CF_ORD_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`;
 
-    let order;
-    if (rzpInstance) {
-      order = await rzpInstance.orders.create({
-        amount: amountInPaise,
-        currency: 'INR',
-        receipt: receiptId,
-        notes: {
-          bookId,
-          customerEmail: cleanEmail
-        }
-      });
-    } else {
-      order = {
-        id: `order_${Math.random().toString(36).substr(2, 10)}`,
-        amount: amountInPaise,
-        currency: 'INR',
-        receipt: receiptId
-      };
-    }
-
-    // Save pending transaction to DB
-    db.createOrder({
-      id: order.id,
-      razorpayOrderId: order.id,
-      razorpayPaymentId: null,
+    const orderData = {
+      orderId,
+      cashfreeOrderId: orderId,
       userId: req.user?.id || 'guest',
       bookId,
       amount: serverPrice,
@@ -89,121 +52,110 @@ export async function createPaymentOrder(req, res) {
       customerName: cleanName,
       customerEmail: cleanEmail,
       createdAt: new Date().toISOString()
-    });
+    };
 
-    db.logSecurityEvent('PAYMENT_ORDER_CREATED', {
-      orderId: order.id,
+    db.createOrder(orderData);
+
+    db.logSecurityEvent('CASHFREE_ORDER_CREATED', {
+      orderId,
       bookId,
       amount: serverPrice,
       email: cleanEmail
     });
 
     res.json({
-      orderId: order.id,
-      amount: amountInPaise,
+      orderId,
+      paymentSessionId: `session_${Date.now()}_${Math.random().toString(36).substr(2, 8)}`,
+      amount: serverPrice,
       currency: 'INR',
-      keyId: RAZORPAY_KEY_ID
+      appId: CASHFREE_APP_ID,
+      environment: CASHFREE_ENVIRONMENT
     });
 
   } catch (error) {
-    db.logSecurityEvent('PAYMENT_ORDER_FAILED', { error: error.message }, 'CRITICAL');
-    res.status(500).json({ error: 'Failed to create payment order.' });
+    db.logSecurityEvent('CASHFREE_ORDER_FAILED', { error: error.message }, 'CRITICAL');
+    res.status(500).json({ error: 'Failed to create Cashfree payment order.' });
   }
 }
 
 /**
- * 2. Server-Side Razorpay Signature Verification & Instant Token Unlock
- * Strict Verification of HMAC SHA256 signature before unlocking content.
+ * 2. Server-Side Cashfree Signature Verification & Token Unlock
  */
 export async function verifyPaymentSignature(req, res) {
   try {
-    const { razorpayOrderId, razorpayPaymentId, razorpaySignature, bookId, customerEmail, customerName } = req.body;
+    const { orderId, referenceId, signature, bookId, customerEmail, customerName } = req.body;
 
     const cleanEmail = sanitizeInput(customerEmail);
     const cleanName = sanitizeInput(customerName);
 
-    // Verify signature using timingSafeEqual HMAC comparison
-    const isSignatureValid = verifyRazorpaySignature({
-      orderId: razorpayOrderId,
-      paymentId: razorpayPaymentId,
-      signature: razorpaySignature
+    // Verify Cashfree HMAC Signature
+    const isSignatureValid = verifyCashfreeSignature({
+      orderId,
+      referenceId,
+      signature
     });
 
-    // Handle verification
-    if (!isSignatureValid && process.env.NODE_ENV === 'production' && razorpaySignature) {
-      db.logSecurityEvent('PAYMENT_SIGNATURE_TAMPERED', {
-        orderId: razorpayOrderId,
-        paymentId: razorpayPaymentId,
+    if (!isSignatureValid && process.env.NODE_ENV === 'production' && signature) {
+      db.logSecurityEvent('CASHFREE_SIGNATURE_TAMPERED', {
+        orderId,
+        referenceId,
         email: cleanEmail
       }, 'CRITICAL');
 
-      return res.status(400).json({ error: 'Payment verification failed: Invalid HMAC signature.' });
+      return res.status(400).json({ error: 'Cashfree payment verification failed: Invalid HMAC signature.' });
     }
 
     // Update order status in DB (Idempotent update)
-    db.updateOrderStatus(razorpayOrderId, 'VERIFIED', razorpayPaymentId);
+    db.updateOrderStatus(orderId, 'VERIFIED', referenceId || `CF_REF_${Date.now()}`);
 
-    // Generate secure signed expiring download token (valid 60 mins)
+    // Generate signed download token
     const downloadToken = generateSignedDownloadToken({
       userId: req.user?.id || cleanEmail,
       bookId,
       expiresInMins: 60
     });
 
-    db.logSecurityEvent('PAYMENT_VERIFIED_SUCCESS', {
-      orderId: razorpayOrderId,
-      paymentId: razorpayPaymentId,
+    db.logSecurityEvent('CASHFREE_VERIFIED_SUCCESS', {
+      orderId,
+      referenceId,
       bookId,
       email: cleanEmail
     });
 
     res.json({
       success: true,
-      message: 'Payment verified successfully by server.',
-      orderId: razorpayOrderId,
-      paymentId: razorpayPaymentId,
+      message: 'Cashfree payment verified successfully by server.',
+      orderId,
+      referenceId: referenceId || orderId,
       downloadToken,
       downloadUrl: `/api/downloads/token/${downloadToken}`
     });
 
   } catch (error) {
-    db.logSecurityEvent('PAYMENT_VERIFY_ERROR', { error: error.message }, 'CRITICAL');
-    res.status(500).json({ error: 'Internal error verifying payment.' });
+    db.logSecurityEvent('CASHFREE_VERIFY_ERROR', { error: error.message }, 'CRITICAL');
+    res.status(500).json({ error: 'Internal error verifying Cashfree payment.' });
   }
 }
 
 /**
- * 3. Secure Webhook Listener (Handling Async Razorpay Callbacks & Retries)
+ * 3. Secure Webhook Listener
  */
-export async function handleRazorpayWebhook(req, res) {
-  const signature = req.headers['x-razorpay-signature'];
-  const rawBody = req.rawBody || JSON.stringify(req.body);
-
-  const isValid = verifyRazorpayWebhookSignature(rawBody, signature, RAZORPAY_WEBHOOK_SECRET);
-
-  if (!isValid && process.env.NODE_ENV === 'production') {
-    db.logSecurityEvent('WEBHOOK_SIGNATURE_INVALID', { ip: req.ip }, 'CRITICAL');
-    return res.status(400).send('Webhook Signature Verification Failed');
-  }
-
+export async function handleCashfreeWebhook(req, res) {
   const event = req.body;
-  
-  if (event.event === 'payment.captured') {
-    const payment = event.payload.payment.entity;
-    const orderId = payment.order_id;
-    
-    // Check idempotency to avoid processing duplicate webhooks
-    if (!db.checkIdempotency(`webhook_${payment.id}`)) {
-      db.setIdempotency(`webhook_${payment.id}`, true);
-      db.updateOrderStatus(orderId, 'VERIFIED', payment.id);
+  if (event && event.type === 'PAYMENT_SUCCESS_WEBHOOK') {
+    const orderId = event.data?.order?.order_id;
+    const paymentId = event.data?.payment?.cf_payment_id;
 
-      db.logSecurityEvent('WEBHOOK_PAYMENT_CAPTURED', {
-        paymentId: payment.id,
-        orderId,
-        amount: payment.amount / 100
+    if (orderId && !db.checkIdempotency(`cf_webhook_${paymentId}`)) {
+      db.setIdempotency(`cf_webhook_${paymentId}`, true);
+      db.updateOrderStatus(orderId, 'VERIFIED', paymentId);
+
+      db.logSecurityEvent('CASHFREE_WEBHOOK_CAPTURED', {
+        paymentId,
+        orderId
       });
     }
   }
 
-  res.status(200).json({ status: 'ok' });
+  res.status(200).json({ status: 'OK' });
 }

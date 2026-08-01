@@ -128,7 +128,7 @@ export default function Footer({ setActivePage, onShowToast }) {
             </ul>
           </div>
 
-          {/* SEO & Trust Column (Customer Facing Only) */}
+          {/* SEO & Trust Column */}
           <div className="space-y-3">
             <h4 className="font-serif font-bold text-sm text-ink-900 uppercase tracking-wider">
               SEO & Trust
@@ -148,7 +148,7 @@ export default function Footer({ setActivePage, onShowToast }) {
 
         </div>
 
-        {/* High-Level Trust Bar (Customer Facing Only) */}
+        {/* High-Level Trust Bar */}
         <div className="pt-8 border-t border-paper-300 space-y-4">
           <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs font-medium text-ink-700 bg-paper-100 p-4 rounded-2xl border border-paper-300 shadow-sm">
             <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
@@ -157,7 +157,7 @@ export default function Footer({ setActivePage, onShowToast }) {
             </span>
             <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
-              <span>Razorpay Secure Payments</span>
+              <span>Cashfree Secure Payments</span>
             </span>
             <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />

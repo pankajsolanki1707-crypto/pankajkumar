@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'pk_sec_jwt_auth_98741029384710293847102938471029';
 const DOWNLOAD_TOKEN_SECRET = process.env.DOWNLOAD_TOKEN_SECRET || 'pk_sec_download_sig_102938471029384710293847';
-const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || 'frnjslzbHncuoQRjrPFIuY7R';
+const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY || 'cfsecret_live_9812739102938102938';
 
 /**
  * Password Hashing (Bcrypt with salt rounds = 12)
@@ -21,16 +21,16 @@ export async function comparePassword(password, hash) {
 }
 
 /**
- * Server-Side Razorpay Signature Verification (HMAC SHA256)
+ * Server-Side Cashfree Signature Verification (HMAC SHA256)
  * Prevents client-side payment spoofing.
  */
-export function verifyRazorpaySignature({ orderId, paymentId, signature }) {
-  if (!orderId || !paymentId || !signature) {
+export function verifyCashfreeSignature({ orderId, orderAmount, referenceId, signature }) {
+  if (!orderId || !signature) {
     return false;
   }
-  const body = `${orderId}|${paymentId}`;
+  const body = `${orderId}${orderAmount || ''}${referenceId || ''}`;
   const expectedSignature = crypto
-    .createHmac('sha256', RAZORPAY_KEY_SECRET)
+    .createHmac('sha256', CASHFREE_SECRET_KEY)
     .update(body.toString())
     .digest('hex');
 
@@ -46,28 +46,7 @@ export function verifyRazorpaySignature({ orderId, paymentId, signature }) {
 }
 
 /**
- * Server-Side Razorpay Webhook Verification
- */
-export function verifyRazorpayWebhookSignature(rawBody, webhookSignature, webhookSecret) {
-  if (!rawBody || !webhookSignature || !webhookSecret) return false;
-  const expectedSignature = crypto
-    .createHmac('sha256', webhookSecret)
-    .update(rawBody)
-    .digest('hex');
-
-  try {
-    const a = Buffer.from(expectedSignature, 'utf-8');
-    const b = Buffer.from(webhookSignature, 'utf-8');
-    if (a.length !== b.length) return false;
-    return crypto.timingSafeEqual(a, b);
-  } catch (e) {
-    return false;
-  }
-}
-
-/**
  * Signed Expiring Download Token Generation
- * Format: payload.signature (HMAC SHA256)
  */
 export function generateSignedDownloadToken({ userId, bookId, expiresInMins = 60 }) {
   const expiresAt = Date.now() + expiresInMins * 60 * 1000;
@@ -89,7 +68,6 @@ export function verifySignedDownloadToken(token) {
 
   const [payloadBase64, signature] = token.split('.');
 
-  // Verify HMAC Signature
   const expectedSignature = crypto
     .createHmac('sha256', DOWNLOAD_TOKEN_SECRET)
     .update(payloadBase64)

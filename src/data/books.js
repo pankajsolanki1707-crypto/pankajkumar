@@ -69,7 +69,7 @@ In **The Courage to Practice Freedom**, engineer and author Pankaj Kumar breaks 
     ],
     faqs: [
       { q: "Is this a theoretical philosophical book?", a: "No. It is a practical behavior manual with specific daily practices at the end of each chapter." },
-      { q: "When do I get the PDF version?", a: "Instantly upon completion of payment via Razorpay. The PDF will also be saved in your 'My Library' dashboard." }
+      { q: "When do I get the PDF version?", a: "Instantly upon completion of payment via Cashfree. The PDF will also be saved in your 'My Library' dashboard." }
     ],
     sampleExcerpt: `Introduction: Why Understanding Freedom Is Not Enough
 
