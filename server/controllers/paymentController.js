@@ -5,6 +5,34 @@ const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID;
 const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
 const CASHFREE_ENVIRONMENT = process.env.CASHFREE_ENVIRONMENT || 'PRODUCTION';
 
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_SECRET_KEY = process.env.PAYPAL_SECRET_KEY;
+const PAYPAL_ENVIRONMENT = process.env.PAYPAL_ENVIRONMENT || 'PRODUCTION';
+
+/**
+ * Get PayPal OAuth Access Token
+ */
+async function getPayPalAccessToken() {
+  const baseUrl = PAYPAL_ENVIRONMENT === 'PRODUCTION'
+    ? 'https://api-m.paypal.com'
+    : 'https://api-m.sandbox.paypal.com';
+
+  const authStr = `${PAYPAL_CLIENT_ID}:${PAYPAL_SECRET_KEY}`;
+  const authBase64 = Buffer.from(authStr).toString('base64');
+
+  const res = await fetch(`${baseUrl}/v1/oauth2/token`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${authBase64}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'grant_type=client_credentials'
+  });
+
+  const data = await res.json();
+  return data.access_token;
+}
+
 /**
  * 1. Server-Side Cashfree Order Creation Endpoint (Live Cashfree PG v3 API)
  */
@@ -101,15 +129,6 @@ export async function createPaymentOrder(req, res) {
 
     db.createOrder(orderData);
 
-    db.logSecurityEvent('CASHFREE_LIVE_SESSION_CREATED', {
-      orderId,
-      paymentSessionId: cfData.payment_session_id,
-      bookId,
-      amount: serverPrice,
-      email: cleanEmail,
-      phone: cleanPhone
-    });
-
     res.json({
       orderId,
       paymentSessionId: cfData.payment_session_id,
@@ -129,10 +148,9 @@ export async function createPaymentOrder(req, res) {
  */
 export async function verifyPaymentSignature(req, res) {
   try {
-    const { orderId, referenceId, signature, bookId, customerEmail, customerName } = req.body;
+    const { orderId, referenceId, signature, bookId, customerEmail } = req.body;
 
     const cleanEmail = sanitizeInput(customerEmail);
-    const cleanName = sanitizeInput(customerName);
 
     // Verify Cashfree HMAC Signature
     const isSignatureValid = verifyCashfreeSignature({
@@ -151,21 +169,12 @@ export async function verifyPaymentSignature(req, res) {
       return res.status(400).json({ error: 'Cashfree payment verification failed: Invalid HMAC signature.' });
     }
 
-    // Update order status in DB (Idempotent update)
     db.updateOrderStatus(orderId, 'VERIFIED', referenceId || `CF_REF_${Date.now()}`);
 
-    // Generate signed download token
     const downloadToken = generateSignedDownloadToken({
       userId: req.user?.id || cleanEmail,
       bookId,
       expiresInMins: 60
-    });
-
-    db.logSecurityEvent('CASHFREE_LIVE_VERIFIED_SUCCESS', {
-      orderId,
-      referenceId,
-      bookId,
-      email: cleanEmail
     });
 
     res.json({
@@ -184,7 +193,152 @@ export async function verifyPaymentSignature(req, res) {
 }
 
 /**
- * 3. Secure Webhook Listener
+ * 3. PayPal Business REST API Order Creation Endpoint (USD Global Payments)
+ */
+export async function createPayPalOrder(req, res) {
+  try {
+    const { bookId, customerName, customerEmail } = req.body;
+    const cleanEmail = sanitizeInput(customerEmail);
+    const cleanName = sanitizeInput(customerName);
+
+    if (!bookId || !cleanEmail) {
+      return res.status(400).json({ error: 'Book ID and customer email are required.' });
+    }
+
+    const usdPriceMap = {
+      'courage-to-practice-freedom': 1.99,
+      'think-on-paper': 1.99,
+      'motion-vs-action': 1.69,
+      'motion-banam-action': 1.69,
+      'attention-is-enough': 1.69,
+      'dhyan-hi-paryapt-hai': 1.69,
+      'habits-dont-work': 1.69,
+      'ai-without-the-hype': 1.99,
+      'one-honest-page': 1.79,
+      'algorithm-effect': 1.49,
+      'dragon-and-the-elephant': 2.19,
+      'wired-mind-silent-pages': 1.79,
+      'defence-matrix': 2.49,
+      'jeevan-mein-khade-hona-seekhiye': 1.69,
+      'shabdon-ka-dukandar': 1.79,
+      'uljha-hua-man': 1.69,
+      'road-to-entrepreneurship': 1.99
+    };
+
+    const serverUsdPrice = usdPriceMap[bookId] || 1.99;
+    const token = await getPayPalAccessToken();
+
+    const baseUrl = PAYPAL_ENVIRONMENT === 'PRODUCTION'
+      ? 'https://api-m.paypal.com'
+      : 'https://api-m.sandbox.paypal.com';
+
+    const ppRes = await fetch(`${baseUrl}/v2/checkout/orders`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        intent: 'CAPTURE',
+        purchase_units: [
+          {
+            amount: {
+              currency_code: 'USD',
+              value: serverUsdPrice.toFixed(2)
+            },
+            description: `Digital Ebook PDF: ${bookId}`
+          }
+        ]
+      })
+    });
+
+    const ppData = await ppRes.json();
+
+    if (!ppRes.ok || !ppData.id) {
+      return res.status(400).json({ error: 'Failed to create PayPal order session.' });
+    }
+
+    const orderData = {
+      orderId: ppData.id,
+      cashfreeOrderId: ppData.id,
+      userId: req.user?.id || 'guest',
+      bookId,
+      amount: serverUsdPrice,
+      currency: 'USD',
+      status: 'PENDING',
+      customerName: cleanName,
+      customerEmail: cleanEmail,
+      createdAt: new Date().toISOString()
+    };
+
+    db.createOrder(orderData);
+
+    res.json({
+      paypalOrderId: ppData.id,
+      amount: serverUsdPrice,
+      currency: 'USD'
+    });
+
+  } catch (error) {
+    db.logSecurityEvent('PAYPAL_ORDER_FAILED', { error: error.message }, 'CRITICAL');
+    res.status(500).json({ error: 'Failed to create PayPal order.' });
+  }
+}
+
+/**
+ * 4. PayPal Business REST API Order Capture Endpoint
+ */
+export async function capturePayPalOrder(req, res) {
+  try {
+    const { paypalOrderId, bookId, customerEmail } = req.body;
+    const cleanEmail = sanitizeInput(customerEmail);
+
+    const token = await getPayPalAccessToken();
+
+    const baseUrl = PAYPAL_ENVIRONMENT === 'PRODUCTION'
+      ? 'https://api-m.paypal.com'
+      : 'https://api-m.sandbox.paypal.com';
+
+    const captureRes = await fetch(`${baseUrl}/v2/checkout/orders/${paypalOrderId}/capture`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const captureData = await captureRes.json();
+
+    if (!captureRes.ok || captureData.status !== 'COMPLETED') {
+      return res.status(400).json({ error: 'PayPal payment capture failed.' });
+    }
+
+    const referenceId = captureData.purchase_units?.[0]?.payments?.captures?.[0]?.id || paypalOrderId;
+    db.updateOrderStatus(paypalOrderId, 'VERIFIED', referenceId);
+
+    const downloadToken = generateSignedDownloadToken({
+      userId: req.user?.id || cleanEmail,
+      bookId,
+      expiresInMins: 60
+    });
+
+    res.json({
+      success: true,
+      message: 'PayPal payment captured & verified successfully.',
+      orderId: paypalOrderId,
+      referenceId,
+      downloadToken,
+      downloadUrl: `/api/downloads/token/${downloadToken}`
+    });
+
+  } catch (error) {
+    db.logSecurityEvent('PAYPAL_CAPTURE_ERROR', { error: error.message }, 'CRITICAL');
+    res.status(500).json({ error: 'Internal error capturing PayPal payment.' });
+  }
+}
+
+/**
+ * 5. Secure Webhook Listener
  */
 export async function handleCashfreeWebhook(req, res) {
   const event = req.body;
@@ -195,11 +349,6 @@ export async function handleCashfreeWebhook(req, res) {
     if (orderId && !db.checkIdempotency(`cf_webhook_${paymentId}`)) {
       db.setIdempotency(`cf_webhook_${paymentId}`, true);
       db.updateOrderStatus(orderId, 'VERIFIED', paymentId);
-
-      db.logSecurityEvent('CASHFREE_WEBHOOK_CAPTURED', {
-        paymentId,
-        orderId
-      });
     }
   }
 

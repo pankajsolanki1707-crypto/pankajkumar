@@ -6,18 +6,46 @@ import { db } from '../database/db.js';
 const JWT_SECRET = process.env.JWT_SECRET || 'pk_sec_jwt_auth_98741029384710293847102938471029';
 
 /**
- * Production Helmet Security Headers (OWASP Compliant + GA Support)
+ * Production Helmet Security Headers (Cashfree + PayPal + GA Support)
  */
 export const configureSecurityHeaders = helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com", "https://www.googletagmanager.com"],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://sdk.cashfree.com",
+        "https://www.paypal.com",
+        "https://www.sandbox.paypal.com",
+        "https://www.googletagmanager.com"
+      ],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https://images.unsplash.com", "https://checkout.razorpay.com", "https://www.google-analytics.com"],
-      connectSrc: ["'self'", "https://lumberjack.razorpay.com", "https://api.razorpay.com", "https://www.google-analytics.com", "https://region1.google-analytics.com"],
-      frameSrc: ["'self'", "https://api.razorpay.com", "https://checkout.razorpay.com"],
+      imgSrc: [
+        "'self'",
+        "data:",
+        "https://images.unsplash.com",
+        "https://sdk.cashfree.com",
+        "https://www.paypalobjects.com",
+        "https://www.google-analytics.com"
+      ],
+      connectSrc: [
+        "'self'",
+        "https://api.cashfree.com",
+        "https://sandbox.cashfree.com",
+        "https://api-m.paypal.com",
+        "https://api-m.sandbox.paypal.com",
+        "https://www.google-analytics.com",
+        "https://region1.google-analytics.com"
+      ],
+      frameSrc: [
+        "'self'",
+        "https://api.cashfree.com",
+        "https://sandbox.cashfree.com",
+        "https://www.paypal.com",
+        "https://www.sandbox.paypal.com"
+      ],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: []
     }
@@ -28,7 +56,6 @@ export const configureSecurityHeaders = helmet({
     includeSubDomains: true,
     preload: true
   },
-  frameguard: { action: 'deny' }, // Anti-Clickjacking
   noSniff: true, // X-Content-Type-Options
   referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
 });

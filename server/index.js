@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 
 import { configureSecurityHeaders, authRateLimiter, checkoutRateLimiter, downloadRateLimiter, generalApiLimiter, authenticateToken, requireRole } from './middleware/security.js';
 import { registerUser, loginUser, logoutUser, getCurrentUser } from './controllers/authController.js';
-import { createPaymentOrder, verifyPaymentSignature, handleCashfreeWebhook } from './controllers/paymentController.js';
+import { createPaymentOrder, verifyPaymentSignature, handleCashfreeWebhook, createPayPalOrder, capturePayPalOrder } from './controllers/paymentController.js';
 import { requestDownloadToken, downloadFileWithToken } from './controllers/downloadController.js';
 import { getSecurityOverview, updateUserRole } from './controllers/adminController.js';
 import { db } from './database/db.js';
@@ -58,10 +58,13 @@ app.post('/api/auth/login', authRateLimiter, loginUser);
 app.post('/api/auth/logout', logoutUser);
 app.get('/api/auth/me', getCurrentUser);
 
-// Payment Routes (Cashfree Server-Side Verification)
+// Payment Routes (Cashfree + PayPal Dual Gateway)
 app.post('/api/payments/create-order', checkoutRateLimiter, createPaymentOrder);
 app.post('/api/payments/verify', checkoutRateLimiter, verifyPaymentSignature);
 app.post('/api/payments/webhook', handleCashfreeWebhook);
+
+app.post('/api/payments/paypal-create-order', checkoutRateLimiter, createPayPalOrder);
+app.post('/api/payments/paypal-capture-order', checkoutRateLimiter, capturePayPalOrder);
 
 // Protected Digital Downloads (Signed Expiring Tokens)
 app.get('/api/downloads/request-token/:bookId', downloadRateLimiter, requestDownloadToken);
@@ -127,10 +130,10 @@ app.use((err, req, res, next) => {
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`====================================================`);
-    console.log(` PANKAJ KUMAR AUTHOR PLATFORM — CASHFREE HARDENED SERVER`);
+    console.log(` PANKAJ KUMAR AUTHOR PLATFORM — DUAL GATEWAY HARDENED SERVER`);
     console.log(` Status: Server active on http://localhost:${PORT}`);
     console.log(` Environment: ${process.env.NODE_ENV || 'production'}`);
-    console.log(` Payment Gateway Channel: Cashfree Payments (INR)`);
+    console.log(` Payment Gateways: Cashfree (INR) + PayPal (USD)`);
     console.log(` Protected PDF Storage: server/protected_storage/`);
     console.log(`====================================================`);
   });
