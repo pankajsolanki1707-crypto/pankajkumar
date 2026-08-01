@@ -23,6 +23,62 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 
 import { BOOKS } from './data/books';
 
+const getPathForPage = (page, data) => {
+  switch (page) {
+    case 'home': return '/';
+    case 'books': return '/books';
+    case 'book-details': return data ? `/books/${data.id || data}` : '/books';
+    case 'category-archive': return data ? `/category/${encodeURIComponent(data)}` : '/books';
+    case 'about': return '/about';
+    case 'blog': return '/blog';
+    case 'reading-list': return '/reading-list';
+    case 'dashboard': return '/dashboard';
+    case 'admin-console': return '/admin';
+    case 'contact': return '/contact';
+    case 'sitemap': return '/sitemap';
+    case 'image-sitemap': return '/image-sitemap';
+    case 'robots': return '/robots';
+    case 'legal-privacy': return '/legal/privacy';
+    case 'legal-terms': return '/legal/terms';
+    case 'legal-refund': return '/legal/refund';
+    case 'legal-cookie': return '/legal/cookie';
+    case 'legal-accessibility': return '/legal/accessibility';
+    case 'legal-copyright': return '/legal/copyright';
+    default: return '/';
+  }
+};
+
+const parsePathToState = (pathname) => {
+  if (pathname === '/' || pathname === '') return { page: 'home' };
+  if (pathname === '/books') return { page: 'books' };
+  if (pathname.startsWith('/books/')) {
+    const bookId = pathname.replace('/books/', '');
+    const book = BOOKS.find(b => b.id === bookId);
+    if (book) return { page: 'book-details', data: book };
+    return { page: 'books' };
+  }
+  if (pathname.startsWith('/category/')) {
+    const cat = decodeURIComponent(pathname.replace('/category/', ''));
+    return { page: 'category-archive', data: cat };
+  }
+  if (pathname === '/about') return { page: 'about' };
+  if (pathname === '/blog') return { page: 'blog' };
+  if (pathname === '/reading-list') return { page: 'reading-list' };
+  if (pathname === '/dashboard') return { page: 'dashboard' };
+  if (pathname === '/admin') return { page: 'admin-console' };
+  if (pathname === '/contact') return { page: 'contact' };
+  if (pathname === '/sitemap') return { page: 'sitemap' };
+  if (pathname === '/image-sitemap') return { page: 'image-sitemap' };
+  if (pathname === '/robots') return { page: 'robots' };
+  if (pathname === '/legal/privacy') return { page: 'legal-privacy' };
+  if (pathname === '/legal/terms') return { page: 'legal-terms' };
+  if (pathname === '/legal/refund') return { page: 'legal-refund' };
+  if (pathname === '/legal/cookie') return { page: 'legal-cookie' };
+  if (pathname === '/legal/accessibility') return { page: 'legal-accessibility' };
+  if (pathname === '/legal/copyright') return { page: 'legal-copyright' };
+  return { page: 'home' };
+};
+
 export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [selectedBook, setSelectedBook] = useState(null);
@@ -58,7 +114,7 @@ export default function App() {
     }, 4000);
   };
 
-  const handleNavigate = (page, data) => {
+  const handleNavigate = (page, data, skipHistoryPush = false) => {
     if (page === 'book-details' && data) {
       setSelectedBook(data);
     }
@@ -66,13 +122,37 @@ export default function App() {
       setSelectedCategory(data);
     }
     setActivePage(page);
+
+    if (!skipHistoryPush) {
+      const path = getPathForPage(page, data);
+      window.history.pushState({ page, data }, '', path);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Synchronize browser URL & Back/Forward button history (popstate)
+  useEffect(() => {
+    const initial = parsePathToState(window.location.pathname);
+    handleNavigate(initial.page, initial.data, true);
+    
+    const initialPath = getPathForPage(initial.page, initial.data);
+    window.history.replaceState({ page: initial.page, data: initial.data }, '', initialPath);
+
+    const handlePopState = (event) => {
+      if (event.state && event.state.page) {
+        handleNavigate(event.state.page, event.state.data, true);
+      } else {
+        const stateFromPath = parsePathToState(window.location.pathname);
+        handleNavigate(stateFromPath.page, stateFromPath.data, true);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleSelectBook = (book) => {
-    setSelectedBook(book);
-    setActivePage('book-details');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate('book-details', book);
   };
 
   const handleOpenSample = (book) => {
@@ -132,7 +212,7 @@ export default function App() {
         {activePage === 'book-details' && selectedBook && (
           <BookDetailsPage
             book={selectedBook}
-            onBack={() => setActivePage('books')}
+            onBack={() => handleNavigate('books')}
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
@@ -144,7 +224,7 @@ export default function App() {
         {activePage === 'category-archive' && (
           <CategoryArchivePage
             categoryName={selectedCategory}
-            onBack={() => setActivePage('books')}
+            onBack={() => handleNavigate('books')}
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
@@ -211,7 +291,7 @@ export default function App() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         onSelectBook={handleSelectBook}
-        onSelectBlog={() => setActivePage('blog')}
+        onSelectBlog={() => handleNavigate('blog')}
       />
 
       {/* Cashfree Payments Modal */}
