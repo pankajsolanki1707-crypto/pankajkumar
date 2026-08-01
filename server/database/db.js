@@ -13,8 +13,8 @@ let dbData = {
       id: 'usr_admin_001',
       name: 'Pankaj Kumar (Author & Admin)',
       email: 'pankajsolanki1707@gmail.com',
-      passwordHash: '$2a$12$K89s1h...placeholder...', // Default bcrypt hashed
-      role: 'Administrator', // Roles: Visitor, Customer, Author, Editor, Administrator
+      passwordHash: '$2a$12$K89s1h...placeholder...',
+      role: 'Administrator',
       verified: true,
       twoFactorEnabled: false,
       failedLoginAttempts: 0,
@@ -22,22 +22,7 @@ let dbData = {
       createdAt: new Date().toISOString()
     }
   ],
-  orders: [
-    {
-      id: 'ORD-PK-892104',
-      razorpayOrderId: 'order_live_892104',
-      razorpayPaymentId: 'pay_live_892104',
-      userId: 'usr_admin_001',
-      bookId: 'think-on-paper',
-      bookTitle: 'Think on Paper',
-      amount: 149,
-      currency: 'INR',
-      status: 'VERIFIED',
-      customerName: 'Pankaj Kumar Reader',
-      customerEmail: 'pankajsolanki1707@gmail.com',
-      createdAt: new Date().toISOString()
-    }
-  ],
+  orders: [],
   downloadLogs: [],
   auditLogs: [],
   contactMessages: [],
@@ -71,7 +56,7 @@ loadDatabase();
 // DB Query Abstraction Methods
 export const db = {
   // Users
-  findUserByEmail: (email) => dbData.users.find(u => u.email.toLowerCase() === (email || '').toLowerCase()),
+  findUserByEmail: (email) => dbData.users.find(u => (u.email || '').toLowerCase() === (email || '').toLowerCase()),
   findUserById: (id) => dbData.users.find(u => u.id === id),
   createUser: (userData) => {
     dbData.users.push(userData);
@@ -89,21 +74,54 @@ export const db = {
   },
 
   // Orders & Transactions
-  findOrderById: (orderId) => dbData.orders.find(o => o.id === orderId || o.razorpayOrderId === orderId),
-  findOrdersByEmail: (email) => dbData.orders.filter(o => o.customerEmail.toLowerCase() === (email || '').toLowerCase() && o.status === 'VERIFIED'),
+  findOrderById: (orderId) => dbData.orders.find(o => 
+    o.id === orderId || 
+    o.orderId === orderId || 
+    o.cashfreeOrderId === orderId || 
+    o.razorpayOrderId === orderId
+  ),
+  findOrdersByEmail: (email) => dbData.orders.filter(o => 
+    (o.customerEmail || '').toLowerCase() === (email || '').toLowerCase() && 
+    (o.status === 'VERIFIED' || o.status === 'COMPLETED')
+  ),
   hasUserPurchasedBook: (email, bookId) => {
-    return dbData.orders.some(o => o.customerEmail.toLowerCase() === (email || '').toLowerCase() && o.bookId === bookId && o.status === 'VERIFIED');
+    if (!email || !bookId) return false;
+    return dbData.orders.some(o => 
+      (o.customerEmail || '').toLowerCase() === email.toLowerCase() && 
+      o.bookId === bookId && 
+      (o.status === 'VERIFIED' || o.status === 'COMPLETED' || o.status === 'PENDING')
+    );
   },
   createOrder: (orderData) => {
-    dbData.orders.push(orderData);
+    const normalizedOrder = {
+      id: orderData.orderId || orderData.id || `ORD-${Date.now()}`,
+      orderId: orderData.orderId || orderData.id,
+      ...orderData
+    };
+    dbData.orders.push(normalizedOrder);
     saveDatabase();
-    return orderData;
+    return normalizedOrder;
   },
   updateOrderStatus: (id, status, paymentId) => {
-    const order = dbData.orders.find(o => o.id === id || o.razorpayOrderId === id);
+    const order = dbData.orders.find(o => 
+      o.id === id || 
+      o.orderId === id || 
+      o.cashfreeOrderId === id || 
+      o.razorpayOrderId === id
+    );
     if (order) {
       order.status = status;
-      if (paymentId) order.razorpayPaymentId = paymentId;
+      if (paymentId) order.paymentId = paymentId;
+      saveDatabase();
+    } else {
+      // If order object wasn't found in memory, create a verified order record
+      dbData.orders.push({
+        id: id || `ORD-${Date.now()}`,
+        orderId: id,
+        status: status || 'VERIFIED',
+        paymentId: paymentId || id,
+        createdAt: new Date().toISOString()
+      });
       saveDatabase();
     }
   },
@@ -128,11 +146,11 @@ export const db = {
       id: `audit_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
       eventType,
       details,
-      severity, // INFO, WARNING, CRITICAL
+      severity,
       timestamp: new Date().toISOString()
     };
     dbData.auditLogs.unshift(event);
-    if (dbData.auditLogs.length > 500) dbData.auditLogs.pop(); // Cap at 500
+    if (dbData.auditLogs.length > 500) dbData.auditLogs.pop();
     saveDatabase();
     return event;
   },

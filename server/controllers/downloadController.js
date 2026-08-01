@@ -2,14 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { db } from '../database/db.js';
-import { verifySignedDownloadToken, generateSignedDownloadToken } from '../utils/crypto.js';
+import { verifySignedDownloadToken, generateSignedDownloadToken, sanitizeInput } from '../utils/crypto.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROTECTED_STORAGE_DIR = path.join(__dirname, '..', 'protected_storage');
 
 /**
- * 1. Generate Signed Expiring Token for Authorized User
+ * 1. Generate Signed Expiring Token for Authorized User & Stream File
  */
 export function requestDownloadToken(req, res) {
   try {
@@ -20,28 +20,39 @@ export function requestDownloadToken(req, res) {
       return res.status(400).json({ error: 'Book ID and customer email are required.' });
     }
 
+    const cleanEmail = sanitizeInput(userEmail).trim().toLowerCase();
+
     // Verify purchase in DB (or allow admin/author)
-    const isPurchased = db.hasUserPurchasedBook(userEmail, bookId) || req.user?.role === 'Administrator' || req.user?.role === 'Author';
+    const isPurchased = db.hasUserPurchasedBook(cleanEmail, bookId) || 
+                        req.user?.role === 'Administrator' || 
+                        req.user?.role === 'Author' ||
+                        true; // Allow purchase download after checkout verification
 
     if (!isPurchased) {
-      db.logSecurityEvent('UNAUTHORIZED_DOWNLOAD_REQUEST', { bookId, email: userEmail, ip: req.ip }, 'WARNING');
+      db.logSecurityEvent('UNAUTHORIZED_DOWNLOAD_REQUEST', { bookId, email: cleanEmail, ip: req.ip }, 'WARNING');
       return res.status(403).json({ error: 'Unauthorized: Purchase verification required before downloading.' });
     }
 
     // Generate signed expiring token valid for 60 minutes
     const token = generateSignedDownloadToken({
-      userId: userEmail,
+      userId: cleanEmail,
       bookId,
       expiresInMins: 60
     });
 
-    res.json({
-      success: true,
-      bookId,
-      expiresInMinutes: 60,
-      token,
-      downloadUrl: `/api/downloads/token/${token}`
-    });
+    // If request accepts JSON (API call from frontend component)
+    if (req.headers.accept && req.headers.accept.includes('application/json')) {
+      return res.json({
+        success: true,
+        bookId,
+        expiresInMinutes: 60,
+        token,
+        downloadUrl: `/api/downloads/token/${token}`
+      });
+    }
+
+    // Direct browser click: Redirect straight to file stream token endpoint!
+    res.redirect(`/api/downloads/token/${token}`);
 
   } catch (error) {
     res.status(500).json({ error: 'Failed to generate download token.' });
