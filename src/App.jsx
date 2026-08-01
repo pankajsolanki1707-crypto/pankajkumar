@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import GlobalSearchModal from './components/GlobalSearchModal';
@@ -90,6 +91,9 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-paper-100 text-ink-900 font-sans">
       
+      {/* Top Announcement Bar for Launch Offer "READER10" */}
+      <AnnouncementBar onShowToast={showToast} />
+
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 bg-ink-900 text-paper-100 px-5 py-3 rounded-xl shadow-2xl border border-paper-300 text-xs font-semibold flex items-center space-x-2 animate-bounce">

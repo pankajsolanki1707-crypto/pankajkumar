@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, CheckCircle2, Download, X, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Lock, CheckCircle2, Download, X, AlertCircle, Tag, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [couponCode, setCouponCode] = useState('READER10');
+  const [couponApplied, setCouponApplied] = useState(true);
+  const [couponError, setCouponError] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [completedOrder, setCompletedOrder] = useState(null);
 
-  const currentPrice = book.prices.pdf;
+  const basePrice = book.prices.pdf;
+  const discountRate = couponApplied ? 0.10 : 0;
+  const discountAmount = Math.round(basePrice * discountRate);
+  const currentPrice = basePrice - discountAmount;
+
+  const handleApplyCoupon = (e) => {
+    e.preventDefault();
+    setCouponError(null);
+    if (couponCode.trim().toUpperCase() === 'READER10') {
+      setCouponApplied(true);
+    } else {
+      setCouponApplied(false);
+      setCouponError('Invalid coupon code. Use "READER10" for 10% OFF.');
+    }
+  };
 
   const handleCashfreePayment = async (e) => {
     e.preventDefault();
@@ -52,6 +69,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         customerName: name,
         customerEmail: email,
         customerPhone: cleanPhoneDigits,
+        appliedCoupon: couponApplied ? 'READER10' : null,
         purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
         secureDownloadUrl: `/api/downloads/request-token/${book.id}?email=${encodeURIComponent(email)}`,
         expiresAt: expireTime,
@@ -71,7 +89,8 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
           bookId: book.id,
           customerName: name,
           customerEmail: email,
-          customerPhone: cleanPhoneDigits
+          customerPhone: cleanPhoneDigits,
+          couponCode: couponApplied ? 'READER10' : null
         })
       });
 
@@ -206,6 +225,12 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
                 <span className="text-ink-600">Amount Paid:</span>
                 <span className="font-bold text-authorAccent">₹{completedOrder.pricePaid}</span>
               </div>
+              {completedOrder.appliedCoupon && (
+                <div className="flex justify-between text-emerald-700 font-semibold text-xs">
+                  <span>Applied Discount:</span>
+                  <span>10% OFF (Code: {completedOrder.appliedCoupon})</span>
+                </div>
+              )}
               <div className="flex justify-between border-t border-paper-300 pt-2 text-xs text-ink-500">
                 <span>Receipt sent to:</span>
                 <span className="font-mono">{completedOrder.customerEmail}</span>
@@ -249,6 +274,43 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
               </div>
             </div>
 
+            {/* Discount Code Box */}
+            <div className="space-y-2 bg-paper-200/60 p-3.5 rounded-xl border border-paper-300">
+              <div className="flex items-center justify-between text-xs font-semibold text-ink-800">
+                <span className="flex items-center space-x-1.5">
+                  <Tag className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Have a discount coupon?</span>
+                </span>
+                {couponApplied && (
+                  <span className="text-emerald-700 flex items-center space-x-1 font-bold text-[11px]">
+                    <Check className="w-3 h-3" />
+                    <span>READER10 Applied (10% OFF)</span>
+                  </span>
+                )}
+              </div>
+              
+              <div className="flex space-x-2 pt-1">
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                  placeholder="Enter Code (e.g. READER10)"
+                  className="flex-1 px-3 py-1.5 bg-paper-50 border border-paper-300 rounded-lg text-xs text-ink-900 font-mono focus:outline-none focus:ring-1 focus:ring-authorAccent uppercase"
+                />
+                <button
+                  type="button"
+                  onClick={handleApplyCoupon}
+                  className="px-3 py-1.5 bg-ink-900 hover:bg-ink-800 text-paper-100 font-bold text-xs rounded-lg transition-colors"
+                >
+                  Apply
+                </button>
+              </div>
+
+              {couponError && (
+                <p className="text-[11px] text-rose-600 font-medium">{couponError}</p>
+              )}
+            </div>
+
             {/* Contact details */}
             <div className="space-y-3">
               <label className="block text-xs font-sans uppercase font-bold text-ink-700 tracking-wider">
@@ -289,10 +351,22 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             {/* Total and Submit Button */}
             <div className="pt-4 border-t border-paper-300">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-medium text-ink-600">Total Price:</span>
-                <span className="font-serif text-3xl font-bold text-ink-900">
-                  ₹{currentPrice}
-                </span>
+                <div>
+                  <span className="text-sm font-medium text-ink-600 block">Total Payable:</span>
+                  {couponApplied && (
+                    <span className="text-xs text-emerald-700 font-bold">10% Discount Applied!</span>
+                  )}
+                </div>
+                <div className="text-right">
+                  {couponApplied && (
+                    <span className="text-xs line-through text-ink-400 font-mono block">
+                      ₹{basePrice}
+                    </span>
+                  )}
+                  <span className="font-serif text-3xl font-bold text-ink-900">
+                    ₹{currentPrice}
+                  </span>
+                </div>
               </div>
 
               <button
