@@ -29,11 +29,6 @@ export default function BookCard({ book, onSelectBook, onOpenSample, onBuyBook }
           )}
         </div>
 
-        {/* Formats Pill Top Right */}
-        <div className="absolute top-4 right-4 z-10 flex items-center space-x-1 text-[10px] font-mono text-ink-500 font-semibold bg-paper-100/90 px-2 py-1 rounded-md border border-paper-300 backdrop-blur-sm">
-          <span>PDF • EPUB • Kindle</span>
-        </div>
-
         {/* Book Cover Graphic with 3D Spine & Hover Elevation */}
         <div 
           onClick={() => onSelectBook(book)}
