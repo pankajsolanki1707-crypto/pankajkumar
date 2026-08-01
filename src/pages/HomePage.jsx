@@ -159,7 +159,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 2. "Why I Write" — Authentic Author Personal Story Section */}
+      {/* 2. "Why I Write: Engineering Better Thinking" — Customized Author Personal Story */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-paper-100 rounded-3xl p-8 sm:p-14 border border-paper-300 shadow-subtle grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
@@ -175,7 +175,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4 text-paper-100">
                   <p className="font-serif text-lg font-bold">Pankaj Kumar</p>
-                  <p className="text-xs text-paper-300 font-sans">Engineer, Author & Systems Specialist</p>
+                  <p className="text-xs text-paper-300 font-sans">Mechanical Engineer & Author</p>
                 </div>
               </div>
             </div>
@@ -184,39 +184,43 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
           {/* Editorial Storytelling Copy */}
           <div className="lg:col-span-7 space-y-5">
             <span className="text-xs font-sans uppercase font-bold text-authorAccent tracking-wider block">
-              Editorial Statement
+              Author Philosophy
             </span>
             
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900 leading-tight">
-              Why I Write: Bringing Systems Engineering Rigor to Human Thought
+              Why I Write: Engineering Better Thinking
             </h2>
 
             <div className="space-y-4 text-sm sm:text-base text-ink-700 font-sans leading-relaxed">
               <p>
-                I spent over a decade working as a software and systems engineer. In engineering, when a computer slows down, lags, or crashes, you don’t yell at the hardware or try harder inside your head. You inspect working memory RAM, debug bottlenecks, and offload computation to external storage.
+                Before becoming an author, I spent years studying and working in mechanical engineering, where every machine, system, and process is designed to solve problems efficiently. One lesson stayed with me throughout my career: <em>every system has limits</em>. When a machine fails, engineers don't blame the machine—they identify the bottleneck, redesign the process, and improve the system.
+              </p>
+              <p className="font-serif text-base italic text-ink-900">
+                Over time, I realized that the human mind works in much the same way.
               </p>
               <p>
-                Human overthinking works on the exact same physical constraints. Most people don’t suffer from a lack of intelligence or motivation; they suffer from neurological RAM overload. They try to weigh career dilemmas, personal relationships, financial budgets, and future plans all inside their head at once.
+                Most people don't struggle because they lack intelligence, discipline, or ambition. They struggle because they ask their minds to carry too many decisions, worries, and ideas at the same time. Just as no machine is designed to operate under constant overload, neither is the human brain.
               </p>
               <p>
-                I write books to build concrete, friction-free frameworks—on simple paper—that allow anyone to offload mental noise, make decisive choices under pressure, and live with radical clarity.
+                I write books to apply engineering thinking to everyday life. By breaking complex problems into simple frameworks, practical exercises, and clear action steps, my goal is to help readers organize their thoughts, make better decisions, and reduce mental clutter.
+              </p>
+              <p>
+                To me, a book isn't just a collection of ideas—it's a carefully designed tool. Like a well-engineered system, it should simplify complexity, improve performance, and make life easier for the people who use it.
               </p>
             </div>
 
-            <div className="pt-4 flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <Cpu className="w-5 h-5 text-authorAccent" />
-                <span className="text-xs font-semibold text-ink-900">Systems Mindset</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Lightbulb className="w-5 h-5 text-authorAccent" />
-                <span className="text-xs font-semibold text-ink-900">Zero Fluff</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Compass className="w-5 h-5 text-authorAccent" />
-                <span className="text-xs font-semibold text-ink-900">Practical Action</span>
+            {/* Core Belief Callout Box */}
+            <div className="pt-2">
+              <div className="bg-paper-200/80 p-5 rounded-2xl border-l-4 border-authorAccent space-y-1">
+                <span className="text-[10px] font-mono uppercase font-bold text-authorAccent tracking-wider block">
+                  Core Guiding Principle
+                </span>
+                <p className="font-serif text-lg font-bold text-ink-900 italic">
+                  "Clear thinking isn't a talent. It's a system—and anyone can build it."
+                </p>
               </div>
             </div>
+
           </div>
 
         </div>
