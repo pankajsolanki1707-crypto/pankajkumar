@@ -51,11 +51,93 @@
     <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=ASkEIt5GthuW_sEE_pg_dP5IkYWmVlLHrUchMsgU8rNAK2--Zp9_gxj42btwRqUg-ya_OiM1seXGCzwz&currency=USD"></script>
 
-    <!-- JSON-LD Structured Data: Author & WebSite -->
+    <!-- Google Rich Results Recognized JSON-LD Schemas (FAQPage + Book + BreadcrumbList + WebSite + Person) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
+        {
+          "@type": "FAQPage",
+          "@id": "https://pankajkumar.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What topics do Pankaj Kumar's books cover?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pankaj Kumar writes practical, zero-fluff books on productivity systems, cognitive psychology, handwriting neuroscience, artificial intelligence, aerospace defense technology, and strategic decision-making."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How are digital PDF ebooks delivered after purchase?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Immediately upon completing payment via Cashfree (INR ₹) or PayPal (USD $), you receive an instant cryptographically signed download link valid for 60 minutes. Your purchased books are also saved permanently in your My Library dashboard."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What payment methods are accepted for international and domestic readers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For Indian readers, we accept UPI (GPay, PhonePe, Paytm), NetBanking, and Debit/Credit Cards via Cashfree. For international readers, we accept PayPal Balance, Apple Pay, and International Cards via PayPal Business."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are sample chapters available before buying?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Every book includes a free downloadable or readable sample chapter accessible directly on the book page."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Book",
+          "@id": "https://pankajkumar.com/books/think-on-paper",
+          "name": "Think on Paper: The Lost Art of Offloading Mental Noise",
+          "url": "https://pankajkumar.com/books/think-on-paper",
+          "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop",
+          "author": {
+            "@type": "Person",
+            "name": "Pankaj Kumar",
+            "url": "https://pankajkumar.com"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Pankaj Kumar Author Platform"
+          },
+          "description": "Offload working memory RAM onto physical paper using paper architecture frameworks.",
+          "inLanguage": "English",
+          "numberOfPages": 64,
+          "genre": "Productivity",
+          "offers": {
+            "@type": "Offer",
+            "price": "149",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://pankajkumar.com/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://pankajkumar.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Books",
+              "item": "https://pankajkumar.com/books"
+            }
+          ]
+        },
         {
           "@type": "WebSite",
           "@id": "https://pankajkumar.com/#website",
@@ -63,7 +145,8 @@
           "name": "Pankaj Kumar Official Author Platform",
           "description": "Practical books on productivity, psychology, technology, AI, and decision making.",
           "publisher": {
-            "@id": "https://pankajkumar.com/#author"
+            "@type": "Person",
+            "name": "Pankaj Kumar"
           },
           "potentialAction": {
             "@type": "SearchAction",
