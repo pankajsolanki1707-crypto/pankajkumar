@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tag, Copy, Check, X, Sparkles } from 'lucide-react';
+import { Tag, Copy, Check, X, Sparkles, Globe } from 'lucide-react';
 
 export default function AnnouncementBar({ onShowToast }) {
   const [copied, setCopied] = useState(false);
@@ -19,7 +19,7 @@ export default function AnnouncementBar({ onShowToast }) {
   };
 
   return (
-    <div className="bg-gradient-to-r from-emerald-900 via-ink-900 to-emerald-950 text-paper-100 text-xs py-2.5 px-4 shadow-sm border-b border-emerald-800/40 relative animate-fadeIn">
+    <div className="bg-gradient-to-r from-emerald-950 via-ink-900 to-blue-950 text-paper-100 text-xs py-2.5 px-4 shadow-sm border-b border-emerald-800/40 relative animate-fadeIn">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
         
         {/* Banner Content */}
@@ -27,8 +27,14 @@ export default function AnnouncementBar({ onShowToast }) {
           <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400">
             <Sparkles className="w-3 h-3 animate-pulse" />
           </span>
-          <span className="text-paper-100">
-            <strong className="text-emerald-300 font-bold">NEW LAUNCH OFFER:</strong> Get 10% OFF on all digital PDF ebooks using discount code <span className="font-mono bg-paper-100/10 text-emerald-300 px-2 py-0.5 rounded font-bold border border-emerald-400/30">READER10</span>
+          <span className="text-paper-100 flex flex-wrap items-center gap-1.5">
+            <strong className="text-emerald-300 font-bold">NEW LAUNCH OFFER:</strong>
+            <span>10% OFF with code <span className="font-mono bg-paper-100/10 text-emerald-300 px-2 py-0.5 rounded font-bold border border-emerald-400/30">READER10</span></span>
+            <span className="hidden md:inline text-paper-100/40">|</span>
+            <span className="text-blue-300 font-semibold flex items-center space-x-1">
+              <Globe className="w-3 h-3 text-blue-400" />
+              <span>We Accept PayPal (Global USD) & Cashfree (UPI/Cards)</span>
+            </span>
           </span>
         </div>
 

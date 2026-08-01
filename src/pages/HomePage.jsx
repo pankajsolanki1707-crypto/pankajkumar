@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Layers } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Globe } from 'lucide-react';
 import BookCard from '../components/BookCard';
 import { BOOKS, CATEGORIES, TESTIMONIALS } from '../data/books';
 
@@ -59,19 +59,26 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                 </button>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="pt-6 border-t border-paper-200 dark:border-ink-800 flex flex-wrap items-center gap-6 text-xs text-ink-500 font-medium">
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>16+ Published Books</span>
+              {/* Trust Indicators with PayPal Acceptance */}
+              <div className="pt-6 border-t border-paper-200 dark:border-ink-800 space-y-3">
+                <div className="flex flex-wrap items-center gap-6 text-xs text-ink-500 font-medium">
+                  <div className="flex items-center space-x-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>16+ Published Books</span>
+                  </div>
+                  <div className="flex items-center space-x-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>50,000+ Readers</span>
+                  </div>
+                  <div className="flex items-center space-x-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>Paperback • Kindle • PDF • EPUB</span>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>50,000+ Readers</span>
-                </div>
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Paperback • Kindle • PDF • EPUB</span>
+
+                <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-lg text-xs font-semibold text-blue-800 dark:text-blue-200">
+                  <Globe className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Global Checkout: We Accept PayPal ($ USD) & Cashfree (₹ INR / UPI / Cards)</span>
                 </div>
               </div>
 
@@ -107,7 +114,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                     </p>
                     <div className="pt-2 flex items-center justify-between">
                       <span className="text-sm font-bold text-authorAccent">
-                        Starting ₹{latestRelease.prices.pdf}
+                        ₹{latestRelease.prices.pdf} / ${latestRelease.prices.usd} USD
                       </span>
                       <button
                         onClick={() => onSelectBook(latestRelease)}
@@ -223,7 +230,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
               {/* Formats Pills */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <span className="text-xs font-bold text-ink-500 uppercase tracking-wider">Available in:</span>
-                {['Paperback ₹399', 'Kindle ₹199', 'PDF ₹149', 'EPUB ₹149'].map((f) => (
+                {['Paperback ₹399', 'Kindle ₹199', 'PDF ₹149 / $1.99', 'EPUB ₹149 / $1.99'].map((f) => (
                   <span key={f} className="px-3 py-1 bg-paper-100 dark:bg-ink-900 border border-paper-300 dark:border-ink-700 text-xs font-semibold rounded-lg text-ink-800 dark:text-ink-200">
                     {f}
                   </span>
@@ -300,7 +307,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
             >
               <div className="space-y-3">
                 <div className="flex items-center space-x-1">
-                  {[...Array(t.rating)].map((_, i) => (
+                  {[...Array(t.rating || 5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>

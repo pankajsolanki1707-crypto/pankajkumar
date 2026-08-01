@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, ShieldCheck, Mail, ArrowUpRight, Github, Twitter, Linkedin, CheckCircle2, Lock, FileText, Check } from 'lucide-react';
+import { Send, ShieldCheck, Mail, ArrowUpRight, Github, Twitter, Linkedin, CheckCircle2, Lock, FileText, Check, Globe } from 'lucide-react';
 import { CATEGORIES } from '../data/books';
 
 export default function Footer({ setActivePage, onShowToast }) {
@@ -151,13 +151,17 @@ export default function Footer({ setActivePage, onShowToast }) {
         {/* High-Level Trust Bar */}
         <div className="pt-8 border-t border-paper-300 space-y-4">
           <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs font-medium text-ink-700 bg-paper-100 p-4 rounded-2xl border border-paper-300 shadow-sm">
-            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
-              <Check className="w-4 h-4 text-emerald-600" />
-              <span>SSL Encrypted</span>
+            <span className="flex items-center space-x-1.5 text-blue-900 font-bold">
+              <Globe className="w-4 h-4 text-blue-600" />
+              <span>Accepts PayPal (Global USD)</span>
             </span>
             <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
-              <span>Cashfree Secure Payments</span>
+              <span>Cashfree Payments (INR ₹)</span>
+            </span>
+            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
+              <Check className="w-4 h-4 text-emerald-600" />
+              <span>Visa / Mastercard / Apple Pay</span>
             </span>
             <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
@@ -165,11 +169,7 @@ export default function Footer({ setActivePage, onShowToast }) {
             </span>
             <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
               <Check className="w-4 h-4 text-emerald-600" />
-              <span>Secure Downloads</span>
-            </span>
-            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
-              <Check className="w-4 h-4 text-emerald-600" />
-              <span>Privacy Protected</span>
+              <span>256-Bit SSL Encrypted</span>
             </span>
           </div>
 
