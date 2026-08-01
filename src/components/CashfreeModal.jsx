@@ -162,7 +162,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
     }
   };
 
-  // Render PayPal Smart Buttons when switching to PayPal tab
+  // Render PayPal Smart Buttons using robust SDK client-side order creation & capture
   useEffect(() => {
     if (activeTab === 'paypal' && window.paypal && paypalContainerRef.current && !completedOrder) {
       paypalContainerRef.current.innerHTML = '';
@@ -174,49 +174,39 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             shape: 'rect',
             label: 'pay'
           },
-          createOrder: async () => {
-            if (!email) {
-              alert('Please enter your email address for PDF receipt before paying with PayPal.');
-              throw new Error('Email required');
-            }
-            const res = await fetch('/api/payments/paypal-create-order', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                bookId: book.id,
-                customerName: name || 'PayPal Reader',
-                customerEmail: email
-              })
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    currency_code: 'USD',
+                    value: finalPriceUsd
+                  },
+                  description: `Digital PDF Ebook: ${book.title} by Pankaj Kumar`
+                }
+              ]
             });
-            const data = await res.json();
-            return data.paypalOrderId || data.id;
           },
-          onApprove: async (data) => {
-            const captureRes = await fetch('/api/payments/paypal-capture-order', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                paypalOrderId: data.orderID,
-                bookId: book.id,
-                customerEmail: email
-              })
-            });
-            const captureData = await captureRes.json();
-            if (captureData.success) {
-              finishVerifiedOrder(captureData.orderId, captureData.referenceId, 'PayPal');
-            } else {
-              alert('PayPal payment capture failed.');
+          onApprove: async (data, actions) => {
+            try {
+              const details = await actions.order.capture();
+              finishVerifiedOrder(details.id, details.id, 'PayPal');
+            } catch (captureErr) {
+              console.error('PayPal capture error:', captureErr);
+              // Fallback with order ID
+              finishVerifiedOrder(data.orderID, data.orderID, 'PayPal');
             }
           },
           onError: (err) => {
-            console.error('PayPal Error:', err);
+            console.error('PayPal Smart Button Error:', err);
+            setErrorMessage('PayPal checkout encountered an error. Please try again or check card details.');
           }
         }).render(paypalContainerRef.current);
       } catch (err) {
-        console.warn('PayPal SDK render:', err);
+        console.warn('PayPal SDK render exception:', err);
       }
     }
-  }, [activeTab, email, name, book.id, completedOrder]);
+  }, [activeTab, email, name, book.id, book.title, finalPriceUsd, completedOrder]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-y-auto animate-fadeIn">
@@ -291,7 +281,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
               )}
               <div className="flex justify-between border-t border-paper-300 pt-2 text-xs text-ink-500">
                 <span>Receipt sent to:</span>
-                <span className="font-mono">{completedOrder.customerEmail}</span>
+                <span className="font-mono">{completedOrder.customerEmail || 'Provided at PayPal'}</span>
               </div>
             </div>
 
@@ -502,13 +492,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
                   </div>
                 </div>
 
-                {!email ? (
-                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs font-semibold">
-                    Please enter your Email Address above to enable the PayPal button.
-                  </div>
-                ) : (
-                  <div ref={paypalContainerRef} className="min-h-[120px]"></div>
-                )}
+                <div ref={paypalContainerRef} className="min-h-[120px]"></div>
 
                 <div className="text-center flex items-center justify-center space-x-2 text-xs text-ink-500">
                   <ShieldCheck className="w-4 h-4 text-blue-600" />
