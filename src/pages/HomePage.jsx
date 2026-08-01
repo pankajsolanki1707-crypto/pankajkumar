@@ -1,16 +1,64 @@
-import React from 'react';
-import { ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Globe, Cpu, Lightbulb, Compass, Award } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Globe, Cpu, Lightbulb, Compass, Award, HelpCircle, ChevronDown, ChevronUp, Layers, Check } from 'lucide-react';
 import BookCard from '../components/BookCard';
 import { BOOKS, CATEGORIES, TESTIMONIALS } from '../data/books';
 
 export default function HomePage({ setActivePage, onSelectBook, onOpenSample, onBuyBook }) {
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+
   const featuredBooks = BOOKS.filter(b => b.featured).slice(0, 6);
   const bestsellers = BOOKS.filter(b => b.bestseller);
   const flagshipBook = BOOKS.find(b => b.id === 'think-on-paper') || BOOKS[0];
 
+  const homepageFaqs = [
+    {
+      q: "What topics do Pankaj Kumar's books cover?",
+      a: "Pankaj Kumar writes practical, zero-fluff books on productivity systems, cognitive psychology, handwriting neuroscience, artificial intelligence, aerospace defense technology, and strategic decision-making."
+    },
+    {
+      q: "How are the digital PDF ebooks delivered after purchase?",
+      a: "Immediately upon completing payment via Cashfree (INR ₹) or PayPal (USD $), you receive an instant cryptographically signed download link. Your purchased books are also saved permanently in your 'My Library' dashboard."
+    },
+    {
+      q: "What payment methods are accepted for international and domestic readers?",
+      a: "For Indian readers, we accept UPI (GPay, PhonePe, Paytm), NetBanking, and Debit/Credit Cards via Cashfree. For international readers, we accept PayPal Balance, Apple Pay, and International Cards via PayPal Business."
+    },
+    {
+      q: "Are sample chapters available before buying?",
+      a: "Yes! Every book includes a free downloadable or readable sample chapter. Click 'Start Reading Free Chapter' or 'Sample' on any book card to read immediately in your browser."
+    },
+    {
+      q: "How does Pankaj Kumar's engineering background influence his books?",
+      a: "Pankaj applies systems engineering, signal processing, and bottleneck analysis to human cognition. Instead of motivation slogans, his books focus on physical paper frameworks that offload working memory RAM."
+    },
+    {
+      q: "Can I read these PDF ebooks on Kindle, iPad, or mobile devices?",
+      a: "Yes. All digital editions are formatted as clean, high-resolution PDFs optimized for tablets, smartphones, desktop PDF readers, and Kindle e-readers."
+    }
+  ];
+
   return (
     <div className="space-y-24 pb-16 animate-fadeIn">
       
+      {/* Dynamic Homepage FAQ JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": homepageFaqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.q,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
+              }
+            }))
+          })
+        }}
+      />
+
       {/* 1. Reader-Centered Editorial Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-20 md:py-24 border-b border-paper-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,14 +90,12 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                 </div>
               </div>
 
-              {/* Transformation Reader-Centered Headline */}
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-900 leading-[1.15]">
-                Think Clearly. <br className="hidden sm:inline" />
-                Execute With Precision. <br className="hidden sm:inline" />
-                <span className="italic font-normal text-authorAccent">Live Intentionally.</span>
+              {/* Exact Primary H1 Heading for Primary Search Intent */}
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-900 leading-[1.15]">
+                Pankaj Kumar — Official Author Platform for Productivity, Psychology, Technology & Decision Making Books
               </h1>
 
-              {/* Subheadline: Value Proposition */}
+              {/* Transformation Subheadline */}
               <p className="text-lg sm:text-xl text-ink-700 font-sans leading-relaxed max-w-2xl">
                 Engineering frameworks, cognitive psychology, and practical philosophy designed to eliminate mental noise, clear brain clutter, and turn abstract ideas into executable reality.
               </p>
@@ -129,9 +175,9 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                       </span>
                     </div>
 
-                    <h3 className="font-serif text-xl font-bold text-ink-900 cursor-pointer hover:text-authorAccent transition-colors" onClick={() => onSelectBook(flagshipBook)}>
+                    <h2 className="font-serif text-xl font-bold text-ink-900 cursor-pointer hover:text-authorAccent transition-colors" onClick={() => onSelectBook(flagshipBook)}>
                       {flagshipBook.title}
-                    </h3>
+                    </h2>
                     <p className="text-xs text-ink-600 line-clamp-2">
                       {flagshipBook.subtitle}
                     </p>
@@ -159,7 +205,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 2. "Why I Write: Engineering Better Thinking" — Customized Author Personal Story */}
+      {/* 2. "Why I Write: Engineering Better Thinking" — Custom Narrative Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-paper-100 rounded-3xl p-8 sm:p-14 border border-paper-300 shadow-subtle grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
@@ -169,7 +215,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
               <div className="w-64 h-80 sm:w-72 sm:h-96 rounded-2xl overflow-hidden shadow-elevated border border-paper-300 relative group">
                 <img 
                   src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800&auto=format&fit=crop" 
-                  alt="Pankaj Kumar Writing Desk"
+                  alt="Pankaj Kumar Mechanical Engineering Desk"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -195,7 +241,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
               <p>
                 Before becoming an author, I spent years studying and working in mechanical engineering, where every machine, system, and process is designed to solve problems efficiently. One lesson stayed with me throughout my career: <em>every system has limits</em>. When a machine fails, engineers don't blame the machine—they identify the bottleneck, redesign the process, and improve the system.
               </p>
-              <p className="font-serif text-base italic text-ink-900">
+              <p className="font-serif text-base italic text-ink-900 border-l-2 border-authorAccent pl-3">
                 Over time, I realized that the human mind works in much the same way.
               </p>
               <p>
@@ -226,26 +272,50 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 3. Curated Disciplines Categories Bar */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 className="font-serif text-2xl font-bold text-ink-900">
-            Explore Books by Discipline
+      {/* 3. Core Disciplines & Subject Hubs Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="text-xs font-sans uppercase font-bold text-authorAccent tracking-wider block">
+            Knowledge Ecosystem
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900">
+            Core Fields of Inquiry & Book Hubs
           </h2>
-          <p className="text-sm text-ink-600 mt-1">
-            Organized systematically across Pankaj's core fields of inquiry.
+          <p className="text-sm text-ink-600 font-sans">
+            Every book and essay is structured across seven interconnected pillars of modern intellectual performance.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3">
-          {CATEGORIES.slice(1).map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActivePage('category-archive', cat)}
-              className="px-5 py-2.5 bg-paper-100 border border-paper-300 hover:border-authorAccent hover:bg-authorAccent/5 text-ink-800 text-sm font-semibold rounded-full transition-all shadow-subtle"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { title: "Productivity", desc: "Systems for friction-free output, paper external RAM, and eliminating motion traps.", icon: Cpu, category: "Productivity" },
+            { title: "Psychology", desc: "Understanding working memory RAM, cognitive focus, and emotional boundary control.", icon: Lightbulb, category: "Psychology" },
+            { title: "Decision Making", desc: "Mathematical decision matrices to evaluate complex career and life dilemmas.", icon: Compass, category: "Decision Making" },
+            { title: "Technology & AI", desc: "Pragmatic AI integration for businesses, defense technology, and algorithm ethics.", icon: Layers, category: "Technology" },
+            { title: "Philosophy", desc: "Radical self-honesty, living without approval, and practicing daily personal freedom.", icon: Sparkles, category: "Philosophy" },
+            { title: "Habits Design", desc: "Environment architecture that replaces fragile willpower with physical physics.", icon: CheckCircle2, category: "Habits" },
+            { title: "Self Improvement", desc: "Expressive journaling, boundary enforcement, and building resilient self-trust.", icon: Star, category: "Self Improvement" },
+            { title: "Aerospace Defense", desc: "Engineering deep dives into stealth airframes, S-500 air defense, and space stations.", icon: Award, category: "Technology" }
+          ].map((field, idx) => (
+            <div 
+              key={idx}
+              onClick={() => setActivePage('category-archive', field.category)}
+              className="bg-paper-100 p-6 rounded-2xl border border-paper-300 hover:border-authorAccent cursor-pointer transition-all shadow-subtle space-y-3 group"
             >
-              ✓ {cat}
-            </button>
+              <div className="w-10 h-10 rounded-xl bg-authorAccent/10 text-authorAccent flex items-center justify-center group-hover:bg-authorAccent group-hover:text-white transition-colors">
+                <field.icon className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif font-bold text-lg text-ink-900 group-hover:text-authorAccent transition-colors">
+                {field.title}
+              </h3>
+              <p className="text-xs text-ink-600 font-sans leading-relaxed">
+                {field.desc}
+              </p>
+              <span className="text-xs font-semibold text-authorAccent inline-flex items-center space-x-1 pt-1">
+                <span>Explore Discipline</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </div>
           ))}
         </div>
       </section>
@@ -284,7 +354,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 5. Spotlight: Latest Release ("Think on Paper") */}
+      {/* 5. Spotlight: Flagship Title ("Think on Paper") */}
       <section className="bg-paper-200 py-16 border-y border-paper-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -355,26 +425,39 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 6. Best Sellers Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-sans uppercase font-bold text-authorAccent tracking-wider block mb-1">
-            Top Recommended
+      {/* 6. Comprehensive Reader FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center space-y-2">
+          <span className="text-xs font-sans uppercase font-bold text-authorAccent tracking-wider block">
+            Reader Guidance
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900">
-            Reader Favorites & Bestsellers
+          <h2 className="font-serif text-3xl font-bold text-ink-900">
+            Frequently Asked Questions
           </h2>
+          <p className="text-xs text-ink-600">
+            Common questions regarding digital book formats, instant checkout, and reading recommendations.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {bestsellers.slice(0, 3).map((book) => (
-            <BookCard 
-              key={book.id}
-              book={book}
-              onSelectBook={onSelectBook}
-              onOpenSample={onOpenSample}
-              onBuyBook={onBuyBook}
-            />
+        <div className="space-y-4">
+          {homepageFaqs.map((faq, idx) => (
+            <div key={idx} className="bg-paper-100 rounded-2xl border border-paper-300 overflow-hidden shadow-subtle">
+              <button
+                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                className="w-full p-5 text-left font-serif font-bold text-base text-ink-900 flex items-center justify-between"
+              >
+                <span className="flex items-center space-x-2">
+                  <HelpCircle className="w-4 h-4 text-authorAccent flex-shrink-0" />
+                  <span>{faq.q}</span>
+                </span>
+                {openFaqIndex === idx ? <ChevronUp className="w-5 h-5 text-authorAccent" /> : <ChevronDown className="w-5 h-5 text-ink-400" />}
+              </button>
+              {openFaqIndex === idx && (
+                <div className="px-5 pb-5 text-sm text-ink-700 font-sans border-t border-paper-200 pt-3 leading-relaxed">
+                  {faq.a}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </section>
@@ -410,9 +493,9 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
               <div className="pt-6 border-t border-paper-200 flex items-center space-x-3 mt-6">
                 <img src={t.avatar} alt={t.author} className="w-10 h-10 rounded-full object-cover" />
                 <div>
-                  <h4 className="font-serif text-sm font-bold text-ink-900">
+                  <h3 className="font-serif text-sm font-bold text-ink-900">
                     {t.author}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-ink-500">
                     {t.role}, {t.company}
                   </p>

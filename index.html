@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✍️</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pankaj Kumar | Official Author Platform & Digital Library</title>
-    <meta name="description" content="Official website of Pankaj Kumar — Engineer, Author, and Thinker. Practical books on productivity, psychology, technology, philosophy, and decision making." />
-    <meta name="keywords" content="Pankaj Kumar, Think on Paper, Motion vs Action, Wired Mind Silent Pages, Author Platform, Productivity Books, Psychology, Technology, Systems Thinking" />
     
+    <!-- Primary Metadata -->
+    <title>Pankaj Kumar — Official Author Website for Productivity, Psychology & Technology Books</title>
+    <meta name="description" content="Official website of author and engineer Pankaj Kumar. Explore practical books, frameworks, and essays on productivity, psychology, technology, AI, decision making, and intentional living." />
+    <meta name="keywords" content="Pankaj Kumar, Think on Paper, Motion vs Action, The Courage to Practice Freedom, Author Platform, Productivity Books, Psychology, Systems Thinking, Engineering, Decision Making" />
+    <meta name="author" content="Pankaj Kumar" />
+    
+    <!-- Strict Production Canonical Tag -->
+    <link rel="canonical" href="https://pankajkumar.com/" />
+
     <!-- Google Search Console Verification Tag -->
     <meta name="google-site-verification" content="k1HPjIefxNhbnW18m7GHkUSXJ4ggpK08WLs4raNBfcY" />
 
@@ -21,39 +27,74 @@
       gtag('config', 'G-HPQ2K556X9');
     </script>
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Pankaj Kumar | Engineer • Author • Thinker" />
-    <meta property="og:description" content="Explore books, free chapters, essays, and worksheets by Pankaj Kumar. Thoughtful literature for clear thinking." />
+    <!-- Open Graph Social Metadata -->
+    <meta property="og:site_name" content="Pankaj Kumar Official Author Platform" />
+    <meta property="og:title" content="Pankaj Kumar — Practical Books on Productivity, Psychology & Technology" />
+    <meta property="og:description" content="Explore books, free chapters, essays, and decision frameworks by Pankaj Kumar. Thoughtful literature designed to eliminate mental noise and improve how you think." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pankajkumar.com" />
+    <meta property="og:url" content="https://pankajkumar.com/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop" />
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pankaj Kumar — Official Author Platform" />
+    <meta name="twitter:description" content="Practical books on productivity, psychology, technology, AI, and decision making by author and engineer Pankaj Kumar." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
-    <!-- Official Cashfree Payments SDK v3 -->
+    <!-- Official Payment Gateways SDK -->
     <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
-
-    <!-- Official PayPal Smart Payment Buttons SDK (Live Production) -->
     <script src="https://www.paypal.com/sdk/js?client-id=ASkEIt5GthuW_sEE_pg_dP5IkYWmVlLHrUchMsgU8rNAK2--Zp9_gxj42btwRqUg-ya_OiM1seXGCzwz&currency=USD"></script>
 
-    <!-- JSON-LD Structured Data for Author & Website -->
+    <!-- JSON-LD Structured Data: Author & WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Pankaj Kumar",
-      "jobTitle": "Author, Engineer, Systems Specialist",
-      "url": "https://pankajkumar.com",
-      "sameAs": [
-        "https://twitter.com/pankajkumar_author",
-        "https://linkedin.com/in/pankajkumar",
-        "https://amazon.com/author/pankajkumar"
-      ],
-      "knowsAbout": ["Productivity", "Psychology", "Technology", "Decision Making", "Philosophy", "Systems Thinking"],
-      "description": "Pankaj Kumar is an engineer, technology professional, and author dedicated to helping people think clearly, learn deeply, and live intentionally."
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://pankajkumar.com/#website",
+          "url": "https://pankajkumar.com/",
+          "name": "Pankaj Kumar Official Author Platform",
+          "description": "Practical books on productivity, psychology, technology, AI, and decision making.",
+          "publisher": {
+            "@id": "https://pankajkumar.com/#author"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://pankajkumar.com/books?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://pankajkumar.com/#author",
+          "name": "Pankaj Kumar",
+          "jobTitle": "Author, Mechanical Engineer, Systems Specialist",
+          "url": "https://pankajkumar.com/",
+          "sameAs": [
+            "https://twitter.com/pankajkumar_author",
+            "https://linkedin.com/in/pankajkumar",
+            "https://amazon.com/author/pankajkumar",
+            "https://www.producthunt.com/products/pankaj-kumar"
+          ],
+          "knowsAbout": [
+            "Productivity",
+            "Psychology",
+            "Technology",
+            "Artificial Intelligence",
+            "Decision Making",
+            "Philosophy",
+            "Systems Engineering",
+            "Habits"
+          ],
+          "description": "Pankaj Kumar is an engineer, technology professional, and author dedicated to helping people think clearly, learn deeply, and live intentionally."
+        }
+      ]
     }
     </script>
   </head>
