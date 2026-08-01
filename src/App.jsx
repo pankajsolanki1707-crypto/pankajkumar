@@ -105,7 +105,7 @@ export default function App() {
       {/* Main Navbar */}
       <Navbar
         activePage={activePage}
-        setActivePage={(page) => handleNavigate(page)}
+        setActivePage={(page, data) => handleNavigate(page, data)}
         onOpenSearch={() => setIsSearchOpen(true)}
         libraryCount={purchasedBooks.length}
       />
@@ -114,7 +114,7 @@ export default function App() {
       <main className="flex-1">
         {activePage === 'home' && (
           <HomePage
-            setActivePage={(page) => handleNavigate(page)}
+            setActivePage={(page, data) => handleNavigate(page, data)}
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
@@ -153,7 +153,7 @@ export default function App() {
         )}
 
         {activePage === 'about' && (
-          <AboutPage setActivePage={(page) => handleNavigate(page)} />
+          <AboutPage setActivePage={(page, data) => handleNavigate(page, data)} />
         )}
 
         {activePage === 'blog' && (
@@ -168,7 +168,7 @@ export default function App() {
           <DashboardPage
             purchasedBooks={purchasedBooks}
             onShowToast={showToast}
-            setActivePage={(page) => handleNavigate(page)}
+            setActivePage={(page, data) => handleNavigate(page, data)}
           />
         )}
 

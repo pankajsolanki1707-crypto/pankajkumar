@@ -137,7 +137,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                 </button>
               </div>
 
-              {/* Social Sharing Bar (SEO Warning 0/1 Fixed) */}
+              {/* Social Sharing Bar */}
               <div className="pt-3 flex items-center space-x-3 text-xs text-ink-600 font-semibold">
                 <span className="flex items-center space-x-1 text-ink-500">
                   <Share2 className="w-3.5 h-3.5" />
@@ -202,23 +202,26 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
 
             </div>
 
-            {/* Right Hero Image Card Spotlight */}
+            {/* Right Hero Image Card Spotlight (Wider Container & Uncropped Cover Display) */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative group">
+              <div className="relative group w-full max-w-md">
                 
                 {/* Background aura gradient */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-authorAccent/20 to-amber-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all opacity-70"></div>
 
                 {/* Hero Showcase Card */}
-                <div className="relative bg-paper-100 p-6 rounded-2xl border border-paper-300 shadow-elevated max-w-sm">
+                <div className="relative bg-paper-100 p-6 rounded-2xl border border-paper-300 shadow-elevated w-full">
                   
-                  <div className="w-full h-80 rounded-xl overflow-hidden book-shadow mb-4 relative book-spine-effect bg-ink-900 cursor-pointer" onClick={() => onSelectBook(flagshipBook)}>
+                  <div 
+                    className="w-full h-84 sm:h-96 rounded-xl overflow-hidden book-shadow mb-4 relative book-spine-effect bg-emerald-950/60 p-2 cursor-pointer flex items-center justify-center" 
+                    onClick={() => onSelectBook(flagshipBook)}
+                  >
                     <img 
                       src={flagshipBook.coverImage} 
                       alt={flagshipBook.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 shadow-md rounded"
                     />
-                    <div className="absolute top-3 left-3 bg-amber-500 text-white text-[10px] uppercase font-bold px-2.5 py-1 rounded shadow">
+                    <div className="absolute top-4 left-4 z-10 bg-amber-500 text-white text-[10px] uppercase font-bold px-2.5 py-1 rounded shadow">
                       Flagship Book
                     </div>
                   </div>
