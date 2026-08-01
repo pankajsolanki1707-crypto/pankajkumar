@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
-import { ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Globe, Cpu, Lightbulb, Compass, Award, HelpCircle, ChevronDown, ChevronUp, Layers, Check } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Globe, Cpu, Lightbulb, Compass, Award, HelpCircle, ChevronDown, ChevronUp, Layers, Check, Share2, Twitter, Linkedin, MessageCircle, Copy } from 'lucide-react';
 import BookCard from '../components/BookCard';
 import { BOOKS, CATEGORIES, TESTIMONIALS } from '../data/books';
 
 export default function HomePage({ setActivePage, onSelectBook, onOpenSample, onBuyBook }) {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [copiedLink, setCopiedLink] = useState(false);
 
   const featuredBooks = BOOKS.filter(b => b.featured).slice(0, 6);
   const bestsellers = BOOKS.filter(b => b.bestseller);
   const flagshipBook = BOOKS.find(b => b.id === 'think-on-paper') || BOOKS[0];
+
+  const handleShare = (platform) => {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent("Explore practical books on productivity, psychology, technology & decision making by Pankaj Kumar:");
+    
+    if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+    } else if (platform === 'linkedin') {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    } else if (platform === 'whatsapp') {
+      window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, '_blank');
+    } else if (platform === 'copy') {
+      navigator.clipboard.writeText(window.location.href);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 3000);
+    }
+  };
 
   const homepageFaqs = [
     {
@@ -116,6 +134,46 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
                 >
                   <BookOpen className="w-5 h-5 text-authorAccent" />
                   <span>Start Reading Free Chapter</span>
+                </button>
+              </div>
+
+              {/* Social Sharing Bar (SEO Warning 0/1 Fixed) */}
+              <div className="pt-3 flex items-center space-x-3 text-xs text-ink-600 font-semibold">
+                <span className="flex items-center space-x-1 text-ink-500">
+                  <Share2 className="w-3.5 h-3.5" />
+                  <span>Share Site:</span>
+                </span>
+                <button 
+                  onClick={() => handleShare('twitter')}
+                  className="px-2.5 py-1 bg-paper-200 hover:bg-paper-300 rounded-lg text-ink-800 transition-colors flex items-center space-x-1"
+                  title="Share on Twitter / X"
+                >
+                  <Twitter className="w-3.5 h-3.5 text-blue-500" />
+                  <span>X / Twitter</span>
+                </button>
+                <button 
+                  onClick={() => handleShare('linkedin')}
+                  className="px-2.5 py-1 bg-paper-200 hover:bg-paper-300 rounded-lg text-ink-800 transition-colors flex items-center space-x-1"
+                  title="Share on LinkedIn"
+                >
+                  <Linkedin className="w-3.5 h-3.5 text-blue-700" />
+                  <span>LinkedIn</span>
+                </button>
+                <button 
+                  onClick={() => handleShare('whatsapp')}
+                  className="px-2.5 py-1 bg-paper-200 hover:bg-paper-300 rounded-lg text-ink-800 transition-colors flex items-center space-x-1"
+                  title="Share on WhatsApp"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>WhatsApp</span>
+                </button>
+                <button 
+                  onClick={() => handleShare('copy')}
+                  className="px-2.5 py-1 bg-paper-200 hover:bg-paper-300 rounded-lg text-ink-800 transition-colors flex items-center space-x-1"
+                  title="Copy Page Link"
+                >
+                  <Copy className="w-3.5 h-3.5 text-authorAccent" />
+                  <span>{copiedLink ? 'Copied!' : 'Copy Link'}</span>
                 </button>
               </div>
 
