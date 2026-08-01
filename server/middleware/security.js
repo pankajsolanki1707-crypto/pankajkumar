@@ -6,7 +6,7 @@ import { db } from '../database/db.js';
 const JWT_SECRET = process.env.JWT_SECRET || 'pk_sec_jwt_auth_98741029384710293847102938471029';
 
 /**
- * Production Helmet Security Headers (Cashfree + PayPal + GA Support)
+ * Production Helmet Security Headers (Cashfree + PayPal + Product Hunt + GA Support)
  */
 export const configureSecurityHeaders = helmet({
   contentSecurityPolicy: {
@@ -28,6 +28,7 @@ export const configureSecurityHeaders = helmet({
         "https://images.unsplash.com",
         "https://sdk.cashfree.com",
         "https://www.paypalobjects.com",
+        "https://api.producthunt.com",
         "https://www.google-analytics.com"
       ],
       connectSrc: [
@@ -56,7 +57,7 @@ export const configureSecurityHeaders = helmet({
     includeSubDomains: true,
     preload: true
   },
-  noSniff: true, // X-Content-Type-Options
+  noSniff: true,
   referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
 });
 
@@ -64,8 +65,8 @@ export const configureSecurityHeaders = helmet({
  * Rate Limiters to prevent Brute-Force and Denial-of-Service Attacks
  */
 export const authRateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // 5 failed attempts per IP
+  windowMs: 15 * 60 * 1000,
+  max: 5,
   message: { error: 'Too many authentication attempts. Please try again after 15 minutes.' },
   standardHeaders: true,
   legacyHeaders: false,
@@ -76,13 +77,13 @@ export const authRateLimiter = rateLimit({
 });
 
 export const checkoutRateLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
+  windowMs: 60 * 1000,
   max: 10,
   message: { error: 'Too many checkout requests. Please slow down.' }
 });
 
 export const downloadRateLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
+  windowMs: 60 * 1000,
   max: 15,
   message: { error: 'Download limit exceeded. Please wait a minute before requesting another file.' }
 });

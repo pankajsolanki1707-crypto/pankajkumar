@@ -19,10 +19,27 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
             {/* Left Copy Column */}
             <div className="lg:col-span-7 space-y-6">
               
-              {/* Badge Pill */}
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-paper-200 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 text-xs font-semibold text-ink-800 dark:text-paper-100">
-                <Sparkles className="w-3.5 h-3.5 text-authorAccent" />
-                <span>The Official Author Platform</span>
+              {/* Product Hunt Featured Badge & Platform Pill */}
+              <div className="flex flex-wrap items-center gap-3">
+                <a 
+                  href="https://www.producthunt.com/products/pankaj-kumar?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-pankaj-kumar" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block hover:opacity-90 transition-opacity shadow-sm rounded-xl overflow-hidden"
+                >
+                  <img 
+                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212040&theme=dark&t=1785568690122" 
+                    alt="Pankaj Kumar - Practical Books on Productivity, AI & Clear Thinking | Product Hunt" 
+                    width="250" 
+                    height="54" 
+                    className="h-11 w-auto"
+                  />
+                </a>
+
+                <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-paper-200 dark:bg-ink-800 border border-paper-300 dark:border-ink-700 text-xs font-semibold text-ink-800 dark:text-paper-100">
+                  <Sparkles className="w-3.5 h-3.5 text-authorAccent" />
+                  <span>The Official Author Platform</span>
+                </div>
               </div>
 
               {/* Main Headline */}

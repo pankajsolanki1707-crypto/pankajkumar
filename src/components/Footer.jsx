@@ -81,6 +81,25 @@ export default function Footer({ setActivePage, onShowToast }) {
             <p className="text-xs text-ink-600 leading-relaxed max-w-sm">
               Author platform & knowledge hub dedicated to clear thinking, systems engineering, cognitive focus, technology, and intentional living.
             </p>
+            
+            {/* Product Hunt Badge */}
+            <div className="pt-2">
+              <a 
+                href="https://www.producthunt.com/products/pankaj-kumar?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-pankaj-kumar" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-95 transition-opacity"
+              >
+                <img 
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1212040&theme=dark&t=1785568690122" 
+                  alt="Pankaj Kumar - Practical Books on Productivity, AI & Clear Thinking | Product Hunt" 
+                  width="250" 
+                  height="54" 
+                  className="h-10 w-auto rounded-lg shadow-sm"
+                />
+              </a>
+            </div>
+
             <div className="flex items-center space-x-3 pt-2 text-ink-600">
               <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-2 rounded-full hover:bg-paper-300 transition-colors">
                 <Twitter className="w-4 h-4" />
