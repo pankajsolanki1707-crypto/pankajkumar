@@ -10,7 +10,7 @@ export default function Footer({ setActivePage, onShowToast }) {
     e.preventDefault();
     if (email) {
       setSubscribed(true);
-      onShowToast('Thank you for subscribing to Pankaj Kumar\'s weekly essay!');
+      onShowToast('Thank you for subscribing to Pankaj Kumar\'s weekly Sunday letter!');
     }
   };
 
@@ -18,17 +18,17 @@ export default function Footer({ setActivePage, onShowToast }) {
     <footer className="bg-paper-200 border-t border-paper-300 text-ink-900 pt-16 pb-12 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Top Newsletter Card */}
+        {/* Top Newsletter Card (Priority 15 Requirement) */}
         <div className="bg-paper-100 rounded-3xl p-8 sm:p-12 border border-paper-300 shadow-subtle grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-3">
             <span className="px-3 py-1 bg-authorAccent/10 text-authorAccent text-xs font-bold uppercase rounded-md tracking-wider">
-              Weekly Thinking Letter
+              Sunday Thinking Letter
             </span>
             <h3 className="font-serif text-2xl sm:text-4xl font-bold text-ink-900 leading-tight">
-              Deep Thinking in a Distracted World
+              Join readers learning to think more clearly.
             </h3>
             <p className="text-sm text-ink-600 leading-relaxed max-w-xl">
-              Join 28,500+ readers. Every Sunday, Pankaj shares 1 actionable essay on systems engineering, cognitive focus, habits, and deliberate living. Zero spam.
+              Every Sunday. One practical idea on systems engineering, cognitive focus, habits, and deliberate living. No spam.
             </p>
           </div>
 
@@ -36,7 +36,7 @@ export default function Footer({ setActivePage, onShowToast }) {
             {subscribed ? (
               <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center space-x-3 text-emerald-800 text-sm font-semibold animate-fadeIn">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <span>You're subscribed! Check your inbox for the welcome essay.</span>
+                <span>You're subscribed! Check your inbox for the Sunday essay.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="space-y-3">
