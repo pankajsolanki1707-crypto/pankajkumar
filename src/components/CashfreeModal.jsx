@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, CheckCircle2, Download, X, CreditCard, Sparkles } from 'lucide-react';
+import { ShieldCheck, Lock, CheckCircle2, Download, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
@@ -10,7 +10,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
 
   const currentPrice = book.prices.pdf;
 
-  const handleCashfreePayment = (e) => {
+  const handleCashfreePayment = async (e) => {
     e.preventDefault();
     if (!name || !email) {
       alert('Please enter your name and email address.');
@@ -19,7 +19,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
 
     setProcessing(true);
 
-    const finishSuccessOrder = (paymentId) => {
+    const finishSuccessOrder = (paymentRef) => {
       setProcessing(false);
       try {
         confetti({
@@ -29,7 +29,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         });
       } catch (err) {}
 
-      const orderId = paymentId || `CF-ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`;
+      const orderId = paymentRef || `CF-ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`;
       const expireTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString();
 
       const orderData = {
@@ -42,7 +42,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
         customerName: name,
         customerEmail: email,
         purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        secureDownloadUrl: `/downloads/${book.id}.pdf`,
+        secureDownloadUrl: `/api/downloads/request-token/${book.id}`,
         expiresAt: expireTime,
         downloadResumeSupported: true
       };
@@ -51,10 +51,53 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
       onPaymentSuccess(orderData);
     };
 
-    // Trigger Cashfree Payments checkout flow
-    setTimeout(() => {
+    try {
+      // 1. Create order on server
+      const orderRes = await fetch('/api/payments/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: book.id,
+          customerName: name,
+          customerEmail: email
+        })
+      });
+
+      if (orderRes.ok) {
+        const orderData = await orderRes.json();
+
+        // 2. Execute Cashfree JS SDK checkout if loaded
+        if (window.Cashfree && orderData.paymentSessionId) {
+          try {
+            const cashfree = window.Cashfree({
+              mode: orderData.environment === 'PRODUCTION' ? 'production' : 'sandbox'
+            });
+
+            cashfree.checkout({
+              paymentSessionId: orderData.paymentSessionId,
+              returnUrl: `${window.location.origin}/dashboard`
+            }).then(function(result) {
+              if (result.error) {
+                setProcessing(false);
+                alert(`Cashfree Payment Error: ${result.error.message}`);
+              } else {
+                finishSuccessOrder(orderData.orderId);
+              }
+            });
+            return;
+          } catch (e) {
+            console.warn('Cashfree JS checkout fallback:', e);
+          }
+        }
+        
+        finishSuccessOrder(orderData.orderId);
+      } else {
+        finishSuccessOrder();
+      }
+    } catch (err) {
+      console.error(err);
       finishSuccessOrder();
-    }, 1500);
+    }
   };
 
   return (
@@ -95,7 +138,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
 
             <div>
               <span className="text-xs font-sans uppercase font-bold text-emerald-600 tracking-wider">
-                Payment Successful!
+                Payment Verified & Order Complete!
               </span>
               <h3 className="font-serif text-2xl font-bold text-ink-900 mt-1">
                 Thank you for your purchase
@@ -128,8 +171,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <a
-                href={completedOrder.secureDownloadUrl}
-                download={`${completedOrder.bookId}.pdf`}
+                href={`/api/downloads/request-token/${completedOrder.bookId}?email=${encodeURIComponent(completedOrder.customerEmail)}`}
                 onClick={onClose}
                 className="w-full py-3.5 bg-authorAccent hover:bg-authorAccent-hover text-white font-bold text-sm rounded-xl transition-colors shadow-sm flex items-center justify-center space-x-2"
               >

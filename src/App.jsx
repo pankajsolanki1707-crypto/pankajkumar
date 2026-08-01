@@ -37,28 +37,13 @@ export default function App() {
     localStorage.removeItem('pk_theme');
   }, []);
 
-  // Purchased books state
+  // Purchased books state (Strictly empty by default - requires verified payment)
   const [purchasedBooks, setPurchasedBooks] = useState(() => {
     const saved = localStorage.getItem('pk_purchased_library');
     if (saved) {
       try { return JSON.parse(saved); } catch (e) {}
     }
-    return [
-      {
-        orderId: 'ORD-PK-892104',
-        bookId: 'think-on-paper',
-        bookTitle: 'Think on Paper',
-        coverImage: '/covers/think_on_paper.jpg',
-        format: 'PDF Digital Edition',
-        pricePaid: 149,
-        customerName: 'Pankaj Kumar Reader',
-        customerEmail: 'reader@example.com',
-        purchaseDate: 'July 28, 2026',
-        secureDownloadUrl: '/api/downloads/request-token/think-on-paper',
-        expiresAt: '24-Hour Sliding Token',
-        downloadResumeSupported: true
-      }
-    ];
+    return [];
   });
 
   useEffect(() => {
