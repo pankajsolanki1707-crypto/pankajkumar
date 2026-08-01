@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { ShieldCheck, Lock, CheckCircle2, Download, X, AlertCircle, Tag, Check } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ShieldCheck, Lock, CheckCircle2, Download, X, AlertCircle, Tag, Check, Globe } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
+  const [activeTab, setActiveTab] = useState('cashfree'); // 'cashfree' | 'paypal'
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -13,10 +14,17 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [completedOrder, setCompletedOrder] = useState(null);
 
-  const basePrice = book.prices.pdf;
-  const discountRate = couponApplied ? 0.10 : 0;
-  const discountAmount = Math.round(basePrice * discountRate);
-  const currentPrice = basePrice - discountAmount;
+  const paypalContainerRef = useRef(null);
+
+  // INR Pricing
+  const basePriceInr = book.prices.pdf;
+  const discountInr = couponApplied ? Math.round(basePriceInr * 0.10) : 0;
+  const finalPriceInr = basePriceInr - discountInr;
+
+  // USD Pricing ($1.99 base equivalent)
+  const basePriceUsd = 1.99;
+  const discountUsd = couponApplied ? 0.20 : 0;
+  const finalPriceUsd = (basePriceUsd - discountUsd).toFixed(2);
 
   const handleApplyCoupon = (e) => {
     e.preventDefault();
@@ -29,6 +37,42 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
     }
   };
 
+  const finishVerifiedOrder = (orderId, referenceId, gateway = 'Cashfree') => {
+    setProcessing(false);
+    try {
+      confetti({
+        particleCount: 90,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    } catch (err) {}
+
+    const expireTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString();
+
+    const orderData = {
+      orderId: orderId || `ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`,
+      referenceId: referenceId || orderId,
+      bookId: book.id,
+      bookTitle: book.title,
+      coverImage: book.coverImage,
+      format: 'PDF Digital Edition',
+      pricePaid: gateway === 'PayPal' ? `$${finalPriceUsd}` : `₹${finalPriceInr}`,
+      customerName: name || 'Valued Reader',
+      customerEmail: email,
+      customerPhone: phone || 'N/A',
+      appliedCoupon: couponApplied ? 'READER10' : null,
+      gatewayUsed: gateway,
+      purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      secureDownloadUrl: `/api/downloads/request-token/${book.id}?email=${encodeURIComponent(email)}`,
+      expiresAt: expireTime,
+      downloadResumeSupported: true
+    };
+
+    setCompletedOrder(orderData);
+    onPaymentSuccess(orderData);
+  };
+
+  // Cashfree Payment Handler
   const handleCashfreePayment = async (e) => {
     e.preventDefault();
     setErrorMessage(null);
@@ -46,42 +90,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
 
     setProcessing(true);
 
-    const finishVerifiedOrder = (orderId, referenceId) => {
-      setProcessing(false);
-      try {
-        confetti({
-          particleCount: 90,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
-      } catch (err) {}
-
-      const expireTime = new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString();
-
-      const orderData = {
-        orderId: orderId || `CF-ORD-PK-${Math.floor(100000 + Math.random() * 900000)}`,
-        referenceId: referenceId || orderId,
-        bookId: book.id,
-        bookTitle: book.title,
-        coverImage: book.coverImage,
-        format: 'PDF Digital Edition',
-        pricePaid: currentPrice,
-        customerName: name,
-        customerEmail: email,
-        customerPhone: cleanPhoneDigits,
-        appliedCoupon: couponApplied ? 'READER10' : null,
-        purchaseDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-        secureDownloadUrl: `/api/downloads/request-token/${book.id}?email=${encodeURIComponent(email)}`,
-        expiresAt: expireTime,
-        downloadResumeSupported: true
-      };
-
-      setCompletedOrder(orderData);
-      onPaymentSuccess(orderData);
-    };
-
     try {
-      // 1. Create order on server
       const orderRes = await fetch('/api/payments/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -100,7 +109,6 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
 
       const orderData = await orderRes.json();
 
-      // 2. Execute Cashfree JS SDK checkout
       if (window.Cashfree && orderData.paymentSessionId) {
         const cashfree = window.Cashfree({
           mode: orderData.environment === 'PRODUCTION' ? 'production' : 'sandbox'
@@ -114,7 +122,6 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             setProcessing(false);
             setErrorMessage(`Payment Cancelled or Failed: ${result.error.message}`);
           } else if (result.paymentDetails) {
-            // Verify signature on server
             const verifyRes = await fetch('/api/payments/verify', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -131,7 +138,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
             if (verifyRes.ok) {
               const verifyData = await verifyRes.json();
               if (verifyData.success) {
-                finishVerifiedOrder(verifyData.orderId, verifyData.referenceId);
+                finishVerifiedOrder(verifyData.orderId, verifyData.referenceId, 'Cashfree');
                 return;
               }
             }
@@ -155,25 +162,76 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
     }
   };
 
+  // Render PayPal Smart Buttons when switching to PayPal tab
+  useEffect(() => {
+    if (activeTab === 'paypal' && window.paypal && paypalContainerRef.current && !completedOrder) {
+      paypalContainerRef.current.innerHTML = '';
+      try {
+        window.paypal.Buttons({
+          style: {
+            layout: 'vertical',
+            color: 'gold',
+            shape: 'rect',
+            label: 'pay'
+          },
+          createOrder: async () => {
+            if (!email) {
+              alert('Please enter your email address for PDF receipt before paying with PayPal.');
+              throw new Error('Email required');
+            }
+            const res = await fetch('/api/payments/paypal-create-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                bookId: book.id,
+                customerName: name || 'PayPal Reader',
+                customerEmail: email
+              })
+            });
+            const data = await res.json();
+            return data.paypalOrderId || data.id;
+          },
+          onApprove: async (data) => {
+            const captureRes = await fetch('/api/payments/paypal-capture-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                paypalOrderId: data.orderID,
+                bookId: book.id,
+                customerEmail: email
+              })
+            });
+            const captureData = await captureRes.json();
+            if (captureData.success) {
+              finishVerifiedOrder(captureData.orderId, captureData.referenceId, 'PayPal');
+            } else {
+              alert('PayPal payment capture failed.');
+            }
+          },
+          onError: (err) => {
+            console.error('PayPal Error:', err);
+          }
+        }).render(paypalContainerRef.current);
+      } catch (err) {
+        console.warn('PayPal SDK render:', err);
+      }
+    }
+  }, [activeTab, email, name, book.id, completedOrder]);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-y-auto animate-fadeIn">
       <div className="bg-paper-100 rounded-2xl max-w-xl w-full border border-paper-300 shadow-2xl overflow-hidden my-8">
         
         {/* Header */}
         <div className="bg-paper-200 px-6 py-4 border-b border-paper-300 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-bold text-sm">
-              ₹
-            </div>
-            <div>
-              <h3 className="font-serif font-bold text-base text-ink-900 flex items-center space-x-2">
-                <span>Cashfree Secure Checkout</span>
-                <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] uppercase font-sans font-bold rounded-full">
-                  256-Bit SSL Encrypted
-                </span>
-              </h3>
-              <p className="text-xs text-ink-500">Official Direct Author Store</p>
-            </div>
+          <div>
+            <h3 className="font-serif font-bold text-base text-ink-900 flex items-center space-x-2">
+              <span>Secure Multi-Gateway Checkout</span>
+              <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] uppercase font-sans font-bold rounded-full">
+                256-Bit SSL Encrypted
+              </span>
+            </h3>
+            <p className="text-xs text-ink-500">Official Direct Author Store</p>
           </div>
           <button 
             onClick={onClose}
@@ -201,7 +259,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
 
             <div>
               <span className="text-xs font-sans uppercase font-bold text-emerald-600 tracking-wider">
-                Payment Verified & Order Complete!
+                Payment Verified ({completedOrder.gatewayUsed}) & Order Complete!
               </span>
               <h3 className="font-serif text-2xl font-bold text-ink-900 mt-1">
                 Thank you for your purchase
@@ -223,7 +281,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
               </div>
               <div className="flex justify-between">
                 <span className="text-ink-600">Amount Paid:</span>
-                <span className="font-bold text-authorAccent">₹{completedOrder.pricePaid}</span>
+                <span className="font-bold text-authorAccent">{completedOrder.pricePaid}</span>
               </div>
               {completedOrder.appliedCoupon && (
                 <div className="flex justify-between text-emerald-700 font-semibold text-xs">
@@ -251,7 +309,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
           </div>
         ) : (
           /* Payment Form Screen */
-          <form onSubmit={handleCashfreePayment} className="p-6 space-y-6">
+          <div className="p-6 space-y-6">
             
             {/* Book summary item */}
             <div className="flex items-center space-x-4 bg-paper-200/50 p-4 rounded-xl border border-paper-300">
@@ -274,6 +332,33 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
               </div>
             </div>
 
+            {/* Payment Gateway Toggle Tabs */}
+            <div className="grid grid-cols-2 gap-2 bg-paper-200 p-1.5 rounded-xl border border-paper-300">
+              <button
+                type="button"
+                onClick={() => setActiveTab('cashfree')}
+                className={`py-2.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+                  activeTab === 'cashfree'
+                    ? 'bg-paper-100 text-emerald-800 shadow-sm border border-paper-300'
+                    : 'text-ink-600 hover:text-ink-900'
+                }`}
+              >
+                <span>🇮🇳 Cashfree (India ₹)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('paypal')}
+                className={`py-2.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center space-x-1.5 ${
+                  activeTab === 'paypal'
+                    ? 'bg-paper-100 text-blue-800 shadow-sm border border-paper-300'
+                    : 'text-ink-600 hover:text-ink-900'
+                }`}
+              >
+                <Globe className="w-3.5 h-3.5 text-blue-600" />
+                <span>🌐 PayPal (Global $)</span>
+              </button>
+            </div>
+
             {/* Discount Code Box */}
             <div className="space-y-2 bg-paper-200/60 p-3.5 rounded-xl border border-paper-300">
               <div className="flex items-center justify-between text-xs font-semibold text-ink-800">
@@ -284,7 +369,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
                 {couponApplied && (
                   <span className="text-emerald-700 flex items-center space-x-1 font-bold text-[11px]">
                     <Check className="w-3 h-3" />
-                    <span>READER10 Applied (10% OFF)</span>
+                    <span>READER10 (10% OFF Applied)</span>
                   </span>
                 )}
               </div>
@@ -311,10 +396,10 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
               )}
             </div>
 
-            {/* Contact details */}
+            {/* Customer Details Form */}
             <div className="space-y-3">
               <label className="block text-xs font-sans uppercase font-bold text-ink-700 tracking-wider">
-                Customer Details for PDF Receipt & Cashfree Gateway
+                Customer Details for PDF Receipt
               </label>
               <div className="grid grid-cols-1 gap-3">
                 <div>
@@ -338,7 +423,7 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
                   />
                   <input
                     type="tel"
-                    required
+                    required={activeTab === 'cashfree'}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="10-Digit Mobile No *"
@@ -348,52 +433,91 @@ export default function CashfreeModal({ book, onClose, onPaymentSuccess }) {
               </div>
             </div>
 
-            {/* Total and Submit Button */}
-            <div className="pt-4 border-t border-paper-300">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <span className="text-sm font-medium text-ink-600 block">Total Payable:</span>
-                  {couponApplied && (
-                    <span className="text-xs text-emerald-700 font-bold">10% Discount Applied!</span>
-                  )}
-                </div>
-                <div className="text-right">
-                  {couponApplied && (
-                    <span className="text-xs line-through text-ink-400 font-mono block">
-                      ₹{basePrice}
+            {/* TAB 1: CASHFREE GATEWAY */}
+            {activeTab === 'cashfree' && (
+              <form onSubmit={handleCashfreePayment} className="pt-2">
+                <div className="flex items-center justify-between mb-4 border-t border-paper-300 pt-4">
+                  <div>
+                    <span className="text-sm font-medium text-ink-600 block">Total Payable:</span>
+                    {couponApplied && (
+                      <span className="text-xs text-emerald-700 font-bold">10% Discount Applied!</span>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    {couponApplied && (
+                      <span className="text-xs line-through text-ink-400 font-mono block">
+                        ₹{basePriceInr}
+                      </span>
+                    )}
+                    <span className="font-serif text-3xl font-bold text-ink-900">
+                      ₹{finalPriceInr}
                     </span>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={processing}
+                  className="w-full py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 disabled:opacity-75"
+                >
+                  {processing ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Opening Cashfree Secure Gateway...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Lock className="w-4.5 h-4.5" />
+                      <span>Pay ₹{finalPriceInr} via Cashfree (UPI / Card / NetBanking)</span>
+                    </>
                   )}
-                  <span className="font-serif text-3xl font-bold text-ink-900">
-                    ₹{currentPrice}
-                  </span>
+                </button>
+                
+                <div className="mt-3 text-center flex items-center justify-center space-x-2 text-xs text-ink-500">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span>256-Bit Encrypted Payment • Powered by Cashfree Payments</span>
+                </div>
+              </form>
+            )}
+
+            {/* TAB 2: PAYPAL BUSINESS GATEWAY */}
+            {activeTab === 'paypal' && (
+              <div className="pt-2 space-y-4 border-t border-paper-300 pt-4">
+                <div className="flex items-center justify-between mb-2">
+                  <div>
+                    <span className="text-sm font-medium text-ink-600 block">Global Price:</span>
+                    {couponApplied && (
+                      <span className="text-xs text-emerald-700 font-bold">10% Discount Applied!</span>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    {couponApplied && (
+                      <span className="text-xs line-through text-ink-400 font-mono block">
+                        ${basePriceUsd} USD
+                      </span>
+                    )}
+                    <span className="font-serif text-3xl font-bold text-ink-900">
+                      ${finalPriceUsd} <span className="text-xs font-sans text-ink-500 font-normal">USD</span>
+                    </span>
+                  </div>
+                </div>
+
+                {!email ? (
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs font-semibold">
+                    Please enter your Email Address above to enable the PayPal button.
+                  </div>
+                ) : (
+                  <div ref={paypalContainerRef} className="min-h-[120px]"></div>
+                )}
+
+                <div className="text-center flex items-center justify-center space-x-2 text-xs text-ink-500">
+                  <ShieldCheck className="w-4 h-4 text-blue-600" />
+                  <span>PayPal Encrypted Protection • Accept International Credit Cards & Apple Pay</span>
                 </div>
               </div>
+            )}
 
-              <button
-                type="submit"
-                disabled={processing}
-                className="w-full py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 disabled:opacity-75"
-              >
-                {processing ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Opening Cashfree Secure Gateway...</span>
-                  </>
-                ) : (
-                  <>
-                    <Lock className="w-4.5 h-4.5" />
-                    <span>Pay ₹{currentPrice} via Cashfree (UPI / Card / NetBanking)</span>
-                  </>
-                )}
-              </button>
-              
-              <div className="mt-3 text-center flex items-center justify-center space-x-2 text-xs text-ink-500">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>256-Bit Encrypted Payment • Powered by Cashfree Payments</span>
-              </div>
-            </div>
-
-          </form>
+          </div>
         )}
 
       </div>
