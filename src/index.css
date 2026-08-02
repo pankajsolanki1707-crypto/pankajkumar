@@ -11,17 +11,25 @@
     --border-subtle: #E8E8E2;
   }
 
-  body {
+  html, body {
     background-color: #FAFAF8;
     color: #111111;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
     letter-spacing: -0.02em;
+  }
+
+  img, video, svg {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -58,8 +66,15 @@
 /* 2. Editorial Layout Utilities */
 .editorial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .editorial-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
 }
 
 .editorial-reading-width {
@@ -97,8 +112,8 @@
 
 /* 5. Custom Editorial Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
