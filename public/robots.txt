@@ -1,6 +1,55 @@
+# Official Robots.txt for Pankaj Kumar Author Platform
 User-agent: *
 Allow: /
 Disallow: /api/downloads/
 Disallow: /admin
 
+# AI Search Engines & Bots (Explicitly Allowed)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Search Engine Crawlers & SEO Auditing Bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: rogerbot
+Allow: /
+
+User-agent: dotbot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+# Sitemap Location
 Sitemap: https://pankajkumaar.vercel.app/sitemap.xml

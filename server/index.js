@@ -56,21 +56,25 @@ app.get(['/sitemap.xml', '/api/sitemap.xml'], (req, res) => {
   }
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://pankajkumar.com/</loc><lastmod>2026-08-01</lastmod><priority>1.0</priority></url>
-  <url><loc>https://pankajkumar.com/books</loc><lastmod>2026-08-01</lastmod><priority>0.9</priority></url>
-  <url><loc>https://pankajkumar.com/about</loc><lastmod>2026-08-01</lastmod><priority>0.8</priority></url>
-  <url><loc>https://pankajkumar.com/blog</loc><lastmod>2026-08-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pankajkumaar.vercel.app/</loc><lastmod>2026-08-01</lastmod><priority>1.0</priority></url>
+  <url><loc>https://pankajkumaar.vercel.app/books</loc><lastmod>2026-08-01</lastmod><priority>0.9</priority></url>
+  <url><loc>https://pankajkumaar.vercel.app/about</loc><lastmod>2026-08-01</lastmod><priority>0.8</priority></url>
+  <url><loc>https://pankajkumaar.vercel.app/blog</loc><lastmod>2026-08-01</lastmod><priority>0.8</priority></url>
 </urlset>`);
 });
 
 app.get(['/robots.txt', '/api/robots.txt'], (req, res) => {
+  const robotsPath = path.join(__dirname, '..', 'public', 'robots.txt');
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  if (fs.existsSync(robotsPath)) {
+    return res.sendFile(robotsPath);
+  }
   res.send(`User-agent: *
 Allow: /
 Disallow: /api/downloads/
 Disallow: /admin
 
-Sitemap: https://pankajkumar.com/sitemap.xml
+Sitemap: https://pankajkumaar.vercel.app/sitemap.xml
 `);
 });
 
