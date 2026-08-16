@@ -68,7 +68,7 @@ export const BOOKS = [
     coverAccent: "#2563EB",
     coverText: "text-blue-50",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/crack-upsc-epfo-apfc-2026-blueprint.png",
     featured: true,
     latestRelease: true,
     bestseller: true,
@@ -123,7 +123,7 @@ This complete blueprint outlines the exact master plan, booklist, time allocatio
     coverAccent: "#EF4444",
     coverText: "text-red-50",
     coverStyle: "digest",
-    coverImage: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/upsc-current-affairs-2026-january-to-july.png",
     featured: true,
     latestRelease: true,
     bestseller: true,
@@ -177,7 +177,7 @@ Categorized into Economic Survey analysis, Budget developments, Polity, Science 
     coverAccent: "#F59E0B",
     coverText: "text-amber-100",
     coverStyle: "digest",
-    coverImage: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/upsc-current-affairs-2026-january-july-hindi.png",
     featured: true,
     latestRelease: true,
     bestseller: true,
@@ -228,7 +228,7 @@ Categorized into Economic Survey analysis, Budget developments, Polity, Science 
     coverAccent: "#D97706",
     coverText: "text-amber-50",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
     featured: false,
     bestseller: true,
     isFree: false,
@@ -277,7 +277,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#06B6D4",
     coverText: "text-cyan-50",
     coverStyle: "digest",
-    coverImage: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/current-affairs-yearly-mcq-2025-2026.png",
     featured: false,
     bestseller: true,
     isFree: false,
@@ -323,7 +323,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#3B82F6",
     coverText: "text-blue-50",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/general-science-500-mcqs-upsc-epfo.png",
     featured: false,
     bestseller: false,
     isFree: false,
@@ -372,7 +372,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#6366F1",
     coverText: "text-indigo-50",
     coverStyle: "digest",
-    coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/upsc-june-2026-current-affairs-science-tech.png",
     featured: false,
     bestseller: false,
     isFree: false,
@@ -418,7 +418,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#A8A29E",
     coverText: "text-stone-100",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/indian-economy-550-mcqs-upsc-epfo.png",
     featured: false,
     bestseller: false,
     isFree: false,
@@ -464,7 +464,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#A855F7",
     coverText: "text-purple-100",
     coverStyle: "guide",
-    coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/complete-geography-notes-hindi-bhugol.png",
     featured: false,
     bestseller: true,
     isFree: false,
@@ -513,7 +513,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#D97706",
     coverText: "text-amber-100",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/upsc-epfo-500-mcqs-art-and-culture.png",
     featured: false,
     bestseller: false,
     isFree: false,
@@ -560,7 +560,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#2563EB",
     coverText: "text-blue-100",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/upsc-epfo-apfc-2026-hindi-guide.png",
     featured: true,
     bestseller: true,
     isFree: false,
@@ -606,7 +606,7 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     coverAccent: "#3B82F6",
     coverText: "text-blue-50",
     coverStyle: "guide",
-    coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/uppcs-quick-revision-series-2026.png",
     featured: false,
     bestseller: true,
     isFree: false,
@@ -645,13 +645,13 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     tagline: "How writing by hand organizes your mind, clears mental clutter, and turns abstract thoughts into executable reality.",
     category: "Personal Growth",
     subcategory: "Productivity",
-    author: AUTHORS[0], // Pankaj Kumar
+    author: AUTHORS[0],
     publisher: "Go Pustak Publishing",
     coverBg: "from-emerald-800 to-emerald-950",
     coverAccent: "#10B981",
     coverText: "text-emerald-100",
     coverStyle: "journal",
-    coverImage: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/think_on_paper.jpg",
     featured: true,
     bestseller: true,
     isFree: false,
@@ -701,13 +701,13 @@ In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the 
     category: "Competitive Exams",
     subcategory: "UPSC EPFO",
     examCategory: "upsc-epfo",
-    author: AUTHORS[2], // Go Pustak Editorial Team
+    author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Exam Prep Cell",
     coverBg: "from-blue-900 to-slate-950",
     coverAccent: "#2563EB",
     coverText: "text-blue-50",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
     featured: true,
     bestseller: true,
     isFree: false,
@@ -722,24 +722,18 @@ In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the 
       usd: 2.49
     },
     oneLiner: "Targeted, point-wise coverage of General Accounting Principles, Labour Laws, Industrial Relations, and Indian Economy for UPSC EPFO.",
-    description: `Designed specifically for UPSC EPFO Enforcement Officer / Accounts Officer (EO/AO) and Assistant Provident Fund Commissioner (APFC) aspirants.
-
-This ebook synthesizes complex legal provisions, accounting standards, and social security schemes into clear, revised notes with previous year question analysis.`,
+    description: `Designed specifically for UPSC EPFO Enforcement Officer / Accounts Officer (EO/AO) and Assistant Provident Fund Commissioner (APFC) aspirants.`,
     whoShouldRead: [
-      "UPSC EPFO EO/AO & APFC aspirants aiming for first-attempt success.",
-      "Candidates seeking concise coverage of Labour Laws, Industrial Relations, and Accounting Principles."
+      "UPSC EPFO EO/AO & APFC aspirants aiming for first-attempt success."
     ],
     whatYoullLearn: [
-      "General Accounting Principles (GAAP, Ledger entries, Trial Balance, Depreciation).",
-      "Industrial Relations & New Labour Codes 2020.",
-      "Social Security Schemes in India (EPF Act 1952, ESI Act 1948, PM-SYM)."
+      "General Accounting Principles (GAAP, Ledger entries, Trial Balance, Depreciation)."
     ],
     tableOfContents: [
-      { chapter: "Module 1", title: "General Accounting Principles & Financial Statements" },
-      { chapter: "Module 2", title: "Industrial Relations & Trade Union Movements" }
+      { chapter: "Module 1", title: "General Accounting Principles & Financial Statements" }
     ],
     faqs: [
-      { q: "Are the new Labour Codes included?", a: "Yes. All 4 new Labour Codes of 2020 are thoroughly updated and tabulated." }
+      { q: "Are the new Labour Codes included?", a: "Yes." }
     ]
   },
   {
@@ -752,16 +746,16 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     subcategory: "National",
     examCategory: "upsc",
     currentAffairsMonth: "June 2026",
-    author: AUTHORS[2], // Go Pustak Editorial Team
+    author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Current Affairs Cell",
     coverBg: "from-amber-800 to-red-950",
     coverAccent: "#F59E0B",
     coverText: "text-amber-50",
     coverStyle: "digest",
-    coverImage: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/upsc-june-2026-current-affairs-science-tech.png",
     featured: true,
     bestseller: false,
-    isFree: true, // FREE EBOOK
+    isFree: true,
     pages: 95,
     publishedYear: 2026,
     updatedDate: "2026-07-01",
@@ -778,15 +772,13 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
       "UPSC CSE Prelims & Mains 2026/2027 aspirants."
     ],
     whatYoullLearn: [
-      "Key Supreme Court judgments and Constitutional amendments.",
-      "Global bilateral summits and Economic Survey highlights."
+      "Key Supreme Court judgments and Constitutional amendments."
     ],
     tableOfContents: [
-      { chapter: "Section 1", title: "Polity & Governance" },
-      { chapter: "Section 2", title: "International Relations & Strategic Affairs" }
+      { chapter: "Section 1", title: "Polity & Governance" }
     ],
     faqs: [
-      { q: "Is this monthly current affairs ebook completely free?", a: "Yes! 100% free direct download with zero hidden fees." }
+      { q: "Is this monthly current affairs ebook completely free?", a: "Yes!" }
     ]
   },
   {
@@ -803,7 +795,7 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     coverAccent: "#DC2626",
     coverText: "text-stone-900",
     coverStyle: "bold",
-    coverImage: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/courage_to_practice_freedom.png",
     featured: true,
     bestseller: true,
     isFree: false,
@@ -829,7 +821,7 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
       { chapter: "Chapter 1", title: "Freedom Is Not a Feeling, It Is a Skill" }
     ],
     faqs: [
-      { q: "Is this a theoretical philosophy book?", a: "No, concrete exercises included." }
+      { q: "Is this a theoretical philosophy book?", a: "No." }
     ]
   },
   {
@@ -846,7 +838,7 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     coverAccent: "#F97316",
     coverText: "text-orange-100",
     coverStyle: "bold",
-    coverImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/motion_vs_action.png",
     featured: true,
     bestseller: true,
     isFree: false,
@@ -889,7 +881,7 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     coverAccent: "#06B6D4",
     coverText: "text-cyan-100",
     coverStyle: "tech",
-    coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/ai_without_the_hype.png",
     featured: true,
     bestseller: false,
     isFree: false,
@@ -933,7 +925,7 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     coverAccent: "#6366F1",
     coverText: "text-indigo-100",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/complete-geography-notes-hindi-bhugol.png",
     featured: false,
     bestseller: true,
     isFree: false,
@@ -977,7 +969,7 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     coverAccent: "#14B8A6",
     coverText: "text-teal-50",
     coverStyle: "exam",
-    coverImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/indian-economy-550-mcqs-upsc-epfo.png",
     featured: false,
     bestseller: false,
     isFree: false,
@@ -1020,10 +1012,10 @@ This ebook synthesizes complex legal provisions, accounting standards, and socia
     coverAccent: "#10B981",
     coverText: "text-emerald-50",
     coverStyle: "guide",
-    coverImage: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
+    coverImage: "/covers/habits_dont_work.png",
     featured: true,
     bestseller: true,
-    isFree: true, // FREE EBOOK
+    isFree: true,
     pages: 45,
     publishedYear: 2026,
     updatedDate: "2026-08-01",
