@@ -17,8 +17,7 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
     { id: 'ebooks', label: 'Ebooks' },
     { id: 'exams', label: 'Exams' },
     { id: 'current-affairs', label: 'Current Affairs' },
-    { id: 'articles', label: 'Read' },
-    { id: 'listen', label: 'Listen' }
+    { id: 'articles', label: 'Read' }
   ];
 
   return (
@@ -67,7 +66,7 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
               </div>
             </button>
 
-            {/* Center Navigation Links: Ebooks, Exams, Current Affairs, Read, Listen */}
+            {/* Center Navigation Links: Ebooks, Exams, Current Affairs, Read */}
             <nav className="hidden lg:flex items-center space-x-1">
               {navLinks.map((link) => (
                 <button
@@ -164,7 +163,7 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
                   }}
                   className="text-xs font-bold text-[#243B53] hover:underline"
                 >
-                  Free Reading Resources
+                  Essential Guides
                 </button>
                 <button
                   onClick={() => {
