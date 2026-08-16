@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Download, Calendar, Tag, ArrowUpRight, BookOpen, Layers } from 'lucide-react';
+import { Search, ArrowRight, BookOpen, Sparkles, CheckCircle2, ShieldCheck, Download, Calendar, Tag, ArrowUpRight, Layers } from 'lucide-react';
 import EbookCard from '../components/EbookCard';
 import { BOOKS } from '../data/books';
 import { EXAM_HUBS } from '../data/exams';
@@ -8,7 +8,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
   // Curation arrays
   const newThisWeek = BOOKS.filter(b => b.latestRelease).slice(0, 3);
   const editorsPicks = BOOKS.filter(b => b.featured && !b.latestRelease).slice(0, 3);
-  const freeToRead = BOOKS.filter(b => b.isFree || b.prices?.pdf === 0).slice(0, 3);
+  const essentialGuides = BOOKS.filter(b => b.prices?.pdf === 99).slice(0, 3);
   const booksForThinking = BOOKS.filter(b => b.category === 'Personal Growth' || b.category === 'Technology').slice(0, 3);
   const currentAffairsBooks = BOOKS.filter(b => b.category === 'Current Affairs').slice(0, 3);
 
@@ -203,33 +203,33 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 5. Free to Read Section */}
+      {/* 5. Essential Study Guides (₹99 Edition) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-10 border border-[#D8CBB8] space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D8CBB8] pb-4">
             <div className="space-y-1">
-              <span className="px-2.5 py-0.5 bg-[#355E3B] text-white text-[10px] font-mono font-bold uppercase rounded inline-block">
-                Open Access
+              <span className="px-2.5 py-0.5 bg-[#243B53] text-white text-[10px] font-mono font-bold uppercase rounded inline-block">
+                ₹99 Special Handbooks
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#171717]">
-                Free to Read
+                Essential Study Guides
               </h2>
               <p className="text-xs text-[#171717]/70 font-sans">
-                No subscription required for selected titles. Direct PDF download.
+                High-yield revision guides and study habit handbooks priced at ₹99.00 ($1.29 USD).
               </p>
             </div>
 
             <button
-              onClick={() => setActivePage('free-ebooks')}
-              className="px-5 py-2.5 bg-[#355E3B] hover:bg-[#2B4B2F] text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-1.5 flex-shrink-0"
+              onClick={() => setActivePage('ebooks')}
+              className="px-5 py-2.5 bg-[#243B53] hover:bg-[#1E293B] text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-1.5 flex-shrink-0"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>Browse All Free Titles</span>
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Browse All Guides</span>
             </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {freeToRead.map((book) => (
+            {essentialGuides.map((book) => (
               <EbookCard
                 key={book.id}
                 book={book}

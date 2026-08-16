@@ -608,7 +608,7 @@ export const BOOKS = [
     tableOfContents: [{ chapter: "Chapter 1", title: "Demystifying LLMs" }]
   },
 
-  // 17. Free Effective Study Habits Guide
+  // 17. Effective Study Habits Guide (Priced at ₹99 / $1.29 USD)
   {
     id: "free-effective-study-habits-guide",
     slug: "free-effective-study-habits-guide",
@@ -626,15 +626,15 @@ export const BOOKS = [
     coverImage: "/covers/habits_dont_work.png",
     featured: true,
     bestseller: true,
-    isFree: true,
+    isFree: false,
     pages: 45,
     publishedYear: 2026,
     updatedDate: "2026-08-01",
     language: "English",
     fileFormats: ["PDF Digital"],
     fileSize: "3.8 MB",
-    prices: { pdf: 0, usd: 0 },
-    oneLiner: "Free practical guide on Active Recall, Spaced Repetition, and the Feynman Technique for rapid learning.",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "Practical guide on Active Recall, Spaced Repetition, and the Feynman Technique for rapid learning.",
     description: `Stop rereading textbooks passively! Cognitive learning techniques verified by educational neuroscience.`,
     whoShouldRead: ["Students and competitive exam aspirants."],
     whatYoullLearn: ["Active Recall vs Passive Reading."],
