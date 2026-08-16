@@ -148,96 +148,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 3. Category Design: Editorial Sections */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-sans uppercase font-bold text-[#243B53] tracking-widest block">
-            Organized Publishing Library
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-            Explore Main Categories
-          </h2>
-          <p className="text-xs sm:text-sm text-[#171717]/70 font-sans">
-            Clean, editorial collections designed for serious readers, aspirants, and lifelong learners.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              title: "Personal Growth",
-              sub: "Self Help • Productivity • Habits • Psychology • Mindset",
-              cat: "Personal Growth",
-              symbol: "01",
-              desc: "Practical cognitive engineering, habits, and self-trust manuals."
-            },
-            {
-              title: "Competitive Exams",
-              sub: "UPSC CSE • UPSC EPFO • SSC • Banking • State PSC",
-              cat: "Competitive Exams",
-              symbol: "02",
-              desc: "Point-wise study guides, Labour Laws, and Static GK handbooks."
-            },
-            {
-              title: "Current Affairs",
-              sub: "National • International • Economy • Science • Defence",
-              cat: "Current Affairs",
-              symbol: "03",
-              desc: "Monthly current affairs compendiums mapped for Prelims & Mains."
-            },
-            {
-              title: "Education & Learning",
-              sub: "Study Skills • General Knowledge • Research • Career",
-              cat: "Education & Learning",
-              symbol: "04",
-              desc: "Active recall, spaced repetition, and study habit handbooks."
-            },
-            {
-              title: "Technology",
-              sub: "Artificial Intelligence • Programming • Tech Explained",
-              cat: "Technology",
-              symbol: "05",
-              desc: "LLMs, prompt engineering, and technology architecture guides."
-            },
-            {
-              title: "Books & Ideas",
-              sub: "Book Summaries • Reading Guides • Philosophy • Business",
-              cat: "Books & Ideas",
-              symbol: "06",
-              desc: "15-minute action summaries of foundational non-fiction classics."
-            }
-          ].map((c) => (
-            <div
-              key={c.symbol}
-              onClick={() => setActivePage('ebooks', c.cat)}
-              className="bg-[#F8F5EE] p-6 rounded-2xl border border-[#D8CBB8] hover:border-[#243B53] cursor-pointer transition-all hover-lift space-y-4 group"
-            >
-              <div className="flex items-center justify-between border-b border-[#E8E2D5] pb-3">
-                <span className="font-mono text-xs font-bold text-[#243B53] bg-[#243B53]/10 px-2 py-0.5 rounded">
-                  {c.symbol}
-                </span>
-                <span className="text-[11px] font-sans font-bold text-[#243B53] group-hover:translate-x-1 transition-transform inline-flex items-center space-x-1">
-                  <span>Browse</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                <h3 className="font-serif font-bold text-xl text-[#171717] group-hover:text-[#243B53] transition-colors">
-                  {c.title}
-                </h3>
-                <p className="text-[11px] font-mono text-[#171717]/60">{c.sub}</p>
-              </div>
-
-              <p className="text-xs text-[#171717]/70 leading-relaxed font-sans pt-1">
-                {c.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. Featured Ebooks Showcase */}
+      {/* 3. Featured Ebooks Showcase */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#D8CBB8] pb-4">
           <div>
@@ -271,7 +182,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 5. Competitive Exams Library (Serious Academic Publishing Feel) */}
+      {/* 4. Competitive Exams Library (Serious Academic Publishing Feel) */}
       <section className="bg-[#243B53] text-[#F8F5EE] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
@@ -324,7 +235,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 6. Start Reading for Free (Conversion Section) */}
+      {/* 5. Start Reading for Free (Conversion Section) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-12 border border-[#D8CBB8] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
@@ -362,7 +273,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 7. Made for Indian Readers Trust Section */}
+      {/* 6. Made for Indian Readers Trust Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#F8F5EE] rounded-3xl p-8 sm:p-14 border border-[#D8CBB8] space-y-8 text-center sm:text-left">
           
