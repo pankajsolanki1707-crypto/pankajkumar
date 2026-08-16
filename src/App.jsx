@@ -9,32 +9,42 @@ import SampleReaderModal from './components/SampleReaderModal';
 import HomePage from './pages/HomePage';
 import BooksPage from './pages/BooksPage';
 import BookDetailsPage from './pages/BookDetailsPage';
-import AboutPage from './pages/AboutPage';
+import ExamsPage from './pages/ExamsPage';
+import FreeEbooksPage from './pages/FreeEbooksPage';
+import WatchMediaPage from './pages/WatchMediaPage';
+import PodcastsPage from './pages/PodcastsPage';
 import BlogPage from './pages/BlogPage';
-import ReadingListPage from './pages/ReadingListPage';
+import BundlesPage from './pages/BundlesPage';
 import DashboardPage from './pages/DashboardPage';
+import CurrentAffairsPage from './pages/CurrentAffairsPage';
+import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import LegalPage from './pages/LegalPage';
-import CategoryArchivePage from './pages/CategoryArchivePage';
 import SitemapPage from './pages/SitemapPage';
 import ImageSitemapPage from './pages/ImageSitemapPage';
 import RobotsTxtPage from './pages/RobotsTxtPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 
 import { BOOKS } from './data/books';
+import { YOUTUBE_VIDEOS } from './data/videos';
+import { ARTICLES } from './data/articles';
 
 const getPathForPage = (page, data) => {
   switch (page) {
     case 'home': return '/';
-    case 'books': return '/books';
-    case 'book-details': return data ? `/books/${data.id || data}` : '/books';
-    case 'category-archive': return data ? `/category/${encodeURIComponent(data)}` : '/books';
+    case 'ebooks': return data ? `/ebooks?category=${encodeURIComponent(data)}` : '/ebooks';
+    case 'ebook-details': return data ? `/ebooks/${data.slug || data.id || data}` : '/ebooks';
+    case 'free-ebooks': return '/free-ebooks';
+    case 'exams': return data ? `/exams/${data}` : '/exams';
+    case 'current-affairs': return '/current-affairs';
+    case 'articles': return data ? `/articles/${data.slug || data.id || data}` : '/articles';
+    case 'watch': return data ? `/watch/${data.slug || data.id || data}` : '/watch';
+    case 'listen': return '/listen';
+    case 'bundles': return '/bundles';
+    case 'library': return '/library';
     case 'about': return '/about';
-    case 'blog': return '/blog';
-    case 'reading-list': return '/reading-list';
-    case 'dashboard': return '/dashboard';
-    case 'admin-console': return '/admin';
     case 'contact': return '/contact';
+    case 'admin-console': return '/admin';
     case 'sitemap': return '/sitemap';
     case 'image-sitemap': return '/image-sitemap';
     case 'robots': return '/robots';
@@ -50,23 +60,33 @@ const getPathForPage = (page, data) => {
 
 const parsePathToState = (pathname) => {
   if (pathname === '/' || pathname === '') return { page: 'home' };
-  if (pathname === '/books') return { page: 'books' };
-  if (pathname.startsWith('/books/')) {
-    const bookId = pathname.replace('/books/', '');
-    const book = BOOKS.find(b => b.id === bookId);
-    if (book) return { page: 'book-details', data: book };
-    return { page: 'books' };
+  if (pathname === '/ebooks') return { page: 'ebooks' };
+  if (pathname.startsWith('/ebooks/')) {
+    const slug = pathname.replace('/ebooks/', '');
+    const book = BOOKS.find(b => b.slug === slug || b.id === slug);
+    if (book) return { page: 'ebook-details', data: book };
+    return { page: 'ebooks' };
   }
-  if (pathname.startsWith('/category/')) {
-    const cat = decodeURIComponent(pathname.replace('/category/', ''));
-    return { page: 'category-archive', data: cat };
+  if (pathname === '/free-ebooks') return { page: 'free-ebooks' };
+  if (pathname.startsWith('/exams')) {
+    const examId = pathname.replace('/exams/', '').replace('/exams', '');
+    return { page: 'exams', data: examId || 'upsc' };
   }
+  if (pathname === '/current-affairs') return { page: 'current-affairs' };
+  if (pathname.startsWith('/articles')) {
+    const articleSlug = pathname.replace('/articles/', '').replace('/articles', '');
+    return { page: 'articles', data: articleSlug };
+  }
+  if (pathname.startsWith('/watch')) {
+    const videoSlug = pathname.replace('/watch/', '').replace('/watch', '');
+    return { page: 'watch', data: videoSlug };
+  }
+  if (pathname === '/listen' || pathname === '/podcasts') return { page: 'listen' };
+  if (pathname === '/bundles') return { page: 'bundles' };
+  if (pathname === '/library') return { page: 'library' };
   if (pathname === '/about') return { page: 'about' };
-  if (pathname === '/blog') return { page: 'blog' };
-  if (pathname === '/reading-list') return { page: 'reading-list' };
-  if (pathname === '/dashboard') return { page: 'dashboard' };
-  if (pathname === '/admin') return { page: 'admin-console' };
   if (pathname === '/contact') return { page: 'contact' };
+  if (pathname === '/admin') return { page: 'admin-console' };
   if (pathname === '/sitemap') return { page: 'sitemap' };
   if (pathname === '/image-sitemap') return { page: 'image-sitemap' };
   if (pathname === '/robots') return { page: 'robots' };
@@ -82,21 +102,23 @@ const parsePathToState = (pathname) => {
 export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [selectedBook, setSelectedBook] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('Productivity');
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const [selectedExamId, setSelectedExamId] = useState('upsc');
+  const [selectedVideoSlug, setSelectedVideoSlug] = useState(null);
   const [sampleModalBook, setSampleModalBook] = useState(null);
   const [cashfreeModalBook, setCashfreeModalBook] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
 
-  // Ensure clean light theme
+  // Ensure clean theme
   useEffect(() => {
     document.documentElement.classList.remove('dark');
     localStorage.removeItem('pk_theme');
   }, []);
 
-  // Purchased books state (Strictly empty by default - requires verified payment)
+  // Purchased library state
   const [purchasedBooks, setPurchasedBooks] = useState(() => {
-    const saved = localStorage.getItem('pk_purchased_library');
+    const saved = localStorage.getItem('gopustak_purchased_library');
     if (saved) {
       try { return JSON.parse(saved); } catch (e) {}
     }
@@ -104,7 +126,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem('pk_purchased_library', JSON.stringify(purchasedBooks));
+    localStorage.setItem('gopustak_purchased_library', JSON.stringify(purchasedBooks));
   }, [purchasedBooks]);
 
   const showToast = (msg) => {
@@ -115,11 +137,17 @@ export default function App() {
   };
 
   const handleNavigate = (page, data, skipHistoryPush = false) => {
-    if (page === 'book-details' && data) {
+    if (page === 'ebook-details' && data) {
       setSelectedBook(data);
     }
-    if (page === 'category-archive' && data) {
+    if (page === 'ebooks' && data) {
       setSelectedCategory(data);
+    }
+    if (page === 'exams' && data) {
+      setSelectedExamId(data);
+    }
+    if (page === 'watch' && data) {
+      setSelectedVideoSlug(data);
     }
     setActivePage(page);
 
@@ -130,7 +158,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Synchronize browser URL & Back/Forward button history (popstate)
+  // Synchronize browser URL & Back/Forward button history
   useEffect(() => {
     const initial = parsePathToState(window.location.pathname);
     handleNavigate(initial.page, initial.data, true);
@@ -152,7 +180,7 @@ export default function App() {
   }, []);
 
   const handleSelectBook = (book) => {
-    handleNavigate('book-details', book);
+    handleNavigate('ebook-details', book);
   };
 
   const handleOpenSample = (book) => {
@@ -165,13 +193,13 @@ export default function App() {
 
   const handlePaymentSuccess = (orderData) => {
     setPurchasedBooks((prev) => [orderData, ...prev]);
-    showToast(`Order ${orderData.orderId} verified via Cashfree! Added to My Library.`);
+    showToast(`Order ${orderData.orderId} verified! Added to My Library.`);
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-paper-100 text-ink-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-[#FDFDFB] text-ink-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
       
-      {/* Top Announcement Bar for Launch Offer "READER10" */}
+      {/* Top Announcement Bar */}
       <AnnouncementBar onShowToast={showToast} />
 
       {/* Toast Notification */}
@@ -198,21 +226,33 @@ export default function App() {
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
+            onOpenSearch={() => setIsSearchOpen(true)}
+            onSelectVideo={(v) => handleNavigate('watch', v)}
+            onSelectExam={(exId) => handleNavigate('exams', exId)}
           />
         )}
 
-        {activePage === 'books' && (
+        {activePage === 'ebooks' && (
           <BooksPage
+            initialCategory={selectedCategory}
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
           />
         )}
 
-        {activePage === 'book-details' && selectedBook && (
+        {activePage === 'free-ebooks' && (
+          <FreeEbooksPage
+            onSelectBook={handleSelectBook}
+            onOpenSample={handleOpenSample}
+            onBuyBook={handleBuyBook}
+          />
+        )}
+
+        {activePage === 'ebook-details' && selectedBook && (
           <BookDetailsPage
             book={selectedBook}
-            onBack={() => handleNavigate('books')}
+            onBack={() => handleNavigate('ebooks')}
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
@@ -221,10 +261,9 @@ export default function App() {
           />
         )}
 
-        {activePage === 'category-archive' && (
-          <CategoryArchivePage
-            categoryName={selectedCategory}
-            onBack={() => handleNavigate('books')}
+        {activePage === 'exams' && (
+          <ExamsPage
+            selectedExamId={selectedExamId}
             onSelectBook={handleSelectBook}
             onOpenSample={handleOpenSample}
             onBuyBook={handleBuyBook}
@@ -232,19 +271,45 @@ export default function App() {
           />
         )}
 
-        {activePage === 'about' && (
-          <AboutPage setActivePage={(page, data) => handleNavigate(page, data)} />
+        {activePage === 'current-affairs' && (
+          <CurrentAffairsPage
+            onSelectBook={handleSelectBook}
+            onOpenSample={handleOpenSample}
+            onBuyBook={handleBuyBook}
+          />
         )}
 
-        {activePage === 'blog' && (
-          <BlogPage onShowToast={showToast} />
+        {activePage === 'watch' && (
+          <WatchMediaPage
+            selectedVideoSlug={selectedVideoSlug}
+            onSelectBook={handleSelectBook}
+            onOpenSample={handleOpenSample}
+            onBuyBook={handleBuyBook}
+          />
         )}
 
-        {activePage === 'reading-list' && (
-          <ReadingListPage />
+        {activePage === 'listen' && (
+          <PodcastsPage
+            onSelectBook={handleSelectBook}
+            onSelectVideo={(v) => handleNavigate('watch', v)}
+          />
         )}
 
-        {activePage === 'dashboard' && (
+        {activePage === 'articles' && (
+          <BlogPage
+            onSelectBook={handleSelectBook}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {activePage === 'bundles' && (
+          <BundlesPage
+            onSelectBook={handleSelectBook}
+            onBuyBook={handleBuyBook}
+          />
+        )}
+
+        {activePage === 'library' && (
           <DashboardPage
             purchasedBooks={purchasedBooks}
             onShowToast={showToast}
@@ -252,12 +317,16 @@ export default function App() {
           />
         )}
 
-        {activePage === 'admin-console' && (
-          <AdminDashboardPage onShowToast={showToast} />
+        {activePage === 'about' && (
+          <AboutPage setActivePage={(page, data) => handleNavigate(page, data)} />
         )}
 
         {activePage === 'contact' && (
           <ContactPage onShowToast={showToast} />
+        )}
+
+        {activePage === 'admin-console' && (
+          <AdminDashboardPage onShowToast={showToast} />
         )}
 
         {activePage === 'sitemap' && (
@@ -291,10 +360,11 @@ export default function App() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         onSelectBook={handleSelectBook}
-        onSelectBlog={() => handleNavigate('blog')}
+        onSelectVideo={(v) => handleNavigate('watch', v)}
+        onSelectExam={(exId) => handleNavigate('exams', exId)}
       />
 
-      {/* Cashfree Payments Modal */}
+      {/* Cashfree & PayPal Payments Modal */}
       {cashfreeModalBook && (
         <CashfreeModal
           book={cashfreeModalBook}
