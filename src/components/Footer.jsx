@@ -58,7 +58,7 @@ export default function Footer({ setActivePage, onShowToast }) {
                   </button>
                 </div>
                 <p className="text-[10px] text-[#171717]/50 text-center sm:text-left">
-                  Includes free sample chapters + study resources. Unsubscribe anytime.
+                  Includes sample chapters + study resources. Unsubscribe anytime.
                 </p>
               </form>
             )}
@@ -93,9 +93,8 @@ export default function Footer({ setActivePage, onShowToast }) {
             </h4>
             <ul className="space-y-2 text-xs font-medium text-[#171717]/70">
               <li><button onClick={() => setActivePage('ebooks')} className="hover:text-[#243B53]">Ebooks</button></li>
-              <li><button onClick={() => setActivePage('free-ebooks')} className="hover:text-[#243B53] font-bold text-[#355E3B]">Free Ebooks</button></li>
+              <li><button onClick={() => setActivePage('free-ebooks')} className="hover:text-[#243B53]">Essential Guides</button></li>
               <li><button onClick={() => setActivePage('ebooks')} className="hover:text-[#243B53]">New Releases</button></li>
-              <li><button onClick={() => setActivePage('bundles')} className="hover:text-[#243B53]">Bundles</button></li>
               <li><button onClick={() => setActivePage('library')} className="hover:text-[#243B53]">My Library</button></li>
             </ul>
           </div>
