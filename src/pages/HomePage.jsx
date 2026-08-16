@@ -1,124 +1,150 @@
 import React, { useState } from 'react';
-import { Search, ArrowRight, BookOpen, Sparkles, CheckCircle2, Star, ShieldCheck, Download, Globe, Cpu, Lightbulb, Compass, Award, HelpCircle, ChevronDown, ChevronUp, Layers, GraduationCap, Youtube, Headphones, FileText, Check, Shield, FileCheck, Building2, Landmark, Clock } from 'lucide-react';
+import { Search, ArrowRight, BookOpen, Sparkles, CheckCircle2, ShieldCheck, Download, Globe, Cpu, Lightbulb, GraduationCap, Youtube, Headphones, FileText, Check, Shield, Clock, ArrowUpRight } from 'lucide-react';
 import EbookCard from '../components/EbookCard';
 import VideoCard from '../components/VideoCard';
-import { BOOKS, CATEGORIES, SUB_CATEGORIES } from '../data/books';
+import { BOOKS, CATEGORIES } from '../data/books';
 import { YOUTUBE_VIDEOS } from '../data/videos';
 import { EXAM_HUBS } from '../data/exams';
-import { EBOOK_BUNDLES } from '../data/bundles';
 
 export default function HomePage({ setActivePage, onSelectBook, onOpenSample, onBuyBook, onOpenSearch, onSelectVideo, onSelectExam }) {
-  const [searchInput, setSearchInput] = useState('');
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   const featuredBooks = BOOKS.filter(b => b.featured).slice(0, 6);
-  const freeBooks = BOOKS.filter(b => b.isFree || b.prices.pdf === 0).slice(0, 4);
+  const freeBooks = BOOKS.filter(b => b.isFree || b.prices?.pdf === 0).slice(0, 4);
   const examBooks = BOOKS.filter(b => b.category === 'Competitive Exams').slice(0, 4);
-  const personalGrowthBooks = BOOKS.filter(b => b.category === 'Personal Growth').slice(0, 4);
 
   const handleHeroSearchSubmit = (e) => {
     e.preventDefault();
     if (onOpenSearch) onOpenSearch();
   };
 
-  const homepageFaqs = [
-    {
-      q: "What is Go Pustak?",
-      a: "Go Pustak is a digital ebook and reading platform where books speak slowly and ideas stay longer. We share ebooks, study resources, current affairs digests, book notes, podcasts, and video explainers across personal growth, competitive exams, technology, and practical education."
-    },
-    {
-      q: "How are digital ebooks delivered after purchase or download?",
-      a: "Directly into your 'My Library' dashboard! Every free or premium ebook is delivered as a secure, high-resolution PDF and EPUB file with instant download access sent to your email."
-    },
-    {
-      q: "Which competitive exams does Go Pustak cover?",
-      a: "We provide specialized study guides, labour law summaries, and general awareness handbooks for UPSC CSE, UPSC EPFO (EO/AO & APFC), SSC CGL/CHSL, Banking (SBI/IBPS PO), and State PSC exams."
-    },
-    {
-      q: "What payment methods are supported for paid ebooks?",
-      a: "We support Razorpay, Cashfree Payments (UPI, GPay, PhonePe, Paytm, NetBanking, Debit/Credit Cards in INR ₹), and PayPal Business (USD $ for international readers)."
-    },
-    {
-      q: "Can I read ebooks on Kindle, iPad, or mobile phones?",
-      a: "Yes! All Go Pustak ebooks are delivered in universal PDF and EPUB formats optimized for tablets, smartphones, e-ink readers, desktop PDF applications, and Kindle devices."
-    }
-  ];
-
   return (
-    <div className="space-y-20 pb-16 animate-fadeIn">
+    <div className="space-y-20 pb-16 animate-fadeIn font-sans bg-[#F8F5EE]">
       
-      {/* 1. Clear Editorial Hero Section */}
-      <section className="relative bg-gradient-to-b from-[#F9F9F6] to-[#FDFDFB] pt-12 pb-16 border-b border-paper-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-xs font-semibold text-emerald-900 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Digital Ebook & Reading Platform</span>
+      {/* 1. Distinctly Editorial Indian Hero Section */}
+      <section className="relative bg-[#F8F5EE] pt-14 pb-20 border-b border-[#D8CBB8]/60 paper-texture">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Copy & Actions */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#243B53]/10 border border-[#243B53]/20 text-xs font-semibold text-[#243B53]">
+                <span className="font-serif italic font-bold">गो</span>
+                <span>Indian Digital Publishing & Reading Platform</span>
+              </div>
+
+              <div className="space-y-4">
+                <h1 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-[#171717] leading-[1.12]">
+                  Books, ideas and useful reading — all in one place.
+                </h1>
+                <p className="text-base sm:text-xl text-[#171717]/80 font-sans leading-relaxed max-w-2xl">
+                  Discover ebooks, study material, book stories, podcasts and practical ideas for learning, thinking and growing.
+                </p>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
+                <button
+                  onClick={() => setActivePage('ebooks')}
+                  className="w-full sm:w-auto px-8 py-4 bg-[#243B53] hover:bg-[#1E293B] text-[#F8F5EE] font-bold rounded-xl transition-all shadow-sm flex items-center justify-center space-x-2 text-sm group"
+                >
+                  <span>Explore Ebooks</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                <button
+                  onClick={() => setActivePage('free-ebooks')}
+                  className="w-full sm:w-auto px-8 py-4 bg-[#F8F5EE] border border-[#D8CBB8] text-[#171717] font-semibold rounded-xl hover:bg-[#D8CBB8]/30 transition-all flex items-center justify-center space-x-2 text-sm"
+                >
+                  <Sparkles className="w-4 h-4 text-[#C9822B]" />
+                  <span>Free Ebooks</span>
+                </button>
+              </div>
+
+              {/* Subtle Trust Indicators */}
+              <div className="flex flex-wrap items-center gap-6 pt-4 text-xs font-medium text-[#171717]/70 border-t border-[#D8CBB8]/60">
+                <span className="flex items-center space-x-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#355E3B]" />
+                  <span>Instant PDF & EPUB Downloads</span>
+                </span>
+                <span className="flex items-center space-x-1.5">
+                  <ShieldCheck className="w-4 h-4 text-[#243B53]" />
+                  <span>Razorpay Verified Payment Security</span>
+                </span>
+              </div>
+
+            </div>
+
+            {/* Right Quiet Visual Composition: Real Book Photography & Paper Texture */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-md aspect-[4/5] rounded-2xl bg-[#E8E2D5]/80 p-6 border border-[#D8CBB8] shadow-sm flex flex-col justify-between overflow-hidden">
+                
+                {/* Devanagari background watermark motif */}
+                <div className="absolute top-0 right-0 font-serif text-9xl font-bold text-[#243B53]/5 select-none pointer-events-none leading-none -mr-8 -mt-8">
+                  पुस्तक
+                </div>
+
+                <div className="space-y-4 relative z-10">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#243B53]">
+                    Go Pustak Featured Selection
+                  </span>
+                  
+                  {/* Stacked Book Cover Showcase */}
+                  <div className="relative aspect-[3/4] max-h-64 rounded-xl bg-[#171717] overflow-hidden shadow-md border border-[#D8CBB8]/50 group cursor-pointer" onClick={() => onSelectBook(BOOKS[0])}>
+                    <img
+                      src={BOOKS[0].coverImage}
+                      alt={BOOKS[0].title}
+                      className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute bottom-3 left-3 right-3 bg-[#171717]/90 backdrop-blur-xs p-3 rounded-lg text-white space-y-0.5">
+                      <h4 className="font-serif text-xs font-bold truncate">{BOOKS[0].title}</h4>
+                      <p className="text-[10px] text-[#D8CBB8]">By {BOOKS[0].author?.name}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-[#D8CBB8]/60 flex items-center justify-between text-xs text-[#171717]/80 font-serif italic">
+                  <span>"Where books speak slowly..."</span>
+                  <span className="font-sans text-[10px] font-mono not-italic text-[#243B53] font-bold">2000+ Aspirants Trust</span>
+                </div>
+
+              </div>
+            </div>
+
           </div>
-
-          <div className="max-w-4xl mx-auto space-y-4">
-            <h1 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-ink-900 leading-[1.12]">
-              Go Pustak
-            </h1>
-            <p className="font-serif text-2xl sm:text-3xl text-emerald-900 font-medium">
-              Books, ideas and useful reading — all in one place.
-            </p>
-            <p className="text-base sm:text-lg text-ink-700 font-sans leading-relaxed max-w-2xl mx-auto">
-              Explore ebooks, study resources, book stories, podcasts and practical ideas across personal development, competitive exams, education, technology and more.
-            </p>
-          </div>
-
-          {/* Primary & Secondary Hero CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <button
-              onClick={() => setActivePage('ebooks')}
-              className="w-full sm:w-auto px-8 py-4 bg-emerald-800 hover:bg-emerald-900 text-white font-bold rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 text-base group"
-            >
-              <span>Explore Ebooks</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button
-              onClick={() => setActivePage('watch')}
-              className="w-full sm:w-auto px-8 py-4 bg-paper-100 border border-paper-300 text-ink-900 font-semibold rounded-xl hover:bg-paper-200 transition-all flex items-center justify-center space-x-2 text-base"
-            >
-              <Youtube className="w-5 h-5 text-red-600" />
-              <span>Watch & Listen</span>
-            </button>
-          </div>
-
         </div>
       </section>
 
-      {/* 2. Large Prominent Search Box */}
+      {/* 2. Prominent Search Element */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-        <div className="bg-paper-100 p-4 sm:p-6 rounded-2xl border border-paper-300 shadow-elevated space-y-3">
-          <form onSubmit={handleHeroSearchSubmit} className="flex items-center space-x-3 bg-paper-50 p-3 sm:p-4 rounded-xl border border-paper-300 focus-within:ring-2 focus-within:ring-emerald-700 transition-all">
-            <Search className="w-6 h-6 text-emerald-800 flex-shrink-0" />
+        <div className="bg-[#F8F5EE] p-5 sm:p-6 rounded-2xl border border-[#D8CBB8] shadow-md space-y-3">
+          <form onSubmit={handleHeroSearchSubmit} className="flex items-center space-x-3 bg-[#FAF7F2] p-3 sm:p-4 rounded-xl border border-[#D8CBB8] focus-within:ring-2 focus-within:ring-[#243B53] transition-all">
+            <Search className="w-5 h-5 text-[#243B53] flex-shrink-0" />
             <input
               type="text"
               readOnly
               onClick={onOpenSearch}
-              placeholder="Search books, subjects, authors, exams, topics..."
-              className="flex-1 bg-transparent text-base sm:text-lg text-ink-900 placeholder-ink-400 focus:outline-none cursor-pointer"
+              placeholder="Search ebooks, exams, subjects, authors & ideas..."
+              className="flex-1 bg-transparent text-sm sm:text-base text-[#171717] placeholder-[#171717]/50 focus:outline-none cursor-pointer"
             />
             <button
               type="button"
               onClick={onOpenSearch}
-              className="px-5 py-2.5 bg-emerald-800 hover:bg-emerald-900 text-white text-sm font-bold rounded-lg transition-colors flex items-center space-x-1"
+              className="px-5 py-2.5 bg-[#243B53] hover:bg-[#1E293B] text-[#F8F5EE] text-xs font-bold rounded-lg transition-colors flex items-center space-x-1"
             >
               <span>Search</span>
             </button>
           </form>
 
-          {/* Quick Search Suggestions */}
-          <div className="flex flex-wrap items-center gap-2 text-xs text-ink-600 pt-1">
-            <span className="font-semibold text-ink-500">Popular:</span>
-            {['Think on Paper', 'UPSC EPFO', 'SSC CGL', 'Productivity', 'Psychology', 'Pragmatic AI', 'Current Affairs'].map((term) => (
+          {/* Quick Search Chips */}
+          <div className="flex flex-wrap items-center gap-2 text-xs text-[#171717]/70 pt-1">
+            <span className="font-semibold text-[#171717]/50">Try searching:</span>
+            {['EPFO', 'Productivity', 'UPSC CSE', 'Current Affairs', 'Science & Tech', 'Pankaj Kumar'].map((term) => (
               <button
                 key={term}
                 onClick={onOpenSearch}
-                className="px-2.5 py-1 bg-paper-200 hover:bg-emerald-100 hover:text-emerald-900 rounded-lg text-ink-800 transition-colors"
+                className="px-2.5 py-1 bg-[#E8E2D5]/60 hover:bg-[#243B53]/10 hover:text-[#243B53] rounded-lg text-[#171717] transition-colors font-medium text-[11px]"
               >
                 {term}
               </button>
@@ -127,17 +153,17 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 3. Main Category Hubs System */}
+      {/* 3. Category Design: Editorial Sections */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-sans uppercase font-bold text-emerald-800 tracking-wider block">
-            Organized Library
+          <span className="text-xs font-sans uppercase font-bold text-[#243B53] tracking-widest block">
+            Organized Publishing Library
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
             Explore Main Categories
           </h2>
-          <p className="text-sm text-ink-600 font-sans">
-            Clean, scannable collections curated for readers, aspirants, and lifelong learners.
+          <p className="text-xs sm:text-sm text-[#171717]/70 font-sans">
+            Clean, editorial collections designed for serious readers, aspirants, and lifelong learners.
           </p>
         </div>
 
@@ -145,70 +171,72 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
           {[
             {
               title: "Personal Growth",
-              desc: "Self Help, Productivity, Habits, Psychology, Mindset, Decision Making.",
-              icon: Lightbulb,
+              sub: "Self Help • Productivity • Habits • Psychology • Mindset",
               cat: "Personal Growth",
-              count: "6 Ebooks"
+              symbol: "01",
+              desc: "Practical cognitive engineering, habits, and self-trust manuals."
             },
             {
               title: "Competitive Exams",
-              desc: "UPSC CSE, UPSC EPFO, SSC CGL/CHSL, Banking PO, State PSC.",
-              icon: GraduationCap,
+              sub: "UPSC CSE • UPSC EPFO • SSC • Banking • State PSC",
               cat: "Competitive Exams",
-              count: "4 Handbooks"
+              symbol: "02",
+              desc: "Point-wise study guides, Labour Laws, and Static GK handbooks."
             },
             {
               title: "Current Affairs",
-              desc: "National, International, Economy, Defence, Environment, Govt Schemes.",
-              icon: Clock,
+              sub: "National • International • Economy • Science • Defence",
               cat: "Current Affairs",
-              count: "Monthly Edition"
+              symbol: "03",
+              desc: "Monthly current affairs compendiums mapped for Prelims & Mains."
             },
             {
               title: "Education & Learning",
-              desc: "General Knowledge, Study Skills, Active Recall, Research Methods.",
-              icon: BookOpen,
+              sub: "Study Skills • General Knowledge • Research • Career",
               cat: "Education & Learning",
-              count: "Free Guides"
+              symbol: "04",
+              desc: "Active recall, spaced repetition, and study habit handbooks."
             },
             {
               title: "Technology",
-              desc: "Artificial Intelligence, Programming, Tech Explained, Digital Trends.",
-              icon: Cpu,
+              sub: "Artificial Intelligence • Programming • Tech Explained",
               cat: "Technology",
-              count: "Engineering Guides"
+              symbol: "05",
+              desc: "LLMs, prompt engineering, and technology architecture guides."
             },
             {
               title: "Books & Ideas",
-              desc: "Book Summaries, Reading Guides, Practical Philosophy, Biography.",
-              icon: Sparkles,
+              sub: "Book Summaries • Reading Guides • Philosophy • Business",
               cat: "Books & Ideas",
-              count: "Summary Vault"
+              symbol: "06",
+              desc: "15-minute action summaries of foundational non-fiction classics."
             }
-          ].map((c, idx) => (
+          ].map((c) => (
             <div
-              key={idx}
+              key={c.symbol}
               onClick={() => setActivePage('ebooks', c.cat)}
-              className="bg-paper-100 p-6 rounded-2xl border border-paper-300 hover:border-emerald-700 cursor-pointer transition-all shadow-subtle space-y-3 group"
+              className="bg-[#F8F5EE] p-6 rounded-2xl border border-[#D8CBB8] hover:border-[#243B53] cursor-pointer transition-all hover-lift space-y-4 group"
             >
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center group-hover:bg-emerald-800 group-hover:text-white transition-colors">
-                  <c.icon className="w-5 h-5" />
-                </div>
-                <span className="text-[11px] font-mono font-semibold text-ink-500 bg-paper-200 px-2 py-0.5 rounded">
-                  {c.count}
+              <div className="flex items-center justify-between border-b border-[#E8E2D5] pb-3">
+                <span className="font-mono text-xs font-bold text-[#243B53] bg-[#243B53]/10 px-2 py-0.5 rounded">
+                  {c.symbol}
+                </span>
+                <span className="text-[11px] font-sans font-bold text-[#243B53] group-hover:translate-x-1 transition-transform inline-flex items-center space-x-1">
+                  <span>Browse</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
-              <h3 className="font-serif font-bold text-xl text-ink-900 group-hover:text-emerald-800 transition-colors">
-                {c.title}
-              </h3>
-              <p className="text-xs text-ink-600 font-sans leading-relaxed">
+
+              <div className="space-y-1">
+                <h3 className="font-serif font-bold text-xl text-[#171717] group-hover:text-[#243B53] transition-colors">
+                  {c.title}
+                </h3>
+                <p className="text-[11px] font-mono text-[#171717]/60">{c.sub}</p>
+              </div>
+
+              <p className="text-xs text-[#171717]/70 leading-relaxed font-sans pt-1">
                 {c.desc}
               </p>
-              <span className="text-xs font-semibold text-emerald-800 inline-flex items-center space-x-1 pt-1">
-                <span>Browse Category</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </span>
             </div>
           ))}
         </div>
@@ -216,19 +244,19 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
 
       {/* 4. Featured Ebooks Showcase */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#D8CBB8] pb-4">
           <div>
-            <span className="text-xs font-sans uppercase font-bold text-emerald-800 tracking-wider block mb-1">
+            <span className="text-xs font-sans uppercase font-bold text-[#243B53] tracking-widest block mb-1">
               Curated Selection
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
               Featured Ebooks
             </h2>
           </div>
 
           <button
             onClick={() => setActivePage('ebooks')}
-            className="text-sm font-semibold text-emerald-800 hover:text-emerald-900 flex items-center space-x-1"
+            className="text-xs font-bold text-[#243B53] hover:underline flex items-center space-x-1"
           >
             <span>View All Ebooks</span>
             <ArrowRight className="w-4 h-4" />
@@ -248,28 +276,28 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 5. Competitive Exam Prep Hub Spotlight */}
-      <section className="bg-gradient-to-br from-slate-900 to-emerald-950 text-paper-100 py-16">
+      {/* 5. Competitive Exams Library (Serious Academic Publishing Feel) */}
+      <section className="bg-[#243B53] text-[#F8F5EE] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-700 pb-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#F8F5EE]/20 pb-6">
             <div className="space-y-2">
-              <span className="px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-bold uppercase rounded-md tracking-wider inline-block">
-                Serious Exam Preparation
+              <span className="px-3 py-1 bg-[#F8F5EE]/10 text-[#F8F5EE] border border-[#F8F5EE]/20 text-xs font-bold uppercase rounded tracking-wider inline-block">
+                Competitive Exams Library
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white">
-                Competitive Exams Section
+                Focused reading material for serious aspirants.
               </h2>
-              <p className="text-sm text-slate-300 max-w-xl">
-                Point-wise, high-yield study guides for UPSC CSE, UPSC EPFO, SSC CGL, Banking PO, and State PSC.
+              <p className="text-xs sm:text-sm text-[#F8F5EE]/80 max-w-xl font-sans">
+                Point-wise, high-yield study guides for UPSC CSE, UPSC EPFO (EO/AO & APFC), SSC CGL, Banking PO, and State PSC.
               </p>
             </div>
 
             <button
               onClick={() => setActivePage('exams')}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-2"
+              className="px-6 py-3 bg-[#F8F5EE] hover:bg-[#E8E2D5] text-[#243B53] font-bold rounded-xl text-xs transition-colors flex items-center space-x-2 flex-shrink-0"
             >
-              <span>Explore All Exam Hubs</span>
+              <span>Explore Exam Library</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -279,18 +307,18 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
               <div
                 key={ex.id}
                 onClick={() => setActivePage('exams', ex.id)}
-                className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 hover:border-blue-400 cursor-pointer transition-all space-y-3 group"
+                className="bg-[#1E293B]/80 p-6 rounded-2xl border border-[#F8F5EE]/20 hover:border-[#C9822B] cursor-pointer transition-all space-y-3 group"
               >
-                <span className="px-2.5 py-0.5 bg-blue-500/20 text-blue-300 font-mono text-[10px] font-bold rounded uppercase">
+                <span className="px-2 py-0.5 bg-[#F8F5EE]/10 text-[#F8F5EE] font-mono text-[10px] font-bold rounded uppercase">
                   {ex.badge}
                 </span>
-                <h3 className="font-serif font-bold text-lg text-white group-hover:text-blue-300 transition-colors">
+                <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#D8CBB8] transition-colors">
                   {ex.name}
                 </h3>
-                <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-[#F8F5EE]/70 line-clamp-2 leading-relaxed font-sans">
                   {ex.tagline}
                 </p>
-                <span className="text-xs font-semibold text-blue-400 inline-flex items-center space-x-1 pt-1">
+                <span className="text-xs font-bold text-[#C9822B] inline-flex items-center space-x-1 pt-1">
                   <span>View Material</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -301,26 +329,26 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 6. Free Ebooks Hub Spotlight */}
+      {/* 6. Start Reading for Free (Conversion Section) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="bg-emerald-50 rounded-3xl p-8 sm:p-12 border border-emerald-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-12 border border-[#D8CBB8] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <div className="lg:col-span-6 space-y-4">
-            <span className="px-3 py-1 bg-emerald-600 text-white text-xs font-bold uppercase rounded-md tracking-wider inline-block">
-              Free Reading Resources
+            <span className="px-3 py-1 bg-[#355E3B] text-white text-xs font-bold uppercase rounded tracking-wider inline-block">
+              Free Reading Section
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-emerald-950">
-              Download Free Ebooks & Study Guides
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
+              Start Reading for Free
             </h2>
-            <p className="text-sm text-emerald-900 leading-relaxed font-sans">
-              We believe essential knowledge should be accessible. Explore free monthly current affairs digests, effective study skill handbooks, and book previews with 100% free direct downloads.
+            <p className="text-xs sm:text-sm text-[#171717]/80 leading-relaxed font-sans">
+              No subscription required for selected free titles. Download monthly current affairs digests, study habit handbooks, and book summaries with 100% free direct access.
             </p>
             <button
               onClick={() => setActivePage('free-ebooks')}
-              className="px-6 py-3.5 bg-emerald-800 hover:bg-emerald-900 text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-2 shadow-sm"
+              className="px-6 py-3.5 bg-[#355E3B] hover:bg-[#2B4B2F] text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-2 shadow-xs"
             >
               <Download className="w-4 h-4" />
-              <span>Browse All Free Downloads</span>
+              <span>Download Free Ebooks</span>
             </button>
           </div>
 
@@ -339,25 +367,25 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 7. YouTube Integration Section ("From the Go Pustak Channel") */}
+      {/* 7. YouTube Integration ("From the Go Pustak Channel") */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#D8CBB8] pb-4">
           <div className="space-y-1">
-            <div className="flex items-center space-x-2 text-xs font-bold uppercase text-red-600 tracking-wider">
-              <Youtube className="w-4 h-4" />
-              <span>Primary Traffic Channel</span>
+            <div className="flex items-center space-x-2 text-xs font-bold uppercase text-[#243B53] tracking-widest">
+              <Youtube className="w-4 h-4 text-red-600" />
+              <span>Media Integration</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
               From the Go Pustak Channel
             </h2>
-            <p className="text-sm text-ink-600 max-w-xl">
-              Watch video explainers, book stories, and podcast conversations connected directly to our ebook library.
+            <p className="text-xs sm:text-sm text-[#171717]/70">
+              Books, stories and ideas explained simply.
             </p>
           </div>
 
           <button
             onClick={() => setActivePage('watch')}
-            className="text-sm font-semibold text-emerald-800 hover:text-emerald-900 flex items-center space-x-1"
+            className="text-xs font-bold text-[#243B53] hover:underline flex items-center space-x-1"
           >
             <span>View All Videos & Podcasts</span>
             <ArrowRight className="w-4 h-4" />
@@ -379,84 +407,62 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 8. Why Go Pustak? (Trust & Brand Mission) */}
+      {/* 8. Podcast Section ("Listen Slowly") */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-paper-100 rounded-3xl p-8 sm:p-14 border border-paper-300 shadow-subtle space-y-8">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-sans uppercase font-bold text-emerald-800 tracking-wider block">
-              Our Core Promise
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink-900">
-              Why Go Pustak?
+        <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-12 border border-[#D8CBB8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-bold uppercase text-[#C9822B] tracking-widest">
+              <Headphones className="w-4 h-4" />
+              <span>Go Pustak Audio</span>
+            </div>
+            <h2 className="font-serif text-3xl font-bold text-[#171717]">
+              Listen Slowly
             </h2>
-            <p className="text-sm text-ink-600">
-              A reliable digital publishing platform built for serious readers and aspirants.
+            <p className="text-xs sm:text-sm text-[#171717]/70 max-w-xl">
+              Thoughtful conversations, book stories and ideas worth staying with.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <button
+            onClick={() => setActivePage('listen')}
+            className="px-6 py-3 bg-[#243B53] hover:bg-[#1E293B] text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-2 flex-shrink-0"
+          >
+            <span>Listen to Episodes</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </section>
+
+      {/* 9. Made for Indian Readers Trust Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#F8F5EE] rounded-3xl p-8 sm:p-14 border border-[#D8CBB8] space-y-8 text-center sm:text-left">
+          
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-sans uppercase font-bold text-[#243B53] tracking-widest block">
+              Reader Trust Guarantee
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
+              Made for Indian Readers
+            </h2>
+            <p className="text-xs sm:text-sm text-[#171717]/80 leading-relaxed">
+              From competitive exam preparation and current affairs to personal development, books and ideas—Go Pustak brings practical reading into one reliable digital library.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
             {[
-              {
-                title: "Calm & Simple Experience",
-                desc: "No flashy popups, zero aggressive timer gimmicks, and no hidden download links. Just clean, reliable reading materials.",
-                icon: BookOpen
-              },
-              {
-                title: "Exam & Practical Focus",
-                desc: "Every study guide and ebook is crafted with point-wise precision, verified syllabus coverage, and real analytical depth.",
-                icon: ShieldCheck
-              },
-              {
-                title: "Multi-Format Instant Delivery",
-                desc: "Read on any device. Download high-resolution DRM-free PDF and EPUB files saved permanently in your personal library.",
-                icon: Globe
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="space-y-3 text-center sm:text-left">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto sm:mx-0">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-serif font-bold text-lg text-ink-900">{item.title}</h3>
-                <p className="text-xs text-ink-600 leading-relaxed">{item.desc}</p>
+              "Razorpay Secure Payments",
+              "Instant PDF & EPUB Access",
+              "100% Verified Content",
+              "Clear Refund Policy"
+            ].map((t, idx) => (
+              <div key={idx} className="p-4 bg-[#FAF7F2] rounded-xl border border-[#D8CBB8] text-xs font-semibold text-[#171717] flex items-center space-x-2">
+                <CheckCircle2 className="w-4 h-4 text-[#355E3B] flex-shrink-0" />
+                <span>{t}</span>
               </div>
             ))}
           </div>
 
-        </div>
-      </section>
-
-      {/* 9. Reader Guidance FAQ */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center space-y-2">
-          <span className="text-xs font-sans uppercase font-bold text-emerald-800 tracking-wider block">
-            Reader Guidance
-          </span>
-          <h2 className="font-serif text-3xl font-bold text-ink-900">
-            Frequently Asked Questions
-          </h2>
-        </div>
-
-        <div className="space-y-4">
-          {homepageFaqs.map((faq, idx) => (
-            <div key={idx} className="bg-paper-100 rounded-2xl border border-paper-300 overflow-hidden shadow-subtle">
-              <button
-                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                className="w-full p-5 text-left font-serif font-bold text-base text-ink-900 flex items-center justify-between"
-              >
-                <span className="flex items-center space-x-2">
-                  <HelpCircle className="w-4 h-4 text-emerald-800 flex-shrink-0" />
-                  <span>{faq.q}</span>
-                </span>
-                {openFaqIndex === idx ? <ChevronUp className="w-5 h-5 text-emerald-800" /> : <ChevronDown className="w-5 h-5 text-ink-400" />}
-              </button>
-              {openFaqIndex === idx && (
-                <div className="px-5 pb-5 text-sm text-ink-700 font-sans border-t border-paper-200 pt-3 leading-relaxed">
-                  {faq.a}
-                </div>
-              )}
-            </div>
-          ))}
         </div>
       </section>
 

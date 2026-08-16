@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Send, ShieldCheck, Mail, ArrowUpRight, Github, Twitter, Linkedin, CheckCircle2, Lock, FileText, Check, Globe, BookOpen, Shield } from 'lucide-react';
-import { CATEGORIES } from '../data/books';
+import { Send, CheckCircle2, Shield, Globe, Check, BookOpen } from 'lucide-react';
 import { EXAM_TYPES } from '../data/books';
 
 export default function Footer({ setActivePage, onShowToast }) {
@@ -16,28 +15,28 @@ export default function Footer({ setActivePage, onShowToast }) {
   };
 
   return (
-    <footer className="bg-paper-200 border-t border-paper-300 text-ink-900 pt-16 pb-12 font-sans">
+    <footer className="bg-[#F8F5EE] border-t border-[#D8CBB8] text-[#171717] pt-16 pb-12 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Top Newsletter Card */}
-        <div className="bg-paper-100 rounded-3xl p-8 sm:p-12 border border-paper-300 shadow-subtle grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Newsletter Card */}
+        <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-12 border border-[#D8CBB8] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-3">
-            <span className="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold uppercase rounded-md tracking-wider inline-block">
+            <span className="px-3 py-1 bg-[#243B53]/10 text-[#243B53] text-xs font-bold uppercase rounded tracking-wider inline-block">
               Go Pustak Newsletter
             </span>
-            <h3 className="font-serif text-2xl sm:text-4xl font-bold text-ink-900 leading-tight">
+            <h3 className="font-serif text-2xl sm:text-4xl font-bold text-[#171717]">
               One thoughtful idea at a time.
             </h3>
-            <p className="text-sm text-ink-600 leading-relaxed max-w-xl">
-              Get new ebooks, book stories, study resources, current affairs digests, and thoughtful recommendations from Go Pustak. No spam.
+            <p className="text-xs sm:text-sm text-[#171717]/70 leading-relaxed max-w-xl">
+              Get new ebooks, study resources, current affairs digests, and book stories delivered to your inbox. Zero spam.
             </p>
           </div>
 
           <div className="lg:col-span-5">
             {subscribed ? (
-              <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center space-x-3 text-emerald-800 text-sm font-semibold animate-fadeIn">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                <span>You're subscribed! Check your inbox for new reading materials.</span>
+              <div className="p-4 bg-[#355E3B]/10 border border-[#355E3B]/20 rounded-2xl flex items-center space-x-3 text-[#355E3B] text-xs font-semibold animate-fadeIn">
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                <span>You are subscribed! Check your inbox for new reading updates.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="space-y-3">
@@ -48,17 +47,17 @@ export default function Footer({ setActivePage, onShowToast }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address..."
-                    className="flex-1 px-4 py-3 bg-paper-50 border border-paper-300 rounded-xl text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-emerald-700"
+                    className="flex-1 px-4 py-3 bg-[#F8F5EE] border border-[#D8CBB8] rounded-xl text-xs text-[#171717] placeholder-[#171717]/50 focus:outline-none focus:ring-2 focus:ring-[#243B53]"
                   />
                   <button
                     type="submit"
-                    className="px-6 py-3 bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-sm rounded-xl transition-all shadow-sm flex items-center justify-center space-x-1.5"
+                    className="px-6 py-3 bg-[#243B53] hover:bg-[#1E293B] text-white font-bold text-xs rounded-xl transition-all shadow-xs flex items-center justify-center space-x-1.5"
                   >
                     <span>Subscribe</span>
-                    <Send className="w-4 h-4" />
+                    <Send className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <p className="text-[11px] text-ink-500 text-center sm:text-left">
+                <p className="text-[10px] text-[#171717]/50 text-center sm:text-left">
                   Includes free sample chapters + study resources. Unsubscribe anytime.
                 </p>
               </form>
@@ -67,99 +66,93 @@ export default function Footer({ setActivePage, onShowToast }) {
         </div>
 
         {/* Footer Navigation Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 pt-4">
           
-          {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-800 text-paper-100 flex items-center justify-center font-serif font-bold text-lg">
-                <BookOpen className="w-5 h-5 text-emerald-200" />
+          {/* Brand Info Column */}
+          <div className="lg:col-span-2 space-y-3">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded bg-[#243B53] text-[#F8F5EE] flex items-center justify-center font-serif font-bold text-sm">
+                <span className="font-serif italic">गो</span>
               </div>
-              <span className="font-serif text-2xl font-bold text-ink-900">
+              <span className="font-serif text-2xl font-bold text-[#171717]">
                 Go Pustak
               </span>
             </div>
-            <p className="font-serif italic text-sm text-emerald-800">
-              "Where books speak slowly, and ideas stay longer."
+            <p className="text-xs font-mono text-[#243B53] font-bold">
+              Books • Ideas • Stories
             </p>
-            <p className="text-xs text-ink-600 leading-relaxed max-w-sm">
-              Go Pustak is a space for book lovers, exam aspirants, and thoughtful listeners. We share ebooks, study resources, book stories, podcasts, and practical learning across personal development, competitive exams, current affairs, education, technology, and books & ideas.
+            <p className="text-xs text-[#171717]/70 leading-relaxed max-w-sm">
+              Go Pustak is a space for book lovers, exam aspirants, and thoughtful listeners. We share ebooks, study resources, book stories, podcasts, and practical learning.
             </p>
           </div>
 
-          {/* Explore Links */}
+          {/* Explore Column */}
           <div className="space-y-3">
-            <h4 className="font-serif font-bold text-sm text-ink-900 uppercase tracking-wider">
+            <h4 className="font-serif font-bold text-xs text-[#171717] uppercase tracking-wider">
               Explore
             </h4>
-            <ul className="space-y-2 text-xs font-medium text-ink-600">
-              <li><button onClick={() => setActivePage('ebooks')} className="hover:text-emerald-800">All Ebooks</button></li>
-              <li><button onClick={() => setActivePage('free-ebooks')} className="hover:text-emerald-800 font-semibold text-emerald-800">Free Ebooks</button></li>
-              <li><button onClick={() => setActivePage('bundles')} className="hover:text-emerald-800">Discounted Bundles</button></li>
-              <li><button onClick={() => setActivePage('library')} className="hover:text-emerald-800">My Library</button></li>
-              <li><button onClick={() => setActivePage('about')} className="hover:text-emerald-800">About Go Pustak</button></li>
+            <ul className="space-y-2 text-xs font-medium text-[#171717]/70">
+              <li><button onClick={() => setActivePage('ebooks')} className="hover:text-[#243B53]">Ebooks</button></li>
+              <li><button onClick={() => setActivePage('free-ebooks')} className="hover:text-[#243B53] font-bold text-[#355E3B]">Free Ebooks</button></li>
+              <li><button onClick={() => setActivePage('ebooks')} className="hover:text-[#243B53]">New Releases</button></li>
+              <li><button onClick={() => setActivePage('bundles')} className="hover:text-[#243B53]">Bundles</button></li>
+              <li><button onClick={() => setActivePage('library')} className="hover:text-[#243B53]">My Library</button></li>
             </ul>
           </div>
 
-          {/* Learn & Media */}
+          {/* Exams Column */}
           <div className="space-y-3">
-            <h4 className="font-serif font-bold text-sm text-ink-900 uppercase tracking-wider">
-              Learn & Media
+            <h4 className="font-serif font-bold text-xs text-[#171717] uppercase tracking-wider">
+              Exams
             </h4>
-            <ul className="space-y-2 text-xs font-medium text-ink-600">
-              <li><button onClick={() => setActivePage('articles')} className="hover:text-emerald-800">Articles & Insights</button></li>
-              <li><button onClick={() => setActivePage('watch')} className="hover:text-emerald-800">Watch YouTube Videos</button></li>
-              <li><button onClick={() => setActivePage('listen')} className="hover:text-emerald-800">Listen to Podcasts</button></li>
-              <li><button onClick={() => setActivePage('current-affairs')} className="hover:text-emerald-800">Current Affairs Digests</button></li>
-            </ul>
-          </div>
-
-          {/* Exams & Legal Support */}
-          <div className="space-y-3">
-            <h4 className="font-serif font-bold text-sm text-ink-900 uppercase tracking-wider">
-              Exams & Support
-            </h4>
-            <ul className="space-y-2 text-xs font-medium text-ink-600">
+            <ul className="space-y-2 text-xs font-medium text-[#171717]/70">
               {EXAM_TYPES.map((ex) => (
                 <li key={ex.id}>
-                  <button onClick={() => setActivePage('exams', ex.id)} className="hover:text-emerald-800 text-left">
+                  <button onClick={() => setActivePage('exams', ex.id)} className="hover:text-[#243B53] text-left">
                     {ex.name}
                   </button>
                 </li>
               ))}
-              <li className="pt-2"><button onClick={() => setActivePage('contact')} className="hover:text-emerald-800">Contact & Support</button></li>
-              <li><button onClick={() => setActivePage('legal-privacy')} className="hover:text-emerald-800">Privacy Policy</button></li>
-              <li><button onClick={() => setActivePage('legal-terms')} className="hover:text-emerald-800">Terms of Service</button></li>
-              <li><button onClick={() => setActivePage('legal-refund')} className="hover:text-emerald-800">Refund & Delivery Policy</button></li>
+            </ul>
+          </div>
+
+          {/* Learn Column */}
+          <div className="space-y-3">
+            <h4 className="font-serif font-bold text-xs text-[#171717] uppercase tracking-wider">
+              Learn
+            </h4>
+            <ul className="space-y-2 text-xs font-medium text-[#171717]/70">
+              <li><button onClick={() => setActivePage('articles')} className="hover:text-[#243B53]">Articles</button></li>
+              <li><button onClick={() => setActivePage('watch')} className="hover:text-[#243B53]">Watch</button></li>
+              <li><button onClick={() => setActivePage('listen')} className="hover:text-[#243B53]">Listen</button></li>
+              <li><button onClick={() => setActivePage('current-affairs')} className="hover:text-[#243B53]">Reading Guides</button></li>
+            </ul>
+          </div>
+
+          {/* Support & Publisher Column */}
+          <div className="space-y-3">
+            <h4 className="font-serif font-bold text-xs text-[#171717] uppercase tracking-wider">
+              Support & Publisher
+            </h4>
+            <ul className="space-y-2 text-xs font-medium text-[#171717]/70">
+              <li><button onClick={() => setActivePage('about')} className="hover:text-[#243B53]">About Go Pustak</button></li>
+              <li><button onClick={() => setActivePage('contact')} className="hover:text-[#243B53]">Contact Support</button></li>
+              <li><button onClick={() => setActivePage('legal-refund')} className="hover:text-[#243B53]">Refund Policy</button></li>
+              <li><button onClick={() => setActivePage('legal-privacy')} className="hover:text-[#243B53]">Privacy Policy</button></li>
+              <li><button onClick={() => setActivePage('legal-terms')} className="hover:text-[#243B53]">Terms of Service</button></li>
+              <li><button onClick={() => setActivePage('legal-copyright')} className="hover:text-[#243B53]">Copyright & DMCA</button></li>
             </ul>
           </div>
 
         </div>
 
-        {/* High-Level Trust Bar */}
-        <div className="pt-8 border-t border-paper-300 space-y-4">
-          <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 text-xs font-medium text-ink-700 bg-paper-100 p-4 rounded-2xl border border-paper-300 shadow-sm">
-            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
-              <Shield className="w-4 h-4 text-emerald-600" />
-              <span>Razorpay Verified Gateway</span>
-            </span>
-            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
-              <Check className="w-4 h-4 text-emerald-600" />
-              <span>Cashfree Payments (INR ₹ & UPI)</span>
-            </span>
-            <span className="flex items-center space-x-1.5 text-blue-900 font-bold">
-              <Globe className="w-4 h-4 text-blue-600" />
-              <span>PayPal Global USD ($)</span>
-            </span>
-            <span className="flex items-center space-x-1.5 text-emerald-800 font-semibold">
-              <Check className="w-4 h-4 text-emerald-600" />
-              <span>Instant Signed PDF & EPUB Access</span>
-            </span>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-ink-500 gap-2 pt-2">
-            <p>© {new Date().getFullYear()} Go Pustak. All rights reserved.</p>
-            <p className="font-sans text-xs text-ink-400">Go Pustak — Books • Ideas • Stories</p>
+        {/* Bottom Slogan Bar */}
+        <div className="pt-8 border-t border-[#D8CBB8] space-y-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#171717]/60 gap-3 text-center sm:text-left">
+            <p className="font-serif italic font-bold text-sm text-[#243B53]">
+              Go Pustak — where books speak slowly, and ideas stay longer.
+            </p>
+            <p>© {new Date().getFullYear()} Go Pustak Publishing. All rights reserved.</p>
           </div>
         </div>
 
