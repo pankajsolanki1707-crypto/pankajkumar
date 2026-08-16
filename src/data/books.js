@@ -258,7 +258,7 @@ export const BOOKS = [
     downloadUrl: "/ebooks/ExamWave_UPPCS_Quick_Revision_2026_Hindi.pdf",
     featured: true,
     latestRelease: true,
-    bestseller: border = true,
+    bestseller: true,
     isFree: false,
     pages: 165,
     publishedYear: 2026,
