@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Library, ChevronDown } from 'lucide-react';
-import { CATEGORIES } from '../data/books';
+import { Search, Menu, X, Library, User } from 'lucide-react';
 
 export default function Navbar({ activePage, setActivePage, onOpenSearch, libraryCount }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +15,10 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
 
   const navLinks = [
     { id: 'ebooks', label: 'Ebooks' },
-    { id: 'categories', label: 'Categories', isDropdown: true },
     { id: 'exams', label: 'Exams' },
     { id: 'current-affairs', label: 'Current Affairs' },
-    { id: 'articles', label: 'Articles' }
+    { id: 'articles', label: 'Read' },
+    { id: 'listen', label: 'Listen' }
   ];
 
   return (
@@ -69,58 +67,24 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
               </div>
             </button>
 
-            {/* Center Navigation Links */}
+            {/* Center Navigation Links: Ebooks, Exams, Current Affairs, Read, Listen */}
             <nav className="hidden lg:flex items-center space-x-1">
               {navLinks.map((link) => (
-                <div key={link.id} className="relative">
-                  {link.isDropdown ? (
-                    <div className="relative">
-                      <button
-                        onClick={() => setCategoriesOpen(!categoriesOpen)}
-                        className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors flex items-center space-x-1 ${
-                          activePage === 'categories'
-                            ? 'text-[#243B53] bg-[#243B53]/10 border border-[#243B53]/20'
-                            : 'text-[#171717]/80 hover:text-[#171717] hover:bg-[#D8CBB8]/30'
-                        }`}
-                      >
-                        <span>Categories</span>
-                        <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-                      </button>
-
-                      {categoriesOpen && (
-                        <div className="absolute top-full left-0 mt-2 w-56 bg-[#F8F5EE] rounded-xl border border-[#D8CBB8] shadow-lg p-2 space-y-1 z-50 animate-fadeIn">
-                          {CATEGORIES.filter(c => c !== 'All Categories').map((cat) => (
-                            <button
-                              key={cat}
-                              onClick={() => {
-                                setActivePage('ebooks', cat);
-                                setCategoriesOpen(false);
-                              }}
-                              className="w-full text-left px-3 py-1.5 text-xs font-medium text-[#171717] hover:bg-[#243B53]/10 hover:text-[#243B53] rounded-lg transition-colors"
-                            >
-                              {cat}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => setActivePage(link.id)}
-                      className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
-                        activePage === link.id
-                          ? 'text-[#243B53] font-bold bg-[#243B53]/10 border border-[#243B53]/20'
-                          : 'text-[#171717]/80 hover:text-[#171717] hover:bg-[#D8CBB8]/30'
-                      }`}
-                    >
-                      {link.label}
-                    </button>
-                  )}
-                </div>
+                <button
+                  key={link.id}
+                  onClick={() => setActivePage(link.id)}
+                  className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                    activePage === link.id
+                      ? 'text-[#243B53] font-bold bg-[#243B53]/10 border border-[#243B53]/20'
+                      : 'text-[#171717]/80 hover:text-[#171717] hover:bg-[#D8CBB8]/30'
+                  }`}
+                >
+                  {link.label}
+                </button>
               ))}
             </nav>
 
-            {/* Right Action Icons: Search & My Library */}
+            {/* Right Action Icons: Search, My Library, Account */}
             <div className="flex items-center space-x-2">
               
               {/* Search Button */}
@@ -136,7 +100,7 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
               {/* My Library Button */}
               <button
                 onClick={() => setActivePage('library')}
-                className={`flex items-center space-x-1.5 px-3.5 py-2 text-xs font-bold rounded-xl border transition-all ${
+                className={`flex items-center space-x-1.5 px-3 py-2 text-xs font-bold rounded-xl border transition-all ${
                   activePage === 'library'
                     ? 'bg-[#243B53] text-[#F8F5EE] border-[#243B53] shadow-xs'
                     : 'border-[#D8CBB8] bg-[#F8F5EE] text-[#171717] hover:border-[#243B53] hover:text-[#243B53]'
@@ -149,6 +113,15 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
                     {libraryCount}
                   </span>
                 )}
+              </button>
+
+              {/* Account / Admin Button */}
+              <button
+                onClick={() => setActivePage('admin-console')}
+                className="p-2 rounded-xl text-[#171717] hover:bg-[#D8CBB8]/40 border border-[#D8CBB8] transition-all text-xs font-medium"
+                title="Publisher Console"
+              >
+                <User className="w-4 h-4 text-[#243B53]" />
               </button>
 
               {/* Mobile Menu Toggle */}

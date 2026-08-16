@@ -26,8 +26,6 @@ import RobotsTxtPage from './pages/RobotsTxtPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 
 import { BOOKS } from './data/books';
-import { YOUTUBE_VIDEOS } from './data/videos';
-import { ARTICLES } from './data/articles';
 
 const getPathForPage = (page, data) => {
   switch (page) {
@@ -99,6 +97,59 @@ const parsePathToState = (pathname) => {
   return { page: 'home' };
 };
 
+const updatePageMetadata = (page, data) => {
+  let title = "Go Pustak — Books, ideas and useful reading";
+  let description = "Go Pustak is a modern Indian digital publishing house and ebook library. Explore ebooks, study material, current affairs, UPSC EPFO guides, and podcasts.";
+  const baseUrl = "https://pankajkumaar.vercel.app";
+  let canonicalPath = getPathForPage(page, data);
+
+  if (page === 'ebooks') {
+    title = data ? `${data} Ebooks — Go Pustak Digital Library` : "Ebook Library — Explore Indian Digital Publishing | Go Pustak";
+    description = `Browse curated digital ebooks, competitive exam notes, and self-improvement books on Go Pustak.`;
+  } else if (page === 'ebook-details' && data) {
+    title = `${data.title} — Ebook by ${data.author?.name || 'Go Pustak'}`;
+    description = data.oneLiner || data.description?.slice(0, 150) || description;
+  } else if (page === 'free-ebooks') {
+    title = "Free Ebooks & Study Material — Direct PDF Download | Go Pustak";
+    description = "Download 100% free digital ebooks, study habits guides, and monthly current affairs digests without subscription.";
+  } else if (page === 'exams') {
+    title = "Competitive Exams Library — UPSC CSE, UPSC EPFO, SSC, Banking & State PSC | Go Pustak";
+    description = "Point-wise, high-yield study guides for UPSC EPFO EO/AO & APFC, Labour Laws, General Accounting, and Static GK.";
+  } else if (page === 'current-affairs') {
+    title = "Current Affairs Library 2025–2026 — UPSC CSE & EPFO Compendiums | Go Pustak";
+    description = "Monthly current affairs compendiums mapped for Prelims MCQs and Mains answer pointers in English & Hindi.";
+  } else if (page === 'articles') {
+    title = "Read Articles & Guides — Books, Learning & Ideas | Go Pustak";
+    description = "Thoughtful essays, study techniques, and book summaries on personal growth, exams, and technology.";
+  } else if (page === 'listen') {
+    title = "Listen Slowly — Go Pustak Podcasts & Audio Conversations";
+    description = "Listen to thoughtful conversations, book stories, and ideas worth staying with.";
+  } else if (page === 'library') {
+    title = "My Library — My Purchased Ebooks & Instant Downloads | Go Pustak";
+    description = "Access and download your purchased digital ebooks and free study resources.";
+  } else if (page === 'about') {
+    title = "About Go Pustak — Indian Digital Publishing Imprint";
+    description = "Go Pustak is a space for book lovers, exam aspirants, and thoughtful listeners.";
+  } else if (page === 'contact') {
+    title = "Contact Support — Go Pustak Reader Assistance";
+    description = "Get in touch with Go Pustak reader support for order assistance, download help, or publishing inquiries.";
+  }
+
+  document.title = title;
+  
+  // Update Meta Description
+  let metaDescTag = document.querySelector('meta[name="description"]');
+  if (metaDescTag) {
+    metaDescTag.setAttribute('content', description);
+  }
+
+  // Update Canonical URL
+  let canonicalTag = document.querySelector('link[rel="canonical"]');
+  if (canonicalTag) {
+    canonicalTag.setAttribute('href', `${baseUrl}${canonicalPath}`);
+  }
+};
+
 export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [selectedBook, setSelectedBook] = useState(null);
@@ -150,6 +201,7 @@ export default function App() {
       setSelectedVideoSlug(data);
     }
     setActivePage(page);
+    updatePageMetadata(page, data);
 
     if (!skipHistoryPush) {
       const path = getPathForPage(page, data);
@@ -197,15 +249,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FDFDFB] text-ink-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen flex flex-col bg-[#F8F5EE] text-[#171717] font-sans selection:bg-[#243B53]/15 selection:text-[#243B53]">
       
       {/* Top Announcement Bar */}
       <AnnouncementBar onShowToast={showToast} />
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-ink-900 text-paper-100 px-5 py-3 rounded-xl shadow-2xl border border-paper-300 text-xs font-semibold flex items-center space-x-2 animate-bounce">
-          <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <div className="fixed bottom-6 right-6 z-50 bg-[#171717] text-[#F8F5EE] px-5 py-3 rounded-xl shadow-2xl border border-[#D8CBB8] text-xs font-semibold flex items-center space-x-2 animate-bounce">
+          <span className="w-2 h-2 rounded-full bg-[#355E3B]"></span>
           <span>{toastMessage}</span>
         </div>
       )}
