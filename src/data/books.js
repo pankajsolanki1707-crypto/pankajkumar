@@ -34,28 +34,28 @@ export const AUTHORS = [
     name: "Pankaj Kumar",
     role: "Author & Systems Engineer",
     bio: "Pankaj Kumar applies mechanical engineering rigor and cognitive psychology to everyday thinking, habits, and digital technology.",
-    avatar: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=200&auto=format&fit=crop"
+    avatar: "/go-pustak-logo.png"
   },
   {
     id: "akash-kashyap",
     name: "Akash Kashyap & Pankaj Kumar",
     role: "Co-Authors & Exam Researchers",
     bio: "Exam preparation specialists crafting comprehensive subject notes and accounting principles for UPSC EPFO aspirants.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+    avatar: "/go-pustak-logo.png"
   },
   {
     id: "dr-ananya-sharma",
     name: "Dr. Ananya Sharma",
     role: "Senior Cognitive Psychologist & Educator",
     bio: "Specializing in learning neuroscience, memory retention techniques, and exam performance psychology for competitive aspirants.",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"
+    avatar: "/go-pustak-logo.png"
   },
   {
     id: "go-pustak-editorial",
     name: "Go Pustak Editorial Team",
     role: "ExamWave Research & Exam Content Cell",
     bio: "A dedicated team of subject matter experts, exam toppers, and senior researchers crafting high-precision study resources.",
-    avatar: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=200&auto=format&fit=crop"
+    avatar: "/go-pustak-logo.png"
   }
 ];
 
