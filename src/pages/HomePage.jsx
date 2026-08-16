@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { Search, ArrowRight, BookOpen, Sparkles, CheckCircle2, ShieldCheck, Download, Globe, Cpu, Lightbulb, GraduationCap, Youtube, Headphones, FileText, Check, Shield, Clock, ArrowUpRight } from 'lucide-react';
+import { Search, ArrowRight, BookOpen, Sparkles, CheckCircle2, ShieldCheck, Download, Globe, Cpu, Lightbulb, GraduationCap, FileText, Check, Shield, Clock } from 'lucide-react';
 import EbookCard from '../components/EbookCard';
-import VideoCard from '../components/VideoCard';
 import { BOOKS, CATEGORIES } from '../data/books';
-import { YOUTUBE_VIDEOS } from '../data/videos';
 import { EXAM_HUBS } from '../data/exams';
 
-export default function HomePage({ setActivePage, onSelectBook, onOpenSample, onBuyBook, onOpenSearch, onSelectVideo, onSelectExam }) {
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
-
+export default function HomePage({ setActivePage, onSelectBook, onOpenSample, onBuyBook, onOpenSearch, onSelectExam }) {
   const featuredBooks = BOOKS.filter(b => b.featured).slice(0, 6);
   const freeBooks = BOOKS.filter(b => b.isFree || b.prices?.pdf === 0).slice(0, 4);
-  const examBooks = BOOKS.filter(b => b.category === 'Competitive Exams').slice(0, 4);
 
   const handleHeroSearchSubmit = (e) => {
     e.preventDefault();
@@ -367,73 +362,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
         </div>
       </section>
 
-      {/* 7. YouTube Integration ("From the Go Pustak Channel") */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#D8CBB8] pb-4">
-          <div className="space-y-1">
-            <div className="flex items-center space-x-2 text-xs font-bold uppercase text-[#243B53] tracking-widest">
-              <Youtube className="w-4 h-4 text-red-600" />
-              <span>Media Integration</span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#171717]">
-              From the Go Pustak Channel
-            </h2>
-            <p className="text-xs sm:text-sm text-[#171717]/70">
-              Books, stories and ideas explained simply.
-            </p>
-          </div>
-
-          <button
-            onClick={() => setActivePage('watch')}
-            className="text-xs font-bold text-[#243B53] hover:underline flex items-center space-x-1"
-          >
-            <span>View All Videos & Podcasts</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {YOUTUBE_VIDEOS.slice(0, 3).map((video) => (
-            <VideoCard
-              key={video.id}
-              video={video}
-              onSelectVideo={(v) => {
-                if (onSelectVideo) onSelectVideo(v);
-                else setActivePage('watch');
-              }}
-              onSelectBook={onSelectBook}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* 8. Podcast Section ("Listen Slowly") */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#FAF7F2] rounded-3xl p-8 sm:p-12 border border-[#D8CBB8] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-bold uppercase text-[#C9822B] tracking-widest">
-              <Headphones className="w-4 h-4" />
-              <span>Go Pustak Audio</span>
-            </div>
-            <h2 className="font-serif text-3xl font-bold text-[#171717]">
-              Listen Slowly
-            </h2>
-            <p className="text-xs sm:text-sm text-[#171717]/70 max-w-xl">
-              Thoughtful conversations, book stories and ideas worth staying with.
-            </p>
-          </div>
-
-          <button
-            onClick={() => setActivePage('listen')}
-            className="px-6 py-3 bg-[#243B53] hover:bg-[#1E293B] text-white font-bold rounded-xl text-xs transition-colors flex items-center space-x-2 flex-shrink-0"
-          >
-            <span>Listen to Episodes</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </section>
-
-      {/* 9. Made for Indian Readers Trust Section */}
+      {/* 7. Made for Indian Readers Trust Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#F8F5EE] rounded-3xl p-8 sm:p-14 border border-[#D8CBB8] space-y-8 text-center sm:text-left">
           
