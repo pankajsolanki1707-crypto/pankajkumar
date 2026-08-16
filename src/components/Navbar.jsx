@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Library, Sparkles, ChevronDown } from 'lucide-react';
+import { Search, Menu, X, Library, ChevronDown } from 'lucide-react';
 import { CATEGORIES } from '../data/books';
 
 export default function Navbar({ activePage, setActivePage, onOpenSearch, libraryCount }) {
@@ -20,9 +20,7 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
     { id: 'categories', label: 'Categories', isDropdown: true },
     { id: 'exams', label: 'Exams' },
     { id: 'current-affairs', label: 'Current Affairs' },
-    { id: 'articles', label: 'Articles' },
-    { id: 'listen', label: 'Listen' },
-    { id: 'watch', label: 'Watch' },
+    { id: 'articles', label: 'Articles' }
   ];
 
   return (
@@ -37,28 +35,32 @@ export default function Navbar({ activePage, setActivePage, onOpenSearch, librar
       {/* Main Publishing Header */}
       <div className={`transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#F8F5EE]/95 backdrop-blur-md border-b border-[#D8CBB8]/60 py-3 shadow-xs' 
-          : 'bg-[#F8F5EE] border-b border-[#E8E2D5] py-4'
+          ? 'bg-[#F8F5EE]/95 backdrop-blur-md border-b border-[#D8CBB8]/60 py-2.5 shadow-xs' 
+          : 'bg-[#F8F5EE] border-b border-[#E8E2D5] py-3'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-6">
             
-            {/* Distinctive Indian Publishing Logo & Wordmark */}
+            {/* Distinctive High Quality Official Go Pustak Logo */}
             <button 
               onClick={() => setActivePage('home')}
               className="group text-left flex items-center space-x-3 focus:outline-none flex-shrink-0"
             >
-              {/* Devanagari-inspired open page symbol */}
-              <div className="w-9 h-9 rounded-lg bg-[#243B53] text-[#F8F5EE] flex items-center justify-center font-serif font-bold text-lg shadow-xs group-hover:bg-[#1E293B] transition-colors border border-[#243B53]/30">
-                <span className="font-serif italic text-base tracking-tighter">गो</span>
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-[#D8CBB8] shadow-xs group-hover:scale-105 transition-transform bg-white flex items-center justify-center p-0.5">
+                <img 
+                  src="/go-pustak-logo.png" 
+                  alt="Go Pustak Official Logo" 
+                  className="w-full h-full object-contain rounded-full"
+                />
               </div>
+
               <div className="space-y-0.5">
                 <div className="flex items-center space-x-2">
                   <span className="font-serif text-2xl font-bold tracking-tight text-[#171717] group-hover:text-[#243B53] transition-colors">
-                    Go Pustak
+                    <span className="text-[#C9822B]">Go</span> <span className="text-[#243B53]">Pustak</span>
                   </span>
                   <span className="px-1.5 py-0.2 bg-[#243B53]/10 text-[#243B53] text-[9px] font-sans font-bold uppercase rounded tracking-wider border border-[#243B53]/20">
-                    Publisher
+                    Publishing
                   </span>
                 </div>
                 <p className="text-[10px] font-sans text-[#171717]/60 hidden sm:block tracking-wide">

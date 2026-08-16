@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Shield, Globe, Check, BookOpen } from 'lucide-react';
+import { Send, CheckCircle2 } from 'lucide-react';
 import { EXAM_TYPES } from '../data/books';
 
 export default function Footer({ setActivePage, onShowToast }) {
@@ -70,12 +70,12 @@ export default function Footer({ setActivePage, onShowToast }) {
           
           {/* Brand Info Column */}
           <div className="lg:col-span-2 space-y-3">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded bg-[#243B53] text-[#F8F5EE] flex items-center justify-center font-serif font-bold text-sm">
-                <span className="font-serif italic">गो</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-[#D8CBB8] bg-white flex items-center justify-center p-0.5 shadow-xs">
+                <img src="/go-pustak-logo.png" alt="Go Pustak Official Logo" className="w-full h-full object-contain rounded-full" />
               </div>
               <span className="font-serif text-2xl font-bold text-[#171717]">
-                Go Pustak
+                <span className="text-[#C9822B]">Go</span> <span className="text-[#243B53]">Pustak</span>
               </span>
             </div>
             <p className="text-xs font-mono text-[#243B53] font-bold">
@@ -123,9 +123,8 @@ export default function Footer({ setActivePage, onShowToast }) {
             </h4>
             <ul className="space-y-2 text-xs font-medium text-[#171717]/70">
               <li><button onClick={() => setActivePage('articles')} className="hover:text-[#243B53]">Articles</button></li>
-              <li><button onClick={() => setActivePage('watch')} className="hover:text-[#243B53]">Watch</button></li>
-              <li><button onClick={() => setActivePage('listen')} className="hover:text-[#243B53]">Listen</button></li>
-              <li><button onClick={() => setActivePage('current-affairs')} className="hover:text-[#243B53]">Reading Guides</button></li>
+              <li><button onClick={() => setActivePage('current-affairs')} className="hover:text-[#243B53]">Current Affairs</button></li>
+              <li><button onClick={() => setActivePage('free-ebooks')} className="hover:text-[#243B53]">Reading Guides</button></li>
             </ul>
           </div>
 
