@@ -1,5 +1,5 @@
 // Go Pustak — Master Ebooks Database
-// Multi-author digital ebook platform supporting PDF & EPUB formats
+// Official EXAMWAVE EXPERT Amazon Author Store Synced Catalog
 
 export const CATEGORIES = [
   "All Categories",
@@ -35,871 +35,894 @@ export const AUTHORS = [
     avatar: "/go-pustak-logo.png"
   },
   {
-    id: "akash-kashyap",
-    name: "Akash Kashyap & Pankaj Kumar",
-    role: "Co-Authors & Exam Researchers",
-    bio: "Exam preparation specialists crafting comprehensive subject notes and accounting principles for UPSC EPFO aspirants.",
-    avatar: "/go-pustak-logo.png"
-  },
-  {
-    id: "dr-ananya-sharma",
-    name: "Dr. Ananya Sharma",
-    role: "Senior Cognitive Psychologist & Educator",
-    bio: "Specializing in learning neuroscience, memory retention techniques, and exam performance psychology for competitive aspirants.",
-    avatar: "/go-pustak-logo.png"
-  },
-  {
-    id: "go-pustak-editorial",
-    name: "Go Pustak Editorial Team",
-    role: "ExamWave Research & Exam Content Cell",
-    bio: "A dedicated team of subject matter experts, exam toppers, and senior researchers crafting high-precision study resources.",
+    id: "examwave-expert",
+    name: "EXAMWAVE EXPERT",
+    role: "Official Amazon Publishing Cell",
+    bio: "Subject matter experts and senior research fellows crafting precision study resources for UPSC, EPFO, and State PCS.",
     avatar: "/go-pustak-logo.png"
   }
 ];
 
 export const BOOKS = [
-  // 1. UPSC EPFO Special Subject Notes by Pankaj Kumar (English Master File)
   {
-    id: "upsc-epfo-special-subject-notes-pankaj-kumar",
-    slug: "upsc-epfo-special-subject-notes-pankaj-kumar",
-    title: "UPSC EPFO 2025 Special Subject Notes by Pankaj Kumar",
-    subtitle: "GAAP, Auditing, Insurance, Industrial Relations, Labour Laws & Social Security",
-    tagline: "Comprehensive Master Notes for EO/AO & APFC Examinations",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[0],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-emerald-900 to-teal-950",
-    coverAccent: "#10B981",
-    coverText: "text-emerald-50",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-special-subject-notes-pankaj-kumar.png",
-    downloadUrl: "/ebooks/New_compile_epfo_file.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 210,
-    publishedYear: 2025,
-    updatedDate: "2026-08-12",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "3.28 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "Pankaj Kumar's definitive special subject notes covering GAAP, Auditing, Insurance, and Labour Laws.",
-    description: `Written by Pankaj Kumar, this master compendium covers all non-traditional UPSC EPFO subjects (GAAP, Auditing, Insurance, Labour Codes, and Social Security) in one unified reference.`,
-    whoShouldRead: ["UPSC EPFO EO/AO & APFC candidates."],
-    whatYoullLearn: ["GAAP principles", "Auditing vouching rules", "New Labour Codes"],
-    tableOfContents: [{ chapter: "Module 1", title: "General Accounting & Auditing" }]
+    "id": "upsc-epfo-special-subject-notes-pankaj-kumar",
+    "slug": "upsc-epfo-special-subject-notes-pankaj-kumar",
+    "asin": "B0FWRQ657W",
+    "amazonUrl": "https://www.amazon.in/dp/B0FWRQ657W",
+    "title": "Industrial Relations, Labour Laws & Social Security for UPSC EPFO 2025",
+    "subtitle": "Comprehensive Guide with Concepts, Acts, and Case Studies for Enforcement Officer & APFC Exams",
+    "tagline": "Comprehensive Master Notes for EO/AO & APFC Examinations",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC EPFO",
+    "examCategory": "upsc-epfo",
+    "author": {
+      "id": "pankaj-kumar",
+      "name": "Pankaj Kumar & EXAMWAVE EXPERT",
+      "role": "Author & Systems Engineer",
+      "bio": "Pankaj Kumar applies mechanical engineering rigor and cognitive psychology to everyday thinking, habits, and digital technology.",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-emerald-900 to-teal-950",
+    "coverAccent": "#10B981",
+    "coverText": "text-emerald-50",
+    "coverStyle": "exam",
+    "coverImage": "/covers/amazon_highres/B0FWRQ657W.jpg",
+    "downloadUrl": "/ebooks/New_compile_epfo_file.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 210,
+    "publishedYear": 2025,
+    "updatedDate": "2026-08-12",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "EPUB Edition",
+      "Kindle Edition"
+    ],
+    "fileSize": "3.28 MB",
+    "prices": {
+      "pdf": 149,
+      "usd": 1.99
+    },
+    "oneLiner": "Comprehensive guide covering Industrial Relations, Labour Laws, and Social Security for UPSC EPFO EO/AO & APFC.",
+    "description": "Official ExamWave reference compendium covering all non-traditional UPSC EPFO subjects (GAAP, Auditing, Insurance, Labour Codes, and Social Security) in one unified reference.",
+    "whoShouldRead": [
+      "UPSC EPFO EO/AO & APFC candidates."
+    ],
+    "whatYoullLearn": [
+      "GAAP principles",
+      "Auditing vouching rules",
+      "New 4 Labour Codes 2020"
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Module 1",
+        "title": "General Accounting & Auditing"
+      }
+    ]
   },
-
-  // 2. UPSC EPFO Special Subject Notes Hindi Compiled
   {
-    id: "upsc-epfo-special-subject-notes-hindi",
-    slug: "upsc-epfo-special-subject-notes-hindi",
-    title: "UPSC EPFO 2025 Special Subject Notes (हिंदी संस्करण)",
-    subtitle: "GAAP, Auditing, Insurance, Industrial Relations, Labour Laws & Social Security",
-    tagline: "आकाश कश्यप एवं पंकज कुमार द्वारा लिखित हिंदी माध्यम संपूर्ण स्पेशल नोट्स",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[1],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-teal-900 to-emerald-950",
-    coverAccent: "#06B6D4",
-    coverText: "text-teal-50",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-special-subject-notes-hindi.png",
-    downloadUrl: "/ebooks/Special_sub_hindi_compile.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 215,
-    publishedYear: 2025,
-    updatedDate: "2026-08-12",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "6.51 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "आकाश कश्यप एवं पंकज कुमार द्वारा हिंदी माध्यम के अभ्यर्थियों के लिए विशेष विषय नोट्स।",
-    description: `UPSC EPFO परीक्षा के सभी विशेष विषयों (लेखांकन, अंकेक्षण, बीमा, श्रम कानून एवं सामाजिक सुरक्षा) का हिंदी में प्रामाणिक संकलन।`,
-    whoShouldRead: ["UPSC EPFO हिंदी माध्यम अभ्यर्थी।"],
-    whatYoullLearn: ["GAAP, अंकेक्षण, बीमा, श्रम कानून।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "लेखांकन एवं अंकेक्षण सिद्धांत" }]
+    "id": "upsc-epfo-special-subject-notes-hindi",
+    "slug": "upsc-epfo-special-subject-notes-hindi",
+    "title": "UPSC EPFO 2025 Special Subject Notes (हिंदी संस्करण)",
+    "subtitle": "GAAP, Auditing, Insurance, Industrial Relations, Labour Laws & Social Security",
+    "tagline": "आकाश कश्यप एवं पंकज कुमार द्वारा लिखित हिंदी माध्यम संपूर्ण स्पेशल नोट्स",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC EPFO",
+    "examCategory": "upsc-epfo",
+    "author": {
+      "id": "akash-kashyap",
+      "name": "Akash Kashyap & EXAMWAVE EXPERT",
+      "role": "Co-Authors & Exam Researchers",
+      "bio": "Exam preparation specialists crafting comprehensive subject notes and accounting principles for UPSC EPFO aspirants.",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-teal-900 to-emerald-950",
+    "coverAccent": "#06B6D4",
+    "coverText": "text-teal-50",
+    "coverStyle": "exam",
+    "coverImage": "/covers/upsc-epfo-special-subject-notes-hindi.png",
+    "downloadUrl": "/ebooks/Special_sub_hindi_compile.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 215,
+    "publishedYear": 2025,
+    "updatedDate": "2026-08-12",
+    "language": "Hindi",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "6.51 MB",
+    "prices": {
+      "pdf": 149,
+      "usd": 1.99
+    },
+    "oneLiner": "आकाश कश्यप एवं पंकज कुमार द्वारा हिंदी माध्यम के अभ्यर्थियों के लिए विशेष विषय नोट्स।",
+    "description": "UPSC EPFO परीक्षा के सभी विशेष विषयों (लेखांकन, अंकेक्षण, बीमा, श्रम कानून एवं सामाजिक सुरक्षा) का हिंदी में प्रामाणिक संकलन।",
+    "whoShouldRead": [
+      "UPSC EPFO हिंदी माध्यम अभ्यर्थी।"
+    ],
+    "whatYoullLearn": [
+      "GAAP, अंकेक्षण, बीमा, श्रम कानून।"
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "भाग 1",
+        "title": "लेखांकन एवं अंकेक्षण सिद्धांत"
+      }
+    ]
   },
-
-  // 3. UPSC EPFO Master Guide Hindi
   {
-    id: "epfo-guide-hindi-master",
-    slug: "epfo-guide-hindi-master",
-    title: "UPSC EPFO संपूर्ण गाइड एवं विषयवार नोट्स (Hindi Master Edition)",
-    subtitle: "EO/AO एवं APFC भर्ती परीक्षा हेतु संपूर्ण पाठ्यक्रम हस्तलिखित संकलन",
-    tagline: "90MB सम्पूर्ण अध्ययन सामग्री हिंदी माध्यम अभ्यर्थियों के लिए",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-stone-900 to-amber-950",
-    coverAccent: "#D97706",
-    coverText: "text-amber-100",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-special-subject-notes-hindi.png",
-    downloadUrl: "/ebooks/Epfo_guide_hindi.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 420,
-    publishedYear: 2026,
-    updatedDate: "2026-08-15",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "90.9 MB",
-    prices: { pdf: 199, usd: 2.49 },
-    oneLiner: "UPSC EPFO EO/AO एवं APFC परीक्षा के लिए 90MB का बृहद हिंदी अध्ययन संकलन।",
-    description: `90MB की इस महा-गाइड में UPSC EPFO के सम्पूर्ण पाठ्यक्रम (सामान्य ज्ञान, अर्थव्यवस्था, गणित, रीजनिंग, एवं विशेष विषय) को हिंदी में समाहित किया गया है।`,
-    whoShouldRead: ["UPSC EPFO EO/AO & APFC के हिंदी माध्यम अभ्यर्थी।"],
-    whatYoullLearn: ["सम्पूर्ण EPFO पाठ्यक्रम कवरेज।"],
-    tableOfContents: [{ chapter: "खंड 1", title: "सम्पूर्ण EPFO स्टडी गाइड" }]
+    "id": "crack-upsc-epfo-apfc-2026-blueprint",
+    "slug": "crack-upsc-epfo-apfc-2026-blueprint",
+    "asin": "B0H7661MLV",
+    "amazonUrl": "https://www.amazon.in/dp/B0H7661MLV",
+    "title": "UPSC EPFO/APFC 2026 in Your First Attempt: Avoid These Costly Mistakes",
+    "subtitle": "A Practical Success Guide for UPSC EPFO & APFC Aspirants Featuring a Study Plan",
+    "tagline": "Study Plan • Revision System • Mock Test Strategy • Productivity Framework",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC EPFO",
+    "examCategory": "upsc-epfo",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research & Exam Content Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-slate-900 to-blue-950",
+    "coverAccent": "#2563EB",
+    "coverText": "text-blue-50",
+    "coverStyle": "exam",
+    "coverImage": "/covers/amazon_highres/B0H7661MLV.jpg",
+    "downloadUrl": "/ebooks/EPFO_APFC_2026_Crack_guide.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 140,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-10",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "1.61 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "Avoid 10 costly preparation traps and master the exact study-revision blueprint for UPSC EPFO 2026.",
+    "description": "Targeting UPSC EPFO EO/AO or APFC 2026? Complete blueprint outlining the exact master plan, booklist, time allocation matrix, and mock test strategy.",
+    "whoShouldRead": [
+      "First-time aspirants preparing for UPSC EPFO 2026."
+    ],
+    "whatYoullLearn": [
+      "10 costliest preparation mistakes",
+      "60-day study plan"
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Chapter 1",
+        "title": "Decoding UPSC EPFO Syllabus"
+      }
+    ]
   },
-
-  // 4. Crack UPSC EPFO/APFC 2026 Blueprint
   {
-    id: "crack-upsc-epfo-apfc-2026-blueprint",
-    slug: "crack-upsc-epfo-apfc-2026-blueprint",
-    title: "Crack UPSC EPFO/APFC 2026 in Your First Attempt",
-    subtitle: "Avoid These Costly Mistakes Before You Start — The Complete Preparation Blueprint",
-    tagline: "Study Plan • Revision System • Mock Test Strategy • Productivity Framework",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-slate-900 to-blue-950",
-    coverAccent: "#2563EB",
-    coverText: "text-blue-50",
-    coverStyle: "exam",
-    coverImage: "/covers/crack-upsc-epfo-apfc-2026-blueprint.png",
-    downloadUrl: "/ebooks/EPFO_APFC_2026_Crack_guide.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 140,
-    publishedYear: 2026,
-    updatedDate: "2026-08-10",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "1.61 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Avoid 10 costly preparation traps and master the exact study-revision blueprint for UPSC EPFO 2026.",
-    description: `Targeting UPSC EPFO EO/AO or APFC 2026? Complete blueprint outlining the exact master plan, booklist, time allocation matrix, and mock test strategy.`,
-    whoShouldRead: ["First-time aspirants preparing for UPSC EPFO 2026."],
-    whatYoullLearn: ["10 costliest preparation mistakes", "60-day study plan"],
-    tableOfContents: [{ chapter: "Chapter 1", title: "Decoding UPSC EPFO Syllabus" }]
+    "id": "current-affairs-yearly-mcq-2025-2026",
+    "slug": "current-affairs-yearly-mcq-2025-2026",
+    "asin": "B0GRMXQ5KT",
+    "amazonUrl": "https://www.amazon.in/dp/B0GRMXQ5KT",
+    "title": "Current Affairs Yearly MCQ 2025–2026: 2000+ Current Affairs MCQs for UPSC CSE 2026",
+    "subtitle": "January 2025 to January 2026 Current Affairs MCQ Book with Detailed Explanations",
+    "tagline": "2000+ Topic-Wise Questions for UPSC Prelims 2026",
+    "category": "Current Affairs",
+    "subcategory": "National",
+    "examCategory": "upsc",
+    "currentAffairsMonth": "Jan 2025 - Jan 2026",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research & Exam Content Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-red-950 to-blue-950",
+    "coverAccent": "#EF4444",
+    "coverText": "text-red-50",
+    "coverStyle": "digest",
+    "coverImage": "/covers/amazon_highres/B0GRMXQ5KT.jpg",
+    "downloadUrl": "/ebooks/UPSC_Current_Affairs_Jan_July_2026_PREMIUM.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 310,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-01",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "1.23 MB",
+    "prices": {
+      "pdf": 149,
+      "usd": 1.99
+    },
+    "oneLiner": "2000+ topic-wise analytical current affairs MCQs covering January 2025 to January 2026.",
+    "description": "Complete 12-month current affairs question bank with explanations mapped for Prelims MCQs and Mains answer pointers.",
+    "whoShouldRead": [
+      "UPSC CSE 2026 candidates."
+    ],
+    "whatYoullLearn": [
+      "12 months national & international news MCQs."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Section 1",
+        "title": "Polity & Governance MCQs"
+      }
+    ]
   },
-
-  // 5. UPSC EPFO Special Subjects Mock Test Series
   {
-    id: "upsc-epfo-special-subjects-mock-tests",
-    slug: "upsc-epfo-special-subjects-mock-tests",
-    title: "UPSC EPFO Special Subjects Master Mock Test Series",
-    subtitle: "1000+ Practice MCQs on GAAP, Auditing, Insurance & Labour Codes with Detailed Answers",
-    tagline: "Exam-Level Practice Questions for EO/AO & APFC",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-900 to-slate-900",
-    coverAccent: "#F59E0B",
-    coverText: "text-amber-50",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-special-subject-notes-pankaj-kumar.png",
-    downloadUrl: "/ebooks/UPSC_EPFO_SPECIAL_SUBJECTS_MOCK_TEST.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 190,
-    publishedYear: 2026,
-    updatedDate: "2026-08-14",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "11.8 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "Full length practice test series covering all non-traditional special subjects for UPSC EPFO.",
-    description: `Comprehensive practice mock test paper compendium for UPSC EPFO EO/AO and APFC aspirants.`,
-    whoShouldRead: ["UPSC EPFO candidates evaluating exam readiness."],
-    whatYoullLearn: ["1000+ exam quality practice MCQs with explanations."],
-    tableOfContents: [{ chapter: "Test 1", title: "General Accounting & Auditing Practice Set" }]
+    "id": "upsc-prelims-2026-best-300-mcqs",
+    "slug": "upsc-prelims-2026-best-300-mcqs",
+    "asin": "B0GRC4JY5R",
+    "amazonUrl": "https://www.amazon.in/dp/B0GRC4JY5R",
+    "title": "UPSC Prelims 2026 Current Affairs MCQs: Best 300 Practice Questions with Explanations",
+    "subtitle": "January 2026 Current Affairs | UPSC IAS Prelims Practice Test | Polity, Economy, Environment",
+    "tagline": "High-Probability 300 Questions for UPSC Prelims 2026",
+    "category": "Current Affairs",
+    "subcategory": "National",
+    "examCategory": "upsc",
+    "currentAffairsMonth": "Jan 2026",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research & Exam Content Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-blue-900 to-amber-950",
+    "coverAccent": "#F59E0B",
+    "coverText": "text-amber-100",
+    "coverStyle": "digest",
+    "coverImage": "/covers/amazon_highres/B0GRC4JY5R.jpg",
+    "downloadUrl": "/ebooks/UPSC_Current_Affairs_Jan_July_2026_PREMIUM.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 120,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-01",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "1.23 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "Targeted 300 practice questions covering high-probability January 2026 current events.",
+    "description": "Curated 300 MCQs covering Environment, Polity, Economy, and International Relations for UPSC IAS Prelims.",
+    "whoShouldRead": [
+      "UPSC IAS Prelims 2026 candidates."
+    ],
+    "whatYoullLearn": [
+      "January 2026 current affairs MCQs."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Test 1",
+        "title": "Environment & Economy MCQs"
+      }
+    ]
   },
-
-  // 6. ExamWave UPPCS 2026 Quick Revision Guide (Hindi)
   {
-    id: "examwave-uppcs-quick-revision-2026-hindi",
-    slug: "examwave-uppcs-quick-revision-2026-hindi",
-    title: "ExamWave UPPCS 2026 त्वरित रिवीजन गाइड (Hindi Edition)",
-    subtitle: "उत्तर प्रदेश लोक सेवा आयोग प्रारंभिक परीक्षा हेतु उच्च-संभावित अध्ययन नोट्स",
-    tagline: "यूपी विशेष, इतिहास, राजव्यवस्था, भूगोल एवं अर्थव्यवस्था त्वरित रिवीजन",
-    category: "Competitive Exams",
-    subcategory: "State PSC",
-    examCategory: "state-psc",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-900 to-orange-950",
-    coverAccent: "#EA580C",
-    coverText: "text-orange-50",
-    coverStyle: "guide",
-    coverImage: "/covers/rrb-je-modern-history-culture-1000.png",
-    downloadUrl: "/ebooks/ExamWave_UPPCS_Quick_Revision_2026_Hindi.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 165,
-    publishedYear: 2026,
-    updatedDate: "2026-08-12",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "5.10 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "UPPCS प्रारंभिक परीक्षा 2026 के लिए बिंदुवार हिंदी माध्यम रिवीजन नोट्स।",
-    description: `उत्तर प्रदेश लोक सेवा आयोग (UPPCS) की परीक्षा हेतु विशेष रूप से तैयार किया गया 5.1MB का त्वरित रिवीजन संकलन।`,
-    whoShouldRead: ["UPPCS एवं अन्य राज्य लोक सेवा आयोग के अभ्यर्थी।"],
-    whatYoullLearn: ["उत्तर प्रदेश विशेष एवं सामान्य अध्ययन 1-4.."],
-    tableOfContents: [{ chapter: "भाग 1", title: "उत्तर प्रदेश विशेष तथ्य एवं राजव्यवस्था" }]
+    "id": "indian-economy-550-mcqs-upsc-epfo",
+    "slug": "indian-economy-550-mcqs-upsc-epfo",
+    "asin": "B0FW3TPFWZ",
+    "amazonUrl": "https://www.amazon.in/dp/B0FW3TPFWZ",
+    "title": "Indian Economy through MCQs — 550 UPSC EPFO & Civil Services Practice Questions",
+    "subtitle": "Comprehensive Source-Based MCQs from Ramesh Singh’s Indian Economy with Explanations",
+    "tagline": "550 High-Yield Economics Questions for UPSC & EPFO",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC EPFO",
+    "examCategory": "upsc-epfo",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-stone-900 to-emerald-950",
+    "coverAccent": "#10B981",
+    "coverText": "text-emerald-50",
+    "coverStyle": "exam",
+    "coverImage": "/covers/amazon_highres/B0FW3TPFWZ.jpg",
+    "downloadUrl": "/ebooks/general_accounting _hindi.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 180,
+    "publishedYear": 2025,
+    "updatedDate": "2026-07-25",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "1.02 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "550 practice MCQs based on standard Indian Economy reference textbooks.",
+    "description": "Banking, inflation, budget, national income, and monetary policy MCQs with detailed explanations.",
+    "whoShouldRead": [
+      "UPSC CSE & EPFO candidates."
+    ],
+    "whatYoullLearn": [
+      "RBI monetary policy, Budget, Taxation."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Module 1",
+        "title": "National Income Accounting"
+      }
+    ]
   },
-
-  // 7. UPSC Current Affairs 2026 English Premium
   {
-    id: "upsc-current-affairs-2026-january-to-july",
-    slug: "upsc-current-affairs-2026-january-to-july",
-    title: "UPSC Current Affairs 2026: January to July (English Edition)",
-    subtitle: "Prelims & Mains Current Affairs for UPSC CSE, EPFO EO/AO, APFC & State PSC",
-    tagline: "Premium 7-Month Compendium for Serious Aspirants",
-    category: "Current Affairs",
-    subcategory: "National",
-    examCategory: "upsc",
-    currentAffairsMonth: "Jan-Jul 2026",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-red-950 to-blue-950",
-    coverAccent: "#EF4444",
-    coverText: "text-red-50",
-    coverStyle: "digest",
-    coverImage: "/covers/upsc-current-affairs-2026-january-to-july.png",
-    downloadUrl: "/ebooks/UPSC_Current_Affairs_Jan_July_2026_PREMIUM.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 310,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "1.23 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "Complete 7-month analytical current affairs compendium mapped topic-wise for Prelims MCQs and Mains answer pointers.",
-    description: `7-month comprehensive current affairs compendium covering January 2026 to July 2026.`,
-    whoShouldRead: ["UPSC CSE 2026/2027 candidates."],
-    whatYoullLearn: ["7 months national & international news."],
-    tableOfContents: [{ chapter: "Section 1", title: "Polity & Constitutional Acts" }]
+    "id": "complete-geography-notes-hindi-bhugol",
+    "slug": "complete-geography-notes-hindi-bhugol",
+    "asin": "B0G2CFSVKK",
+    "amazonUrl": "https://www.amazon.in/dp/B0G2CFSVKK",
+    "title": "Complete Geography Notes in Hindi: भारत एवं विश्व भूगोल का संपूर्ण गाइड",
+    "subtitle": "नदियाँ, झीलें, पर्वत, जलवायु, मिट्टियाँ, कृषि, बाँध, समुद्री तट, मौसम एवं चट्टानें",
+    "tagline": "प्रतियोगी परीक्षाओं के लिए संपूर्ण हिंदी भूगोल हस्तलिखित नोट्स",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC",
+    "examCategory": "upsc",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-blue-950 to-teal-950",
+    "coverAccent": "#06B6D4",
+    "coverText": "text-cyan-50",
+    "coverStyle": "guide",
+    "coverImage": "/covers/amazon_highres/B0G2CFSVKK.jpg",
+    "downloadUrl": "/ebooks/ExamWave_UPPCS_Quick_Revision_2026_Hindi.pdf",
+    "featured": true,
+    "latestRelease": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 195,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-05",
+    "language": "Hindi",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "5.10 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "भारत एवं विश्व भूगोल के मानचित्र एवं सारणी आधारित हिंदी रिवीजन नोट्स।",
+    "description": "भारतीय नदियाँ, पर्वत, जलवायु, मिट्टियाँ, कृषि एवं खनिज संसाधनों का संपूर्ण हिंदी संकलन।",
+    "whoShouldRead": [
+      "UPSC, State PSC एवं अन्य प्रतियोगी परीक्षाओं के छात्र।"
+    ],
+    "whatYoullLearn": [
+      "भौतिक एवं भारत का भूगोल।"
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "भाग 1",
+        "title": "भारत की नदियाँ एवं पर्वत"
+      }
+    ]
   },
-
-  // 8. UPSC Current Affairs 2026 Hindi
   {
-    id: "upsc-current-affairs-2026-january-july-hindi",
-    slug: "upsc-current-affairs-2026-january-july-hindi",
-    title: "UPSC Current Affairs 2026: जनवरी से जुलाई (Hindi Edition)",
-    subtitle: "UPSC CSE, EPFO EO/AO, APFC और राज्य PSC के लिए समसामयिक घटनाक्रम",
-    tagline: "प्रारंभिक एवं मुख्य परीक्षा के लिए 7 महीनों का संपूर्ण विश्लेषणात्मक संकलन",
-    category: "Current Affairs",
-    subcategory: "National",
-    examCategory: "upsc",
-    currentAffairsMonth: "Jan-Jul 2026",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-blue-900 to-amber-950",
-    coverAccent: "#F59E0B",
-    coverText: "text-amber-100",
-    coverStyle: "digest",
-    coverImage: "/covers/upsc-current-affairs-2026-january-july-hindi.png",
-    downloadUrl: "/ebooks/ExamWave_UPSC_Current_Affairs_2026_Jan_July_Hindi.pdf",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 315,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "26.6 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "हिंदी माध्यम के अभ्यर्थियों के लिए जनवरी से जुलाई 2026 का प्रामाणिक संकलन।",
-    description: `जनवरी 2026 से जुलाई 2026 तक का संपूर्ण हिंदी माध्यम करेंट अफेयर्स संकलन (26.6MB)।`,
-    whoShouldRead: ["UPSC CSE एवं EPFO के हिंदी माध्यम के छात्र।"],
-    whatYoullLearn: ["7 महीनों का सटीक घटनाक्रम।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "भारतीय राजव्यवस्था" }]
+    "id": "art-culture-500-mcqs-hindi",
+    "slug": "art-culture-500-mcqs-hindi",
+    "asin": "B0G1TVKL7J",
+    "amazonUrl": "https://www.amazon.in/dp/B0G1TVKL7J",
+    "title": "Art & Culture 500 MCQs for UPSC EPFO/APFC | भारतीय कला और संस्कृति",
+    "subtitle": "UPSC, State PCS, EPFO, CAPF, NDA सहित सभी प्रतियोगी परीक्षाओं के लिए 500 महत्वपूर्ण प्रश्न",
+    "tagline": "स्थापत्य, नृत्य, संगीत एवं धरोहर 500 वस्तुनिष्ठ प्रश्न",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC EPFO",
+    "examCategory": "upsc-epfo",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-amber-900 to-yellow-950",
+    "coverAccent": "#D97706",
+    "coverText": "text-amber-100",
+    "coverStyle": "exam",
+    "coverImage": "/covers/amazon_highres/B0G1TVKL7J.jpg",
+    "downloadUrl": "/ebooks/UPSC_EPFO_SPECIAL_SUBJECTS_MOCK_TEST.pdf",
+    "featured": false,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 150,
+    "publishedYear": 2025,
+    "updatedDate": "2026-07-20",
+    "language": "Hindi",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "11.8 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "भारतीय कला, वास्तुकला एवं सांस्कृतिक धरोहर पर 500 व्याख्या सहित प्रश्न।",
+    "description": "भारतीय मंदिर स्थापत्य, शास्त्रीय नृत्य, संगीत एवं यूनेस्को धरोहर स्थलों पर 500 MCQs.",
+    "whoShouldRead": [
+      "UPSC CSE, EPFO एवं State PCS के हिंदी अभ्यर्थी।"
+    ],
+    "whatYoullLearn": [
+      "कला एवं संस्कृति MCQs."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "भाग 1",
+        "title": "स्थापत्य एवं वास्तुकला"
+      }
+    ]
   },
-
-  // 9. General Accounting Principles (GAAP) English Tatva
   {
-    id: "gaap-english-tatva-trend",
-    slug: "gaap-english-tatva-trend",
-    title: "General Accounting Principles (GAAP) Master Notes",
-    subtitle: "Accounting Concepts, Conventions, Trail Balance & Financial Statements for UPSC EPFO",
-    tagline: "Tatva Series Point-Wise Exam Handbook",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[0],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-emerald-950 to-slate-900",
-    coverAccent: "#10B981",
-    coverText: "text-emerald-50",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-special-subject-notes-pankaj-kumar.png",
-    downloadUrl: "/ebooks/GAAP_english_Tatva_trend.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 110,
-    publishedYear: 2025,
-    updatedDate: "2026-07-20",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "1.26 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Complete English handbook on General Accounting Principles (GAAP) for UPSC EPFO EO/AO & APFC.",
-    description: `Concise guide covering GAAP concepts, accounting standards, journal entries, ledger posting, and trial balance.`,
-    whoShouldRead: ["UPSC EPFO candidates."],
-    whatYoullLearn: ["Accounting concepts & principles."],
-    tableOfContents: [{ chapter: "Module 1", title: "Basic Accounting Framework" }]
+    "id": "general-science-500-mcqs-upsc-epfo",
+    "slug": "general-science-500-mcqs-upsc-epfo",
+    "asin": "B0FTGFK4LR",
+    "amazonUrl": "https://www.amazon.in/dp/B0FTGFK4LR",
+    "title": "General Science 500+ MCQs for UPSC EPFO & Civil Services",
+    "subtitle": "Comprehensive Coverage of Physics, Chemistry, Biology, Environment & Applied Science",
+    "tagline": "500+ Exam-Level General Science Practice Questions",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC EPFO",
+    "examCategory": "upsc-epfo",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-slate-900 to-emerald-950",
+    "coverAccent": "#10B981",
+    "coverText": "text-emerald-100",
+    "coverStyle": "exam",
+    "coverImage": "/covers/amazon_highres/B0FTGFK4LR.jpg",
+    "downloadUrl": "/ebooks/Audit_TT.pdf",
+    "featured": false,
+    "bestseller": false,
+    "isFree": false,
+    "pages": 140,
+    "publishedYear": 2025,
+    "updatedDate": "2026-07-18",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "730 KB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "500+ General Science questions covering Physics, Chemistry, Biology, and Biotechnology.",
+    "description": "Targeted practice handbook for general science section of competitive examinations.",
+    "whoShouldRead": [
+      "UPSC CSE & EPFO candidates."
+    ],
+    "whatYoullLearn": [
+      "Physics, Chemistry & Biology MCQs."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Module 1",
+        "title": "Physics & Everyday Science"
+      }
+    ]
   },
-
-  // 10. सामान्य लेखांकन सिद्धांत (General Accounting Hindi Edition)
   {
-    id: "general-accounting-hindi-tatva",
-    slug: "general-accounting-hindi-tatva",
-    title: "सामान्य लेखांकन सिद्धांत (General Accounting Principles Hindi Edition)",
-    subtitle: "UPSC EPFO परीक्षा हेतु लेखांकन की मूलभूत अवधारणाएं एवं वित्तीय विवरण",
-    tagline: "तत्व सीरीज बिंदुवार हिंदी माध्यम गाइड",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[1],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-teal-950 to-zinc-900",
-    coverAccent: "#06B6D4",
-    coverText: "text-teal-50",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-special-subject-notes-hindi.png",
-    downloadUrl: "/ebooks/general_accounting _hindi.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 105,
-    publishedYear: 2025,
-    updatedDate: "2026-07-20",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "1.02 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "UPSC EPFO परीक्षा के लिए सामान्य लेखांकन सिद्धांतों की हिंदी अध्ययन सामग्री।",
-    description: `सामान्य लेखांकन सिद्धांतों (GAAP) की हिंदी में स्पष्ट एवं बिंदुवार प्रस्तुति।`,
-    whoShouldRead: ["UPSC EPFO हिंदी माध्यम के छात्र।"],
-    whatYoullLearn: ["लेखांकन की परिभाषा, नियम एवं वित्तीय विवरण।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "लेखांकन सिद्धांत एवं नियम" }]
+    "id": "static-gk-5000-mcqs-part-1-hindi",
+    "slug": "static-gk-5000-mcqs-part-1-hindi",
+    "asin": "B0G15CJGH8",
+    "amazonUrl": "https://www.amazon.in/dp/B0G15CJGH8",
+    "title": "Static GK 5000 MCQs – Part 1 | भारत और विश्व सामान्य ज्ञान",
+    "subtitle": "5000+ Objective Questions on Indian Polity, History, Geography, Economy & Science (Hindi Edition)",
+    "tagline": "5000+ वस्तुनिष्ठ सामान्य ज्ञान प्रश्न व्याख्या सहित",
+    "category": "Competitive Exams",
+    "subcategory": "State PSC",
+    "examCategory": "state-psc",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-stone-900 to-amber-950",
+    "coverAccent": "#D97706",
+    "coverText": "text-amber-100",
+    "coverStyle": "guide",
+    "coverImage": "/covers/amazon_highres/B0G15CJGH8.jpg",
+    "downloadUrl": "/ebooks/ExamWave_UPPCS_Quick_Revision_2026_Hindi.pdf",
+    "featured": false,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 260,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-01",
+    "language": "Hindi",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "5.10 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "भारत एवं विश्व सामान्य ज्ञान के 5000 वस्तुनिष्ठ प्रश्न हिंदी माध्यम में।",
+    "description": "इतिहास, भूगोल, राजव्यवस्था एवं विज्ञान का 5000 प्रश्नों का महा-अभ्यास संकलन।",
+    "whoShouldRead": [
+      "सभी प्रतियोगी परीक्षाओं के अभ्यर्थी।"
+    ],
+    "whatYoullLearn": [
+      "Static GK 5000 MCQs."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "भाग 1",
+        "title": "भारतीय इतिहास एवं राजव्यवस्था"
+      }
+    ]
   },
-
-  // 11. Audit Principles & Vouching English
   {
-    id: "audit-english-tatva",
-    slug: "audit-english-tatva",
-    title: "Auditing Standards & Vouching Notes (English Edition)",
-    subtitle: "Internal Control, Verification of Assets & Company Audit for UPSC EPFO",
-    tagline: "Tatva Series Auditing Handbook",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-900 to-stone-900",
-    coverAccent: "#F59E0B",
-    coverText: "text-amber-50",
-    coverStyle: "exam",
-    coverImage: "/covers/audit-and-insurance-upsc-epfo.png",
-    downloadUrl: "/ebooks/Audit_TT.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 95,
-    publishedYear: 2025,
-    updatedDate: "2026-07-15",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "730 KB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Targeted point-wise notes on Auditing standards, vouching, and verification.",
-    description: `Complete notes covering auditing concepts, vouching of cash & trading transactions, and asset verification.`,
-    whoShouldRead: ["UPSC EPFO aspirants."],
-    whatYoullLearn: ["Vouching & verification methods."],
-    tableOfContents: [{ chapter: "Module 1", title: "Auditing Basics" }]
+    "id": "master-english-vocabulary-1000-words",
+    "slug": "master-english-vocabulary-1000-words",
+    "asin": "B0FV8X2MLB",
+    "amazonUrl": "https://www.amazon.in/dp/B0FV8X2MLB",
+    "title": "Master English Vocabulary: 1000 Powerful Words for Competitive Exams & Daily Use",
+    "subtitle": "Boost Your Word Power with 1000 Carefully Selected Words, Meanings, Examples & Synonyms",
+    "tagline": "1000 High-Frequency Words for UPSC & Competitive Exams",
+    "category": "Education & Learning",
+    "subcategory": "Study Skills",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "Language & Aptitude Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-blue-950 to-indigo-900",
+    "coverAccent": "#2563EB",
+    "coverText": "text-blue-50",
+    "coverStyle": "guide",
+    "coverImage": "/covers/amazon_highres/B0FV8X2MLB.jpg",
+    "downloadUrl": "/ebooks/habits_dont_work.pdf",
+    "featured": false,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 130,
+    "publishedYear": 2025,
+    "updatedDate": "2026-07-25",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "3.8 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "1000 essential vocabulary words with mnemonics, synonyms, and usage examples.",
+    "description": "Comprehensive vocabulary handbook for competitive exams and editorial reading comprehension.",
+    "whoShouldRead": [
+      "Aspirants aiming to improve English comprehension."
+    ],
+    "whatYoullLearn": [
+      "1000 vocabulary words."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Part 1",
+        "title": "High-Yield Editorial Words A-Z"
+      }
+    ]
   },
-
-  // 12. अंकेक्षण (Audit) Hindi Tatva
   {
-    id: "audit-hindi-tatva",
-    slug: "audit-hindi-tatva",
-    title: "अंकेक्षण सिद्धांत एवं प्रमाणन (Auditing Hindi Edition)",
-    subtitle: "UPSC EPFO परीक्षा हेतु आंतरिक नियंत्रण, प्रमाणन एवं संपत्तियों का सत्यापन",
-    tagline: "तत्व सीरीज अंकेक्षण अध्ययन सामग्री",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-950 to-yellow-950",
-    coverAccent: "#D97706",
-    coverText: "text-amber-100",
-    coverStyle: "exam",
-    coverImage: "/covers/audit-and-insurance-upsc-epfo.png",
-    downloadUrl: "/ebooks/Audit_TT_hind.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 100,
-    publishedYear: 2025,
-    updatedDate: "2026-07-15",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "1.03 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "अंकेक्षण (Auditing) के नियमों एवं प्रमाणन का हिंदी प्रामाणिक संकलन।",
-    description: `UPSC EPFO परीक्षा में अंकेक्षण भाग की बिंदुवार हिंदी अध्ययन सामग्री।`,
-    whoShouldRead: ["UPSC EPFO हिंदी अभ्यर्थी।"],
-    whatYoullLearn: ["अंकेक्षण के प्रकार एवं प्रमाणन नियम।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "अंकेक्षण का परिचय एवं नियम" }]
+    "id": "adhunik-bharat-short-notes-hindi",
+    "slug": "adhunik-bharat-short-notes-hindi",
+    "asin": "B0G2MPT7YS",
+    "amazonUrl": "https://www.amazon.in/dp/B0G2MPT7YS",
+    "title": "आधुनिक भारत: परीक्षाओं के लिए संक्षिप्त एवं प्रभावी नोट्स (Hindi Edition)",
+    "subtitle": "UPSC, State PCS एवं अन्य परीक्षाओं के लिए तथ्यात्मक एवं याद रखने योग्य नोट्स",
+    "tagline": "1857 की क्रांति से 1947 स्वतंत्रता तक बिंदुवार रिवीजन",
+    "category": "Competitive Exams",
+    "subcategory": "UPSC",
+    "examCategory": "upsc",
+    "author": {
+      "id": "go-pustak-editorial",
+      "name": "EXAMWAVE EXPERT Cell",
+      "role": "ExamWave Research Cell",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "ExamWave / Go Pustak Publishing",
+    "coverBg": "from-amber-900 to-red-950",
+    "coverAccent": "#EF4444",
+    "coverText": "text-amber-50",
+    "coverStyle": "guide",
+    "coverImage": "/covers/amazon_highres/B0G2MPT7YS.jpg",
+    "downloadUrl": "/ebooks/ExamWave_UPPCS_Quick_Revision_2026_Hindi.pdf",
+    "featured": false,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 155,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-02",
+    "language": "Hindi",
+    "fileFormats": [
+      "PDF Digital",
+      "Kindle Edition"
+    ],
+    "fileSize": "5.10 MB",
+    "prices": {
+      "pdf": 99,
+      "usd": 1.29
+    },
+    "oneLiner": "आधुनिक भारतीय इतिहास का 1857 से 1947 तक का हिंदी तथ्यात्मक संकलन।",
+    "description": "स्वतंत्रता आंदोलन, गवर्नर जनरल, कांग्रेस अधिवेशन एवं महत्वपूर्ण संधियों के संक्षिप्त नोट्स।",
+    "whoShouldRead": [
+      "UPSC CSE एवं State PCS के हिंदी अभ्यर्थी।"
+    ],
+    "whatYoullLearn": [
+      "आधुनिक भारत का इतिहास।"
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "भाग 1",
+        "title": "1857 का संग्राम एवं सामाजिक आंदोलन"
+      }
+    ]
   },
-
-  // 13. Insurance Principles English
   {
-    id: "insurance-english-tatva",
-    slug: "insurance-english-tatva",
-    title: "Insurance Principles & IRDAI Legislation (English Edition)",
-    subtitle: "Life & General Insurance, Risk Management & IRDA Regulations for UPSC EPFO",
-    tagline: "Tatva Series Insurance Handbook",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-blue-900 to-stone-900",
-    coverAccent: "#2563EB",
-    coverText: "text-blue-50",
-    coverStyle: "exam",
-    coverImage: "/covers/audit-and-insurance-upsc-epfo.png",
-    downloadUrl: "/ebooks/Insurance_TT_eng.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 85,
-    publishedYear: 2025,
-    updatedDate: "2026-07-15",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "944 KB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Point-wise notes on Insurance fundamentals, IRDAI Act, and risk management.",
-    description: `Complete guide covering principles of indemnity, insurable interest, subrogation, and IRDAI rules.`,
-    whoShouldRead: ["UPSC EPFO EO/AO & APFC candidates."],
-    whatYoullLearn: ["Principles of Insurance & IRDA Regulations."],
-    tableOfContents: [{ chapter: "Module 1", title: "Insurance Principles" }]
+    "id": "think-on-paper",
+    "slug": "think-on-paper",
+    "title": "Think on Paper",
+    "subtitle": "A Small Tool. Big Transformation. The $2 Productivity Upgrade for Your Brain",
+    "tagline": "How writing by hand organizes your mind, clears mental clutter, and turns abstract thoughts into executable reality.",
+    "category": "Personal Growth",
+    "subcategory": "Productivity",
+    "author": {
+      "id": "pankaj-kumar",
+      "name": "Pankaj Kumar",
+      "role": "Author & Systems Engineer",
+      "bio": "Pankaj Kumar applies mechanical engineering rigor and cognitive psychology to everyday thinking, habits, and digital technology.",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "Go Pustak Publishing",
+    "coverBg": "from-emerald-800 to-emerald-950",
+    "coverAccent": "#10B981",
+    "coverText": "text-emerald-100",
+    "coverStyle": "journal",
+    "coverImage": "/covers/think_on_paper.jpg",
+    "downloadUrl": "/ebooks/think_on_paper.pdf",
+    "featured": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 64,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-01",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "EPUB Edition"
+    ],
+    "fileSize": "4.2 MB",
+    "prices": {
+      "pdf": 149,
+      "usd": 1.99
+    },
+    "oneLiner": "Offload working memory RAM onto physical paper using simple structural paper architecture frameworks.",
+    "description": "Most people don’t struggle because they lack intelligence. They struggle because they ask their brains to hold too many thoughts at the same time.",
+    "whoShouldRead": [
+      "Engineers, founders, and knowledge workers."
+    ],
+    "whatYoullLearn": [
+      "How to offload short-term working memory RAM onto paper."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Chapter 1",
+        "title": "Your Brain Is a Processor"
+      }
+    ]
   },
-
-  // 14. बीमा सिद्धांत (Insurance Hindi Edition)
   {
-    id: "insurance-hindi-tatva",
-    slug: "insurance-hindi-tatva",
-    title: "बीमा सिद्धांत एवं IRDAI कानून (Insurance Hindi Edition)",
-    subtitle: "UPSC EPFO परीक्षा हेतु जीवन व साधारण बीमा तथा जोखिम प्रबंधन",
-    tagline: "तत्व सीरीज बीमा अध्ययन नोट्स",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-cyan-950 to-blue-950",
-    coverAccent: "#06B6D4",
-    coverText: "text-cyan-50",
-    coverStyle: "exam",
-    coverImage: "/covers/audit-and-insurance-upsc-epfo.png",
-    downloadUrl: "/ebooks/Insurance_TT_hind.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 90,
-    publishedYear: 2025,
-    updatedDate: "2026-07-15",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "2.04 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "बीमा (Insurance) के मूलभूत सिद्धांतों का हिंदी माध्यम अध्ययन नोट्स।",
-    description: `UPSC EPFO परीक्षा के लिए बीमा क्षेत्र के कानून एवं IRDAI नियमों की हिंदी गाइड।`,
-    whoShouldRead: ["UPSC EPFO हिंदी अभ्यर्थी।"],
-    whatYoullLearn: ["बीमा सिद्धांत एवं IRDAI विनियम।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "बीमा की मूलभूत परिभाषाएं" }]
+    "id": "motion-vs-action",
+    "slug": "motion-vs-action",
+    "title": "Motion vs Action",
+    "subtitle": "Stop Preparing and Start Executing | Eliminating the Illusion of Progress",
+    "tagline": "Busy is not the same as effective. Break free from fake productivity traps.",
+    "category": "Personal Growth",
+    "subcategory": "Productivity",
+    "author": {
+      "id": "pankaj-kumar",
+      "name": "Pankaj Kumar",
+      "role": "Author & Systems Engineer",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "Go Pustak Publishing",
+    "coverBg": "from-stone-900 to-black",
+    "coverAccent": "#F97316",
+    "coverText": "text-orange-100",
+    "coverStyle": "bold",
+    "coverImage": "/covers/motion_vs_action.png",
+    "downloadUrl": "/ebooks/motion_vs_action.pdf",
+    "featured": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 110,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-02",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "EPUB Edition"
+    ],
+    "fileSize": "4.9 MB",
+    "prices": {
+      "pdf": 149,
+      "usd": 1.99
+    },
+    "oneLiner": "Break the illusion of fake productivity and eliminate motion traps with execution triggers.",
+    "description": "Motion feels like work. Action is delivering the output.",
+    "whoShouldRead": [
+      "Procrastinators hiding behind research."
+    ],
+    "whatYoullLearn": [
+      "Difference between Motion and Action."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Chapter 1",
+        "title": "The Illusion of Progress"
+      }
+    ]
   },
-
-  // 15. Labour Laws & New 4 Codes English
   {
-    id: "labour-laws-english-tatva",
-    slug: "labour-laws-english-tatva",
-    title: "New 4 Labour Codes 2020 & Labour Laws (English Edition)",
-    subtitle: "Wage Code 2019, IR Code 2020, Occupational Safety & OSH Code",
-    tagline: "Tatva Series Labour Legislation Handbook",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-stone-900 to-amber-950",
-    coverAccent: "#D97706",
-    coverText: "text-amber-50",
-    coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    downloadUrl: "/ebooks/Labour_laws_TT_eng.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 115,
-    publishedYear: 2025,
-    updatedDate: "2026-07-10",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "1.50 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Point-wise notes on the new 4 Labour Codes 2020 and historical Labour Acts.",
-    description: `Detailed comparison and provisions of the 4 Labour Codes (Wages, Industrial Relations, Social Security, and OSH Code).`,
-    whoShouldRead: ["UPSC EPFO candidates."],
-    whatYoullLearn: ["New 4 Labour Codes 2020."],
-    tableOfContents: [{ chapter: "Module 1", title: "Code on Wages 2019" }]
+    "id": "courage-to-practice-freedom",
+    "slug": "courage-to-practice-freedom",
+    "title": "The Courage to Practice Freedom",
+    "subtitle": "How to Live Without Approval, Fear, or Excuses",
+    "tagline": "Freedom is not a philosophical realization. It is a daily discipline trained under pressure.",
+    "category": "Personal Growth",
+    "subcategory": "Self Help",
+    "author": {
+      "id": "pankaj-kumar",
+      "name": "Pankaj Kumar",
+      "role": "Author & Systems Engineer",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "Go Pustak Publishing",
+    "coverBg": "from-amber-100 to-stone-200",
+    "coverAccent": "#DC2626",
+    "coverText": "text-stone-900",
+    "coverStyle": "bold",
+    "coverImage": "/covers/courage_to_practice_freedom.png",
+    "downloadUrl": "/ebooks/courage_to_practice_freedom.pdf",
+    "featured": true,
+    "bestseller": true,
+    "isFree": false,
+    "pages": 127,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-01",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "EPUB Edition"
+    ],
+    "fileSize": "5.8 MB",
+    "prices": {
+      "pdf": 149,
+      "usd": 1.99
+    },
+    "oneLiner": "Enforce boundaries without permission, break approval-seeking traps, and build unshakeable self-trust.",
+    "description": "Freedom comes after acting free, not before.",
+    "whoShouldRead": [
+      "Anyone who overthinks decisions waiting for approval."
+    ],
+    "whatYoullLearn": [
+      "Separation of Tasks."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Chapter 1",
+        "title": "Freedom Is a Skill"
+      }
+    ]
   },
-
-  // 16. Industrial Relations & Social Security English
   {
-    id: "ir-and-social-security-english-tatva",
-    slug: "ir-and-social-security-english-tatva",
-    title: "Industrial Relations & Social Security (English Edition)",
-    subtitle: "Trade Unions, Industrial Disputes, EPF Act 1952 & Social Security Schemes",
-    tagline: "Tatva Series IR & Social Security Master Guide",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-800 to-stone-900",
-    coverAccent: "#F59E0B",
-    coverText: "text-amber-50",
-    coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    downloadUrl: "/ebooks/IR and social security_tatva.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 120,
-    publishedYear: 2025,
-    updatedDate: "2026-07-10",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "1.60 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Industrial Relations theories, trade unionism, and government social security welfare schemes.",
-    description: `Complete guide covering IR theories, collective bargaining, EPF Act 1952, ESI Act 1948, and modern social security schemes.`,
-    whoShouldRead: ["UPSC EPFO candidates."],
-    whatYoullLearn: ["IR theories & Social Security legislation."],
-    tableOfContents: [{ chapter: "Module 1", title: "Industrial Relations Theories" }]
-  },
-
-  // 17. औद्योगिक संबंध, श्रम कानून एवं सामाजिक सुरक्षा (Hindi Edition)
-  {
-    id: "ir-labour-laws-hindi-tatva",
-    slug: "ir-labour-laws-hindi-tatva",
-    title: "औद्योगिक संबंध, श्रम कानून एवं सामाजिक सुरक्षा (Hindi Edition)",
-    subtitle: "UPSC EPFO परीक्षा हेतु नए 4 श्रम कोड 2020 एवं सामाजिक सुरक्षा योजनाएं",
-    tagline: "तत्व सीरीज श्रम कानून एवं औद्योगिक संबंध संकलन",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-950 to-stone-950",
-    coverAccent: "#D97706",
-    coverText: "text-amber-100",
-    coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    downloadUrl: "/ebooks/hindi_IR and LL social security_tatva.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 130,
-    publishedYear: 2025,
-    updatedDate: "2026-07-10",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "2.10 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "औद्योगिक संबंध एवं नए 4 श्रम कोडों का हिंदी अध्ययन संकलन।",
-    description: `UPSC EPFO परीक्षा के लिए 4 नए श्रम कोड, ट्रेड यूनियन एवं सामाजिक सुरक्षा की हिंदी गाइड।`,
-    whoShouldRead: ["UPSC EPFO हिंदी माध्यम छात्र।"],
-    whatYoullLearn: ["4 नए श्रम कोड 2020 एवं सामाजिक सुरक्षा।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "औद्योगिक संबंध एवं श्रम संहिता" }]
-  },
-
-  // 18. Social Security Schemes English
-  {
-    id: "social-security-english-tatva",
-    slug: "social-security-english-tatva",
-    title: "Social Security Schemes & Legislation (English Edition)",
-    subtitle: "Government Pensions, Maternity Benefits, EPF & Unorganized Sector Welfare",
-    tagline: "Tatva Series Social Security Guide",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-stone-900 to-emerald-950",
-    coverAccent: "#10B981",
-    coverText: "text-emerald-50",
-    coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    downloadUrl: "/ebooks/Social_security_eng_TT.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 80,
-    publishedYear: 2025,
-    updatedDate: "2026-07-05",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "903 KB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Point-wise coverage of Social Security Act, PM-SYM, APY, and EPF/EPS schemes.",
-    description: `Comprehensive reference for social security coverage in India for organized and unorganized sectors.`,
-    whoShouldRead: ["UPSC EPFO candidates."],
-    whatYoullLearn: ["Social Security schemes & EPF Act."],
-    tableOfContents: [{ chapter: "Module 1", title: "Social Security Framework in India" }]
-  },
-
-  // 19. सामाजिक सुरक्षा योजनाएं एवं कानून (Hindi Edition)
-  {
-    id: "social-security-hindi-tatva",
-    slug: "social-security-hindi-tatva",
-    title: "सामाजिक सुरक्षा योजनाएं एवं कानून (Hindi Edition)",
-    subtitle: "UPSC EPFO हेतु पेंशन, मातृत्व लाभ एवं असंगठित क्षेत्र सामाजिक सुरक्षा",
-    tagline: "तत्व सीरीज सामाजिक सुरक्षा गाइड",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[3],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-emerald-950 to-stone-950",
-    coverAccent: "#06B6D4",
-    coverText: "text-emerald-100",
-    coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    downloadUrl: "/ebooks/Social_security_hindi_TT.pdf",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 85,
-    publishedYear: 2025,
-    updatedDate: "2026-07-05",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "1.43 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "सामाजिक सुरक्षा योजनाओं एवं कानूनों का बिंदुवार हिंदी संकलन।",
-    description: `UPSC EPFO परीक्षा के लिए केंद्र सरकार की सामाजिक सुरक्षा योजनाओं की हिंदी अध्ययन गाइड।`,
-    whoShouldRead: ["UPSC EPFO हिंदी अभ्यर्थी।"],
-    whatYoullLearn: ["सामाजिक सुरक्षा योजनाएं एवं कानून।"],
-    tableOfContents: [{ chapter: "भाग 1", title: "सामाजिक सुरक्षा अधिनियम एवं योजनाएं" }]
-  },
-
-  // 20. Think on Paper by Pankaj Kumar
-  {
-    id: "think-on-paper",
-    slug: "think-on-paper",
-    title: "Think on Paper",
-    subtitle: "A Small Tool. Big Transformation. The $2 Productivity Upgrade for Your Brain",
-    tagline: "How writing by hand organizes your mind, clears mental clutter, and turns abstract thoughts into executable reality.",
-    category: "Personal Growth",
-    subcategory: "Productivity",
-    author: AUTHORS[0],
-    publisher: "Go Pustak Publishing",
-    coverBg: "from-emerald-800 to-emerald-950",
-    coverAccent: "#10B981",
-    coverText: "text-emerald-100",
-    coverStyle: "journal",
-    coverImage: "/covers/think_on_paper.jpg",
-    downloadUrl: "/ebooks/think_on_paper.pdf",
-    featured: true,
-    bestseller: true,
-    isFree: false,
-    pages: 64,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "4.2 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "Offload working memory RAM onto physical paper using simple structural paper architecture frameworks.",
-    description: `Most people don’t struggle because they lack intelligence. They struggle because they ask their brains to hold too many thoughts at the same time.`,
-    whoShouldRead: ["Engineers, founders, and knowledge workers."],
-    whatYoullLearn: ["How to offload short-term working memory RAM onto paper."],
-    tableOfContents: [{ chapter: "Chapter 1", title: "Your Brain Is a Processor" }]
-  },
-
-  // 21. Motion vs Action by Pankaj Kumar
-  {
-    id: "motion-vs-action",
-    slug: "motion-vs-action",
-    title: "Motion vs Action",
-    subtitle: "Stop Preparing and Start Executing | Eliminating the Illusion of Progress",
-    tagline: "Busy is not the same as effective. Break free from fake productivity traps.",
-    category: "Personal Growth",
-    subcategory: "Productivity",
-    author: AUTHORS[0],
-    publisher: "Go Pustak Publishing",
-    coverBg: "from-stone-900 to-black",
-    coverAccent: "#F97316",
-    coverText: "text-orange-100",
-    coverStyle: "bold",
-    coverImage: "/covers/motion_vs_action.png",
-    downloadUrl: "/ebooks/motion_vs_action.pdf",
-    featured: true,
-    bestseller: true,
-    isFree: false,
-    pages: 110,
-    publishedYear: 2026,
-    updatedDate: "2026-08-02",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "4.9 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "Break the illusion of fake productivity and eliminate motion traps with execution triggers.",
-    description: `Motion feels like work. Action is delivering the output.`,
-    whoShouldRead: ["Procrastinators hiding behind research."],
-    whatYoullLearn: ["Difference between Motion and Action."],
-    tableOfContents: [{ chapter: "Chapter 1", title: "The Illusion of Progress" }]
-  },
-
-  // 22. The Courage to Practice Freedom by Pankaj Kumar
-  {
-    id: "courage-to-practice-freedom",
-    slug: "courage-to-practice-freedom",
-    title: "The Courage to Practice Freedom",
-    subtitle: "How to Live Without Approval, Fear, or Excuses",
-    tagline: "Freedom is not a philosophical realization. It is a daily discipline trained under pressure.",
-    category: "Personal Growth",
-    subcategory: "Self Help",
-    author: AUTHORS[0],
-    publisher: "Go Pustak Publishing",
-    coverBg: "from-amber-100 to-stone-200",
-    coverAccent: "#DC2626",
-    coverText: "text-stone-900",
-    coverStyle: "bold",
-    coverImage: "/covers/courage_to_practice_freedom.png",
-    downloadUrl: "/ebooks/courage_to_practice_freedom.pdf",
-    featured: true,
-    bestseller: true,
-    isFree: false,
-    pages: 127,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "5.8 MB",
-    prices: { pdf: 149, usd: 1.99 },
-    oneLiner: "Enforce boundaries without permission, break approval-seeking traps, and build unshakeable self-trust.",
-    description: `Freedom comes after acting free, not before.`,
-    whoShouldRead: ["Anyone who overthinks decisions waiting for approval."],
-    whatYoullLearn: ["Separation of Tasks."],
-    tableOfContents: [{ chapter: "Chapter 1", title: "Freedom Is a Skill" }]
-  },
-
-  // 23. Pragmatic AI for Business
-  {
-    id: "pragmatic-ai-for-business",
-    slug: "pragmatic-ai-for-business",
-    title: "Pragmatic AI for Business Leaders & Learners",
-    subtitle: "Integrating Artificial Intelligence, LLMs & Automation Without Hype",
-    tagline: "A zero-fluff engineering guide to building AI workflows that increase leverage.",
-    category: "Technology",
-    subcategory: "Artificial Intelligence",
-    author: AUTHORS[0],
-    publisher: "Go Pustak Tech Series",
-    coverBg: "from-cyan-950 to-slate-900",
-    coverAccent: "#06B6D4",
-    coverText: "text-cyan-100",
-    coverStyle: "tech",
-    coverImage: "/covers/ai_without_the_hype.png",
-    downloadUrl: "/ebooks/pragmatic_ai.pdf",
-    featured: true,
-    bestseller: false,
-    isFree: false,
-    pages: 145,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "7.1 MB",
-    prices: { pdf: 199, usd: 2.49 },
-    oneLiner: "Practical AI prompt engineering, LLM architecture, and workflow automation for modern professionals.",
-    description: `Engineering-first blueprint for understanding how Large Language Models (LLMs) operate under the hood.`,
-    whoShouldRead: ["Business managers and developers."],
-    whatYoullLearn: ["Prompt engineering as code."],
-    tableOfContents: [{ chapter: "Chapter 1", title: "Demystifying LLMs" }]
-  },
-
-  // 24. Effective Study Habits Guide
-  {
-    id: "free-effective-study-habits-guide",
-    slug: "free-effective-study-habits-guide",
-    title: "The Effective Study Habits Guide",
-    subtitle: "Science-Backed Techniques for Faster Learning & Retention",
-    tagline: "Active recall, spaced repetition, and study scheduling for students and competitive exam aspirants.",
-    category: "Education & Learning",
-    subcategory: "Study Skills",
-    author: AUTHORS[2],
-    publisher: "Go Pustak Learning Cell",
-    coverBg: "from-emerald-700 to-teal-900",
-    coverAccent: "#10B981",
-    coverText: "text-emerald-50",
-    coverStyle: "guide",
-    coverImage: "/covers/habits_dont_work.png",
-    downloadUrl: "/ebooks/habits_dont_work.pdf",
-    featured: true,
-    bestseller: true,
-    isFree: false,
-    pages: 45,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "3.8 MB",
-    prices: { pdf: 99, usd: 1.29 },
-    oneLiner: "Practical guide on Active Recall, Spaced Repetition, and the Feynman Technique for rapid learning.",
-    description: `Stop rereading textbooks passively! Cognitive learning techniques verified by educational neuroscience.`,
-    whoShouldRead: ["Students and competitive exam aspirants."],
-    whatYoullLearn: ["Active Recall vs Passive Reading."],
-    tableOfContents: [{ chapter: "Module 1", title: "Why Rereading Fails" }]
+    "id": "pragmatic-ai-for-business",
+    "slug": "pragmatic-ai-for-business",
+    "title": "Pragmatic AI for Business Leaders & Learners",
+    "subtitle": "Integrating Artificial Intelligence, LLMs & Automation Without Hype",
+    "tagline": "A zero-fluff engineering guide to building AI workflows that increase leverage.",
+    "category": "Technology",
+    "subcategory": "Artificial Intelligence",
+    "author": {
+      "id": "pankaj-kumar",
+      "name": "Pankaj Kumar",
+      "role": "Author & Systems Engineer",
+      "avatar": "/go-pustak-logo.png"
+    },
+    "publisher": "Go Pustak Tech Series",
+    "coverBg": "from-cyan-950 to-slate-900",
+    "coverAccent": "#06B6D4",
+    "coverText": "text-cyan-100",
+    "coverStyle": "tech",
+    "coverImage": "/covers/ai_without_the_hype.png",
+    "downloadUrl": "/ebooks/pragmatic_ai.pdf",
+    "featured": true,
+    "bestseller": false,
+    "isFree": false,
+    "pages": 145,
+    "publishedYear": 2026,
+    "updatedDate": "2026-08-01",
+    "language": "English",
+    "fileFormats": [
+      "PDF Digital",
+      "EPUB Edition"
+    ],
+    "fileSize": "7.1 MB",
+    "prices": {
+      "pdf": 199,
+      "usd": 2.49
+    },
+    "oneLiner": "Practical AI prompt engineering, LLM architecture, and workflow automation for modern professionals.",
+    "description": "Engineering-first blueprint for understanding how Large Language Models (LLMs) operate under the hood.",
+    "whoShouldRead": [
+      "Business managers and developers."
+    ],
+    "whatYoullLearn": [
+      "Prompt engineering as code."
+    ],
+    "tableOfContents": [
+      {
+        "chapter": "Chapter 1",
+        "title": "Demystifying LLMs"
+      }
+    ]
   }
 ];
