@@ -176,7 +176,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {EXAM_HUBS.map((ex) => (
               <div
                 key={ex.id}
@@ -320,7 +320,7 @@ export default function HomePage({ setActivePage, onSelectBook, onOpenSample, on
             {[
               { title: "Razorpay Verified Security", desc: "Instant payments via UPI, NetBanking, Credit Cards, PayPal." },
               { title: "Instant PDF & EPUB Access", desc: "Download directly to your phone, tablet, or Kindle." },
-              { title: "Point-Wise Syllabus Accuracy", desc: "Designed for UPSC, EPFO, SSC CGL & State PSC exams." },
+              { title: "Point-Wise Syllabus Accuracy", desc: "Designed for UPSC CSE, UPSC EPFO & State PSC exams." },
               { title: "Transparent Refund Guarantee", desc: "Clear support & hassle-free reader refund policy." }
             ].map((item, idx) => (
               <div key={idx} className="p-4 bg-[#F8F5EE] rounded-xl border border-[#D8CBB8] space-y-1">

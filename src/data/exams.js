@@ -26,30 +26,6 @@ export const EXAM_HUBS = [
     keySubjects: ["General Accounting Principles", "Industrial Relations", "New 4 Labour Codes 2020", "Social Security Legislation", "Indian Freedom Struggle"]
   },
   {
-    id: "ssc",
-    slug: "ssc",
-    name: "SSC CGL / CHSL",
-    badge: "SSC CGL & CHSL",
-    tagline: "Point-Wise Static GK, General Awareness, and High-Probability Revision Handbooks.",
-    description: "Comprehensive notes for SSC CGL Tier 1 & Tier 2, CHSL, and CPO covering History, Geography, Polity, Science, and Current Events.",
-    iconName: "BookOpen",
-    accentColor: "from-indigo-900 to-slate-900",
-    primaryEbookIds: ["ssc-cgl-general-awareness-handbook"],
-    keySubjects: ["Indian History", "Indian Polity & Constitution", "General Science", "Physical & Indian Geography", "Static GK Tables"]
-  },
-  {
-    id: "banking",
-    slug: "banking",
-    name: "Banking (IBPS / SBI PO & Clerk)",
-    badge: "SBI & IBPS PO",
-    tagline: "RBI Circulars, Monetary Policy, Digital Banking & Financial Awareness Handbooks.",
-    description: "Targeted banking awareness ebooks for SBI PO, IBPS PO/Clerk, RBI Grade B, and NABARD Mains and Interview preparation.",
-    iconName: "Building2",
-    accentColor: "from-teal-900 to-slate-900",
-    primaryEbookIds: ["banking-awareness-po-clerk"],
-    keySubjects: ["RBI Functions & Rates", "Digital Payment Systems (UPI, CBDC)", "NPA & Financial Instruments", "Banking Terms & Abbreviations"]
-  },
-  {
     id: "state-psc",
     slug: "state-psc",
     name: "State PSC Examinations",

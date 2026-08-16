@@ -13,7 +13,7 @@ export const CATEGORIES = [
 
 export const SUB_CATEGORIES = {
   "Personal Growth": ["Self Help", "Personal Development", "Productivity", "Habits", "Psychology", "Mindset", "Motivation", "Decision Making"],
-  "Competitive Exams": ["UPSC", "UPSC EPFO", "SSC", "Banking", "State PSC", "Other Competitive Exams"],
+  "Competitive Exams": ["UPSC", "UPSC EPFO", "State PSC", "Other Competitive Exams"],
   "Current Affairs": ["National", "International", "Economy", "Science & Technology", "Defence", "Environment", "Government Schemes"],
   "Education & Learning": ["General Knowledge", "Study Skills", "Career", "Learning", "Research", "Skill Development"],
   "Technology": ["Artificial Intelligence", "Programming", "Technology Explained", "Digital Trends"],
@@ -23,8 +23,6 @@ export const SUB_CATEGORIES = {
 export const EXAM_TYPES = [
   { id: "upsc", name: "UPSC Civil Services", tag: "UPSC CSE" },
   { id: "upsc-epfo", name: "UPSC EPFO (EO/AO & APFC)", tag: "EPFO" },
-  { id: "ssc", name: "SSC CGL / CHSL", tag: "SSC" },
-  { id: "banking", name: "Banking (IBPS / SBI PO)", tag: "Banking" },
   { id: "state-psc", name: "State PSC Exams", tag: "State PSC" }
 ];
 
@@ -160,7 +158,7 @@ export const BOOKS = [
     prices: { pdf: 99, usd: 1.29 },
     oneLiner: "High-probability revision guide for Indian Constitution articles, schedules, and landmark amendments.",
     description: `Memorize essential articles of the Indian Constitution with mnemonic tables, historical context, and previous exam questions.`,
-    whoShouldRead: ["UPSC CSE, EPFO, SSC, and State PSC candidates."],
+    whoShouldRead: ["UPSC CSE, EPFO, and State PSC candidates."],
     whatYoullLearn: ["Fundamental Rights articles", "Emergency & Constitutional bodies."],
     tableOfContents: [{ chapter: "Part 1", title: "Articles 1 to 51A" }]
   },
@@ -273,7 +271,7 @@ export const BOOKS = [
     slug: "rrb-je-modern-history-culture-1000",
     title: "RRB JE & NTPC 2025: Modern Indian History & Culture Quick Study Guide",
     subtitle: "1000 MCQs Covering Freedom Movement, Art, Music & Heritage",
-    tagline: "Useful for RRB JE, NTPC, SSC & State Exams",
+    tagline: "Useful for RRB JE, NTPC & State Exams",
     category: "Competitive Exams",
     subcategory: "Other Competitive Exams",
     author: AUTHORS[3],
@@ -340,7 +338,7 @@ export const BOOKS = [
     id: "computer-awareness-200-mcqs-hindi",
     slug: "computer-awareness-200-mcqs-hindi",
     title: "कंप्यूटर अवेयरनेस – 200 महत्वपूर्ण MCQs",
-    subtitle: "UPSC, SSC, EPFO और अन्य प्रतियोगी परीक्षाओं के लिए संपूर्ण कंप्यूटर ज्ञान",
+    subtitle: "UPSC, EPFO और अन्य प्रतियोगी परीक्षाओं के लिए संपूर्ण कंप्यूटर ज्ञान",
     tagline: "200 सबसे महत्वपूर्ण MCQ प्रश्न एवं उत्तर",
     category: "Competitive Exams",
     subcategory: "UPSC EPFO",
@@ -363,9 +361,9 @@ export const BOOKS = [
     fileFormats: ["PDF Digital"],
     fileSize: "5.1 MB",
     prices: { pdf: 199, usd: 2.49 },
-    oneLiner: "UPSC, SSC एवं EPFO हेतु 200 सबसे महत्वपूर्ण कंप्यूटर जागरूकता प्रश्न।",
+    oneLiner: "UPSC एवं EPFO हेतु 200 सबसे महत्वपूर्ण कंप्यूटर जागरूकता प्रश्न।",
     description: `प्रतियोगी परीक्षाओं में कंप्यूटर अवेयरनेस सेक्शन को हल करने के लिए 200 अति महत्वपूर्ण वस्तुनिष्ठ प्रश्न।`,
-    whoShouldRead: ["UPSC, SSC CGL एवं EPFO परीक्षा के छात्र।"],
+    whoShouldRead: ["UPSC एवं EPFO परीक्षा के छात्र।"],
     whatYoullLearn: ["MS Office, Internet, Hardware."],
     tableOfContents: [{ chapter: "भाग 1", title: "कंप्यूटर बेसिक MCQs" }]
   },
