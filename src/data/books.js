@@ -53,6 +53,7 @@ export const AUTHORS = [
 ];
 
 export const BOOKS = [
+  // 1. Crack UPSC EPFO 2026 Blueprint
   {
     id: "crack-upsc-epfo-apfc-2026-blueprint",
     slug: "crack-upsc-epfo-apfc-2026-blueprint",
@@ -62,7 +63,7 @@ export const BOOKS = [
     category: "Competitive Exams",
     subcategory: "UPSC EPFO",
     examCategory: "upsc-epfo",
-    author: AUTHORS[2], // Go Pustak / ExamWave Editorial
+    author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Publishing",
     coverBg: "from-slate-900 to-blue-950",
     coverAccent: "#2563EB",
@@ -79,523 +80,528 @@ export const BOOKS = [
     language: "English",
     fileFormats: ["PDF Digital", "EPUB Edition"],
     fileSize: "7.5 MB",
-    prices: {
-      pdf: 99,
-      usd: 1.29
-    },
+    prices: { pdf: 99, usd: 1.29 },
     oneLiner: "Avoid 10 costly preparation traps and master the exact study-revision blueprint for UPSC EPFO 2026.",
-    description: `Targeting UPSC EPFO EO/AO or APFC 2026? Most aspirants fail not due to lack of study hours, but because they waste time on irrelevant study material and flawed revision schedules.
-
-This complete blueprint outlines the exact master plan, booklist, time allocation matrix, and mock test strategy needed to clear UPSC EPFO in your first attempt.`,
-    whoShouldRead: [
-      "First-time aspirants preparing for UPSC EPFO EO/AO and APFC 2026.",
-      "Working candidates seeking an efficient 60-day revision strategy.",
-      "Aspirants confused by conflicting booklists and strategy videos."
-    ],
-    whatYoullLearn: [
-      "The 10 costliest mistakes made by 90% of EPFO candidates.",
-      "How to allocate time between General Accounting, Labour Laws, and GS.",
-      "Scientific 3-stage revision system using active recall."
-    ],
-    tableOfContents: [
-      { chapter: "Chapter 1", title: "Decoding UPSC EPFO: EO/AO vs. APFC Syllabus" },
-      { chapter: "Chapter 2", title: "The 10 Deadly Preparation Mistakes to Avoid" },
-      { chapter: "Chapter 3", title: "The 60-Day Master Study Plan" },
-      { chapter: "Chapter 4", title: "Mock Test Strategy & Marks Optimization" }
-    ],
-    faqs: [
-      { q: "Is this suitable for beginner aspirants?", a: "Yes. It gives a complete step-by-step roadmap from day 1 to exam day." }
-    ]
+    description: `Targeting UPSC EPFO EO/AO or APFC 2026? Most aspirants fail not due to lack of study hours, but because they waste time on irrelevant study material and flawed revision schedules.`,
+    whoShouldRead: ["First-time aspirants preparing for UPSC EPFO 2026."],
+    whatYoullLearn: ["10 costliest preparation mistakes", "60-day study plan"],
+    tableOfContents: [{ chapter: "Chapter 1", title: "Decoding UPSC EPFO Syllabus" }]
   },
-  {
-    id: "upsc-current-affairs-2026-january-to-july",
-    slug: "upsc-current-affairs-2026-january-to-july",
-    title: "UPSC Current Affairs 2026: January to July",
-    subtitle: "Prelims & Mains Current Affairs for UPSC CSE, EPFO EO/AO, APFC & State PSC",
-    tagline: "Premium 7-Month Compendium for Serious Aspirants",
-    category: "Current Affairs",
-    subcategory: "National",
-    examCategory: "upsc",
-    currentAffairsMonth: "Jan-Jul 2026",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-red-950 to-blue-950",
-    coverAccent: "#EF4444",
-    coverText: "text-red-50",
-    coverStyle: "digest",
-    coverImage: "/covers/upsc-current-affairs-2026-january-to-july.png",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 310,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "16.4 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
-    oneLiner: "Complete 7-month analytical current affairs compendium mapped topic-wise for Prelims MCQs and Mains answer pointers.",
-    description: `A 7-month comprehensive current affairs compendium covering January 2026 to July 2026 for UPSC Civil Services, EPFO, and State PSCs.
 
-Categorized into Economic Survey analysis, Budget developments, Polity, Science & Tech, Defence, and International Summits.`,
-    whoShouldRead: [
-      "UPSC CSE 2026/2027 Prelims & Mains candidates.",
-      "UPSC EPFO EO/AO and APFC aspirants needing updated current affairs."
-    ],
-    whatYoullLearn: [
-      "Categorized coverage of 7 months of national & international news.",
-      "GS Paper 1-4 syllabus mapping for quick Mains answer drafting.",
-      "100+ high-probability Prelims practice MCQs."
-    ],
-    tableOfContents: [
-      { chapter: "Section 1", title: "Polity, Governance & Constitutional Acts" },
-      { chapter: "Section 2", title: "Indian Economy, Banking & Trade" },
-      { chapter: "Section 3", title: "Science, AI, Space & Defence" },
-      { chapter: "Section 4", title: "Environment, Ecology & Climate Summits" }
-    ],
-    faqs: [
-      { q: "Is this available in Hindi?", a: "Yes! The Hindi edition 'UPSC करेंट अफेयर्स 2026: जनवरी से जुलाई' is also available." }
-    ]
-  },
+  // 2. Computer Awareness 200 MCQs Hindi
   {
-    id: "upsc-current-affairs-2026-january-july-hindi",
-    slug: "upsc-current-affairs-2026-january-july-hindi",
-    title: "UPSC Current Affairs 2026: जनवरी से जुलाई (Hindi Edition)",
-    subtitle: "UPSC CSE, EPFO EO/AO, APFC और राज्य PSC के लिए समसामयिक घटनाक्रम",
-    tagline: "प्रारंभिक एवं मुख्य परीक्षा के लिए 7 महीनों का संपूर्ण विश्लेषणात्मक संकलन",
-    category: "Current Affairs",
-    subcategory: "National",
-    examCategory: "upsc",
-    currentAffairsMonth: "Jan-Jul 2026",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-blue-900 to-amber-950",
-    coverAccent: "#F59E0B",
-    coverText: "text-amber-100",
-    coverStyle: "digest",
-    coverImage: "/covers/upsc-current-affairs-2026-january-july-hindi.png",
-    featured: true,
-    latestRelease: true,
-    bestseller: true,
-    isFree: false,
-    pages: 315,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "16.8 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
-    oneLiner: "हिंदी माध्यम के अभ्यर्थियों के लिए जनवरी से जुलाई 2026 का प्रामाणिक समसामयिक घटनाक्रम संकलन।",
-    description: `संघ लोक सेवा आयोग (UPSC) और राज्य लोक सेवा आयोगों की परीक्षाओं के लिए जनवरी 2026 से जुलाई 2026 तक का संपूर्ण हिंदी माध्यम करेंट अफेयर्स संकलन।
-
-राजव्यवस्था, अर्थव्यवस्था, पर्यावरण, विज्ञान एवं प्रौद्योगिकी और अंतर्राष्ट्रीय संबंधों का विस्तृत विश्लेषण।`,
-    whoShouldRead: [
-      "UPSC CSE एवं EPFO परीक्षा 2026 के हिंदी माध्यम के छात्र।",
-      "UPPCS, BPSC, MPPSC एवं अन्य राज्य लोक सेवा आयोग परीक्षाओं के अभ्यर्थी।"
-    ],
-    whatYoullLearn: [
-      "7 महीनों के समसामयिक घटनाक्रम का सटीक एवं बिंदुवार विश्लेषण।",
-      "मुख्य परीक्षा के उत्तर लेखन हेतु महत्वपूर्ण तथ्य एवं आंकड़े।"
-    ],
-    tableOfContents: [
-      { chapter: "भाग 1", title: "भारतीय राजव्यवस्था एवं शासन" },
-      { chapter: "भाग 2", title: "भारतीय अर्थव्यवस्था एवं वित्तीय क्षेत्र" },
-      { chapter: "भाग 3", title: "पर्यावरण, पारिस्थितिकी एवं जैव विविधता" }
-    ],
-    faqs: [
-      { q: "क्या यह हिंदी भाषा में है?", a: "हाँ, यह मूल रूप से शुद्ध एवं सरल हिंदी भाषा में रचित है।" }
-    ]
-  },
-  {
-    id: "industrial-relations-labour-laws-2025",
-    slug: "industrial-relations-labour-laws-2025",
-    title: "Industrial Relations, Labour Laws & Social Security for UPSC EPFO 2025",
-    subtitle: "Comprehensive Notes on New 4 Labour Codes 2020 & Social Security Schemes",
-    tagline: "One Stop Solution for UPSC EPFO EO/AO & APFC Aspirants",
+    id: "computer-awareness-200-mcqs-hindi",
+    slug: "computer-awareness-200-mcqs-hindi",
+    title: "कंप्यूटर अवेयरनेस – 200 महत्वपूर्ण MCQs",
+    subtitle: "UPSC, SSC, EPFO और अन्य प्रतियोगी परीक्षाओं के लिए संपूर्ण कंप्यूटर ज्ञान",
+    tagline: "200 सबसे महत्वपूर्ण MCQ प्रश्न एवं उत्तर",
     category: "Competitive Exams",
     subcategory: "UPSC EPFO",
     examCategory: "upsc-epfo",
     author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-700 to-stone-900",
-    coverAccent: "#D97706",
-    coverText: "text-amber-50",
+    coverBg: "from-slate-900 to-zinc-950",
+    coverAccent: "#10B981",
+    coverText: "text-emerald-100",
     coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    featured: false,
+    coverImage: "/covers/computer-awareness-200-mcqs-hindi.png",
+    featured: true,
+    latestRelease: true,
     bestseller: true,
     isFree: false,
-    pages: 185,
-    publishedYear: 2025,
-    updatedDate: "2026-07-15",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "9.1 MB",
-    prices: {
-      pdf: 99,
-      usd: 1.29
-    },
-    oneLiner: "Targeted point-wise notes on the new 4 Labour Codes 2020, Trade Union acts, and Social Security legislation.",
-    description: `Complete point-wise notes covering Industrial Relations, Labour Legislation, and Social Security Schemes in India.
-
-Includes clear comparative tables between old labour acts and the New 4 Labour Codes of 2020.`,
-    whoShouldRead: [
-      "UPSC EPFO Enforcement Officer & APFC candidates."
-    ],
-    whatYoullLearn: [
-      "Wage Code 2019, Industrial Relations Code 2020, Social Security Code 2020, OSH Code 2020.",
-      "EPF Act 1952, ESI Act 1948, Payment of Gratuity Act 1972.",
-      "Trade Union Movement history in India."
-    ],
-    tableOfContents: [
-      { chapter: "Module 1", title: "Industrial Relations Principles & History" },
-      { chapter: "Module 2", title: "New 4 Labour Codes Detailed Comparison" }
-    ],
-    faqs: [
-      { q: "Does this contain MCQs?", a: "Yes, chapter-wise previous year questions and practice MCQs included." }
-    ]
-  },
-  {
-    id: "current-affairs-yearly-mcq-2025-2026",
-    slug: "current-affairs-yearly-mcq-2025-2026",
-    title: "Current Affairs Yearly MCQ 2025–2026",
-    subtitle: "2000+ Current Affairs MCQs for UPSC CSE, EPFO & Civil Services",
-    tagline: "January 2025 to January 2026 Year-Round Question Bank",
-    category: "Current Affairs",
-    subcategory: "National",
-    examCategory: "upsc",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-cyan-950 to-blue-950",
-    coverAccent: "#06B6D4",
-    coverText: "text-cyan-50",
-    coverStyle: "digest",
-    coverImage: "/covers/current-affairs-yearly-mcq-2025-2026.png",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 260,
+    pages: 95,
     publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
+    updatedDate: "2026-08-12",
+    language: "Hindi",
     fileFormats: ["PDF Digital"],
-    fileSize: "13.2 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
-    oneLiner: "2000+ objective practice questions with detailed explanations covering 12 full months of current events.",
-    description: `Test your current affairs readiness with 2000+ high-quality MCQs covering January 2025 to January 2026. Includes statement-based UPSC style questions.`,
-    whoShouldRead: [
-      "UPSC CSE, EPFO, and State PSC candidates testing their Prelims preparation."
-    ],
-    whatYoullLearn: [
-      "2000+ statement-based MCQs with detailed explanations.",
-      "Topic-wise classification: Economy, Science, Environment, Polity."
-    ],
-    tableOfContents: [
-      { chapter: "Set 1-10", title: "Polity & Constitutional Developments MCQs" },
-      { chapter: "Set 11-20", title: "Economy, Banking & Trade MCQs" }
-    ],
-    faqs: [
-      { q: "Are explanations provided for all questions?", a: "Yes, every single question has a detailed explanation." }
-    ]
+    fileSize: "5.1 MB",
+    prices: { pdf: 199, usd: 2.49 },
+    oneLiner: "UPSC, SSC एवं EPFO हेतु 200 सबसे महत्वपूर्ण कंप्यूटर जागरूकता प्रश्न।",
+    description: `प्रतियोगी परीक्षाओं में कंप्यूटर अवेयरनेस सेक्शन को हल करने के लिए 200 अति महत्वपूर्ण वस्तुनिष्ठ प्रश्न (MCQs) विस्तृत व्याख्या के साथ।`,
+    whoShouldRead: ["UPSC, SSC CGL एवं EPFO परीक्षा के छात्र।"],
+    whatYoullLearn: ["MS Office, Internet, Hardware, Networking fundamentals."],
+    tableOfContents: [{ chapter: "भाग 1", title: "कंप्यूटर बेसिक एवं हार्डवेयर MCQs" }]
   },
+
+  // 3. UPSC EPFO 2025 10 Full Length Mock Tests
   {
-    id: "general-science-500-mcqs-upsc-epfo",
-    slug: "general-science-500-mcqs-upsc-epfo",
-    title: "General Science 500+ MCQs for UPSC EPFO & Civil Services",
-    subtitle: "Comprehensive Coverage of Physics, Chemistry & Biology with Explanations",
-    tagline: "500+ High-Yield Questions for UPSC EPFO, SSC & State PSC",
+    id: "upsc-epfo-2025-10-full-length-mock-tests",
+    slug: "upsc-epfo-2025-10-full-length-mock-tests",
+    title: "UPSC EPFO/APFC 2025 Full-Length Mock Tests",
+    subtitle: "10 Practice Sets | 120 MCQs Each with Detailed Answer Key",
+    tagline: "Total 10 Mocks • 1200 Solved Questions with Complete Explanations",
     category: "Competitive Exams",
-    subcategory: "UPSC",
+    subcategory: "UPSC EPFO",
     examCategory: "upsc-epfo",
     author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-blue-900 to-indigo-950",
+    coverBg: "from-amber-700 to-yellow-950",
+    coverAccent: "#F59E0B",
+    coverText: "text-amber-50",
+    coverStyle: "exam",
+    coverImage: "/covers/upsc-epfo-2025-10-full-length-mock-tests.png",
+    featured: true,
+    latestRelease: true,
+    bestseller: true,
+    isFree: false,
+    pages: 280,
+    publishedYear: 2025,
+    updatedDate: "2026-08-01",
+    language: "English",
+    fileFormats: ["PDF Digital"],
+    fileSize: "14.2 MB",
+    prices: { pdf: 299, usd: 3.99 },
+    oneLiner: "10 full-length practice mock tests (1200 questions) mapped to official UPSC EPFO exam pattern.",
+    description: `Practice with 10 simulated full-length mock test papers designed strictly according to the UPSC EPFO EO/AO and APFC syllabus.`,
+    whoShouldRead: ["UPSC EPFO candidates evaluating exam readiness."],
+    whatYoullLearn: ["1200 high-yield solved questions", "Speed & accuracy tuning"],
+    tableOfContents: [{ chapter: "Test 1-10", title: "Full Length Mock Papers 1 to 10" }]
+  },
+
+  // 4. General Science 500+ RRB JE
+  {
+    id: "general-science-500-mcqs-rrb-je",
+    slug: "general-science-500-mcqs-rrb-je",
+    title: "General Science 500+ MCQs for RRB JE & Railway Exams",
+    subtitle: "High-Yield Physics, Chemistry & Biology Questions for Railway Examinations",
+    tagline: "Complete Practice Question Bank for RRB JE, NTPC & Group D",
+    category: "Competitive Exams",
+    subcategory: "Other Competitive Exams",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-blue-900 to-slate-950",
     coverAccent: "#3B82F6",
     coverText: "text-blue-50",
     coverStyle: "exam",
-    coverImage: "/covers/general-science-500-mcqs-upsc-epfo.png",
+    coverImage: "/covers/general-science-500-mcqs-rrb-je.png",
     featured: false,
-    bestseller: false,
+    bestseller: true,
     isFree: false,
-    pages: 150,
+    pages: 160,
     publishedYear: 2026,
     updatedDate: "2026-07-20",
     language: "English",
     fileFormats: ["PDF Digital"],
-    fileSize: "8.4 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
-    oneLiner: "500+ solved General Science questions covering human anatomy, everyday physics laws, and chemical reactions.",
-    description: `Master General Science for UPSC EPFO and competitive exams. Covers everyday science principles, diseases, space science, and biotechnology.`,
-    whoShouldRead: [
-      "UPSC EPFO, SSC CGL, and State PSC candidates."
-    ],
-    whatYoullLearn: [
-      "Physics: Optics, Thermodynamics, Electricity, Waves.",
-      "Chemistry: Organic compounds, Metals, Acids and Bases.",
-      "Biology: Human digestive system, Blood circulatory system, Vitamins."
-    ],
-    tableOfContents: [
-      { chapter: "Part 1", title: "Physics Laws & Everyday Phenomena" },
-      { chapter: "Part 2", title: "Chemistry & Industrial Compounds" },
-      { chapter: "Part 3", title: "Biology & Human Anatomy" }
-    ],
-    faqs: [
-      { q: "Is NCERT science covered?", a: "Yes, based strictly on Class 6-10 NCERT science fundamentals." }
-    ]
+    fileSize: "8.7 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "500+ high-probability Physics, Chemistry, and Biology MCQs for RRB JE and Railway exams.",
+    description: `Targeted General Science handbook for Railway Recruitment Board (RRB JE, NTPC) candidates based on Class 6-10 NCERT science.`,
+    whoShouldRead: ["RRB JE, NTPC, and SSC aspirants."],
+    whatYoullLearn: ["Physics, Chemistry, and Biology NCERT concepts."],
+    tableOfContents: [{ chapter: "Part 1", title: "Physics & Mechanics MCQs" }]
   },
+
+  // 5. Static GK MCQ Part 3
   {
-    id: "upsc-june-2026-current-affairs-science-tech",
-    slug: "upsc-june-2026-current-affairs-science-tech",
-    title: "UPSC June 2026 Current Affairs: Science & Technology Monthly Handbook",
-    subtitle: "Complete Coverage of AI, Space Missions, Defence Tech & Biotech",
-    tagline: "Monthly Special Digest for UPSC CSE, EPFO & State PSC",
-    category: "Current Affairs",
-    subcategory: "Science & Technology",
-    examCategory: "upsc",
-    currentAffairsMonth: "June 2026",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-indigo-950 to-slate-950",
-    coverAccent: "#6366F1",
-    coverText: "text-indigo-50",
-    coverStyle: "digest",
-    coverImage: "/covers/upsc-june-2026-current-affairs-science-tech.png",
-    featured: false,
-    bestseller: false,
-    isFree: false,
-    pages: 80,
-    publishedYear: 2026,
-    updatedDate: "2026-07-05",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "5.6 MB",
-    prices: {
-      pdf: 99,
-      usd: 1.29
-    },
-    oneLiner: "June 2026 Science & Technology monthly handbook covering ISRO satellite launches, AI regulations, and defence developments.",
-    description: `Specialized monthly current affairs handbook dedicated exclusively to Science & Technology developments in June 2026 for civil services aspirants.`,
-    whoShouldRead: [
-      "UPSC CSE and State PSC candidates strengthening GS Paper 3 Science & Tech."
-    ],
-    whatYoullLearn: [
-      "ISRO Gaganyaan mission updates & semiconductor manufacturing policy.",
-      "Global AI safety agreements & Quantum computing breakthroughs."
-    ],
-    tableOfContents: [
-      { chapter: "Module 1", title: "Space Exploration & ISRO Launches" },
-      { chapter: "Module 2", title: "Artificial Intelligence & Semiconductors" }
-    ],
-    faqs: [
-      { q: "Is this included in the yearly bundle?", a: "Yes, bundled with UPSC Current Affairs Master Pack." }
-    ]
-  },
-  {
-    id: "indian-economy-550-mcqs-upsc-epfo",
-    slug: "indian-economy-550-mcqs-upsc-epfo",
-    title: "Indian Economy through MCQs — 550 Practice Questions",
-    subtitle: "550+ Practice Questions with Detailed Explanations for UPSC EPFO & Civil Services",
-    tagline: "500+ Best MCQs Covering Banking, Inflation, Fiscal Policy & Budget",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-stone-900 to-slate-950",
-    coverAccent: "#A8A29E",
-    coverText: "text-stone-100",
-    coverStyle: "exam",
-    coverImage: "/covers/indian-economy-550-mcqs-upsc-epfo.png",
-    featured: false,
-    bestseller: false,
-    isFree: false,
-    pages: 165,
-    publishedYear: 2026,
-    updatedDate: "2026-07-25",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "8.9 MB",
-    prices: {
-      pdf: 99,
-      usd: 1.29
-    },
-    oneLiner: "550 practice MCQs on Indian Economy covering RBI Monetary Policy, Inflation indices, Balance of Payments, and GST.",
-    description: `Indian Economy questions in UPSC EPFO and CSE test core concepts. Practice 550 curated questions covering Banking, Fiscal Policy, External Trade, and National Income.`,
-    whoShouldRead: [
-      "UPSC EPFO EO/AO, APFC, and Civil Services aspirants."
-    ],
-    whatYoullLearn: [
-      "Repo rate, CRR, SLR, WPI vs CPI inflation calculations.",
-      "Balance of Payments: Current Account Deficit vs Capital Account.",
-      "Union Budget & Economic Survey key concepts."
-    ],
-    tableOfContents: [
-      { chapter: "Set 1", title: "National Income & Banking System MCQs" },
-      { chapter: "Set 2", title: "Inflation, Trade & Budget MCQs" }
-    ],
-    faqs: [
-      { q: "Is this updated with 2026 Budget terms?", a: "Yes, fully updated with recent economic terminology." }
-    ]
-  },
-  {
-    id: "complete-geography-notes-hindi-bhugol",
-    slug: "complete-geography-notes-hindi-bhugol",
-    title: "Complete Geography Notes in Hindi (भूगोल)",
-    subtitle: "भारत एवं भौतिक भूगोल का संपूर्ण गाइड: नदियाँ, झीलें, पर्वत, जलवायु, मिट्टियाँ",
-    tagline: "एसएससी, रेलवे, बैंक, UPSC एवं एक दिवसीय परीक्षाओं के लिए संपूर्ण भौतिक भूगोल संक्षिप्त नोट्स",
+    id: "static-gk-mcq-part-3-1000-questions",
+    slug: "static-gk-mcq-part-3-1000-questions",
+    title: "Static GK MCQ Part III: 1000 High-Quality Questions",
+    subtitle: "Indian Geography, Culture, World Organizations & Monuments",
+    tagline: "Useful for UPSC, State PCS, SSC & Railway Exams",
     category: "Education & Learning",
     subcategory: "General Knowledge",
     author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-purple-950 to-amber-950",
-    coverAccent: "#A855F7",
-    coverText: "text-purple-100",
+    coverBg: "from-pink-900 to-purple-950",
+    coverAccent: "#EC4899",
+    coverText: "text-pink-50",
     coverStyle: "guide",
-    coverImage: "/covers/complete-geography-notes-hindi-bhugol.png",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 190,
-    publishedYear: 2026,
-    updatedDate: "2026-08-05",
-    language: "Hindi",
-    fileFormats: ["PDF Digital"],
-    fileSize: "10.4 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
-    oneLiner: "भारत एवं विश्व के भूगोल का हिंदी माध्यम में बिंदुवार एवं तालिकाबद्ध संकलन।",
-    description: `एसएससी, रेलवे, राज्य लोक सेवा आयोग और प्रतियोगी परीक्षाओं के लिए भूगोल (Geography) का संपूर्ण हैंडबुक।
-
-भारत की नदियाँ, पर्वत, झीलें, जलवायु, मृदा के प्रकार और खनिज संसाधनों का तालिकाबद्ध प्रस्तुतीकरण।`,
-    whoShouldRead: [
-      "SSC, Railway, UP Police, State PSC एवं प्रतियोगी परीक्षाओं के हिंदी माध्यम छात्र।"
-    ],
-    whatYoullLearn: [
-      "हिमालयी एवं प्रायद्वीपीय नदियाँ का तंत्र।",
-      "भारत की जलवायु, मानसूनी हवाएँ एवं वर्षा वितरण।",
-      "प्रमुख राष्ट्रीय उद्यान एवं अभयारण्य।"
-    ],
-    tableOfContents: [
-      { chapter: "अध्याय 1", title: "भौतिक भूगोल एवं सौरमंडल" },
-      { chapter: "अध्याय 2", title: "भारत का भौतिक स्वरूप एवं नदियाँ" }
-    ],
-    faqs: [
-      { q: "क्या इसमें मानचित्र एवं तालिकाएँ शामिल हैं?", a: "हाँ, सभी महत्वपूर्ण तथ्यों को तालिकाओं के रूप में प्रस्तुत किया गया है।" }
-    ]
-  },
-  {
-    id: "upsc-epfo-500-mcqs-art-and-culture",
-    slug: "upsc-epfo-500-mcqs-art-and-culture",
-    title: "UPSC EPFO & APFC 2025 — 500 MCQs on Indian Art & Culture",
-    subtitle: "Nitin Singhania Based 500 Best Practice MCQs with Detailed Explanations",
-    tagline: "Architecture, Classical Dances, Music, Paintings, Festivals & UNESCO Heritage Sites",
-    category: "Competitive Exams",
-    subcategory: "UPSC",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Publishing",
-    coverBg: "from-amber-950 to-stone-900",
-    coverAccent: "#D97706",
-    coverText: "text-amber-100",
-    coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-500-mcqs-art-and-culture.png",
+    coverImage: "/covers/static-gk-mcq-part-3-1000-questions.png",
     featured: false,
     bestseller: false,
     isFree: false,
-    pages: 140,
-    publishedYear: 2025,
-    updatedDate: "2026-07-10",
+    pages: 175,
+    publishedYear: 2026,
+    updatedDate: "2026-07-18",
     language: "English",
     fileFormats: ["PDF Digital"],
-    fileSize: "7.8 MB",
-    prices: {
-      pdf: 99,
-      usd: 1.29
-    },
-    oneLiner: "500 practice MCQs on Indian Art & Culture based on Nitin Singhania standard reference.",
-    description: `Art & Culture questions in UPSC EPFO can be tricky. Practice 500 high-yield questions covering Temple Architecture (Nagara, Dravida, Vesara), Classical Dances, Martial Arts, and Fairs.`,
-    whoShouldRead: [
-      "UPSC EPFO EO/AO, APFC, and Civil Services aspirants."
-    ],
-    whatYoullLearn: [
-      "Mauryan, Gupta, and Chola Architecture.",
-      "8 Classical Dances of India & Folk art forms.",
-      "UNESCO World Heritage Sites in India."
-    ],
-    tableOfContents: [
-      { chapter: "Part 1", title: "Indian Architecture & Sculptures MCQs" },
-      { chapter: "Part 2", title: "Performing Arts & Music MCQs" }
-    ],
-    faqs: [
-      { q: "Is this based on Nitin Singhania textbook?", a: "Yes, structured according to standard Art & Culture references." }
-    ]
+    fileSize: "9.2 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "1000 high-frequency Static GK practice questions on geography, monuments, and international bodies.",
+    description: `Static GK Part III covers 1000 objective questions designed for quick revision across SSC, Railway, and State PSC exams.`,
+    whoShouldRead: ["Aspirants preparing for competitive General Knowledge."],
+    whatYoullLearn: ["Indian Geography, UNESCO sites, World bodies."],
+    tableOfContents: [{ chapter: "Section 1", title: "Geography & National Parks" }]
   },
+
+  // 6. UPSC EPFO 500+ Hindi MCQs
   {
-    id: "upsc-epfo-apfc-2026-hindi-guide",
-    slug: "upsc-epfo-apfc-2026-hindi-guide",
-    title: "UPSC EPFO/APFC 2026 - पहली कोशिश में सफलता संपूर्ण तैयारी गाइड",
-    subtitle: "Master Labour Laws, Accounting, Social Security & General Studies (Hindi Edition)",
-    tagline: "कोर समझ: लेबर लॉज और एकाउंटिंग • 60-दिन मास्टर प्लान • 30+ मॉक टेस्ट रणनीति",
+    id: "upsc-epfo-500-mcqs-hindi",
+    slug: "upsc-epfo-500-mcqs-hindi",
+    title: "UPSC EPFO 2025: 500+ महत्वपूर्ण MCQs (हिंदी)",
+    subtitle: "औद्योगिक संबंध, श्रम कानून, लेखांकन, सामाजिक सुरक्षा, ऑडिट एवं बीमा",
+    tagline: "हिंदी माध्यम के लिए संपूर्ण वस्तुनिष्ठ प्रश्न संग्रह",
     category: "Competitive Exams",
     subcategory: "UPSC EPFO",
     examCategory: "upsc-epfo",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-blue-900 to-emerald-950",
+    coverAccent: "#10B981",
+    coverText: "text-emerald-100",
+    coverStyle: "exam",
+    coverImage: "/covers/upsc-epfo-500-mcqs-hindi.png",
+    featured: true,
+    bestseller: true,
+    isFree: false,
+    pages: 195,
+    publishedYear: 2025,
+    updatedDate: "2026-08-01",
+    language: "Hindi",
+    fileFormats: ["PDF Digital"],
+    fileSize: "10.8 MB",
+    prices: { pdf: 199, usd: 2.49 },
+    oneLiner: "UPSC EPFO परीक्षा हेतु लेबर लॉ, एकाउंटिंग एवं ऑडिट के 500+ हिंदी अभ्यास प्रश्न।",
+    description: `हिंदी माध्यम के अभ्यर्थियों के लिए औद्योगिक संबंध, श्रम कानून, लेखांकन और बीमा के 500+ विस्तृत व्याख्या सहित प्रश्न।`,
+    whoShouldRead: ["UPSC EPFO परीक्षा के हिंदी माध्यम के छात्र।"],
+    whatYoullLearn: ["नये 4 लेबर कोड्स MCQs", "एकाउंटिंग MCQs"],
+    tableOfContents: [{ chapter: "भाग 1", title: "लेबर लॉज एवं औद्योगिक संबंध MCQs" }]
+  },
+
+  // 7. Polity MCQ Bank 650
+  {
+    id: "polity-mcq-bank-650-upsc",
+    slug: "polity-mcq-bank-650-upsc",
+    title: "Polity MCQ Bank for UPSC & Competitive Exams",
+    subtitle: "600+ Objective Questions with Detailed Explanations",
+    tagline: "Indian Constitution, Fundamental Rights, Parliament & Judiciary",
+    category: "Competitive Exams",
+    subcategory: "UPSC",
+    examCategory: "upsc",
     author: AUTHORS[2],
     publisher: "ExamWave / Go Pustak Publishing",
     coverBg: "from-blue-950 to-slate-900",
     coverAccent: "#2563EB",
     coverText: "text-blue-100",
     coverStyle: "exam",
-    coverImage: "/covers/upsc-epfo-apfc-2026-hindi-guide.png",
+    coverImage: "/covers/polity-mcq-bank-650-upsc.png",
+    featured: false,
+    bestseller: true,
+    isFree: false,
+    pages: 180,
+    publishedYear: 2025,
+    updatedDate: "2026-07-25",
+    language: "English",
+    fileFormats: ["PDF Digital"],
+    fileSize: "9.5 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "650 statement-based practice MCQs on Indian Polity, Constitution, and Governance.",
+    description: `Master Indian Polity with 650 high-yield questions based on Laxmikanth standard reference.`,
+    whoShouldRead: ["UPSC CSE, EPFO, and State PSC candidates."],
+    whatYoullLearn: ["Preamble, Fundamental Rights, Directive Principles, Emergency Provisions."],
+    tableOfContents: [{ chapter: "Part 1", title: "Constitutional Framework MCQs" }]
+  },
+
+  // 8. Current Affairs 2000+ MCQs Hindi 2026
+  {
+    id: "current-affairs-2000-mcqs-hindi-2026",
+    slug: "current-affairs-2000-mcqs-hindi-2026",
+    title: "UPSC Current Affairs MCQ Practice Book 2025–2026 (Hindi Edition)",
+    subtitle: "2000+ महत्वपूर्ण समसामयिक वस्तुनिष्ठ प्रश्न एवं विस्तृत उत्तर",
+    tagline: "वर्ष 2025 से 2026 का संपूर्ण वार्षिक करेंट अफेयर्स प्रश्न बैंक",
+    category: "Current Affairs",
+    subcategory: "National",
+    examCategory: "upsc",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-amber-950 to-stone-900",
+    coverAccent: "#F59E0B",
+    coverText: "text-amber-100",
+    coverStyle: "digest",
+    coverImage: "/covers/current-affairs-2000-mcqs-hindi-2026.png",
     featured: true,
     bestseller: true,
     isFree: false,
-    pages: 245,
+    pages: 270,
     publishedYear: 2026,
-    updatedDate: "2026-08-05",
+    updatedDate: "2026-08-01",
     language: "Hindi",
     fileFormats: ["PDF Digital"],
-    fileSize: "13.5 MB",
-    prices: {
-      pdf: 99,
-      usd: 1.29
-    },
-    oneLiner: "UPSC EPFO EO/AO एवं APFC परीक्षा 2026 की हिंदी माध्यम में संपूर्ण तैयारी गाइड।",
-    description: `UPSC EPFO परीक्षा 2026 के लिए हिंदी माध्यम का प्रामाणिक गाइड। नए 4 लेबर कोड्स, सामान्य लेखांकन सिद्धांत, औद्योगिक संबंध और सामाजिक सुरक्षा योजनाओं का बिंदुवार संकलन।`,
-    whoShouldRead: [
-      "UPSC EPFO परीक्षा 2026 की तैयारी कर रहे हिंदी माध्यम के अभ्यर्थी।"
-    ],
-    whatYoullLearn: [
-      "नये 4 लेबर कोड्स 2020 की तुलनात्मक सारणी।",
-      "लेखांकन सिद्धांत (Accounting Principles) का सरल हिंदी विवरण।"
-    ],
-    tableOfContents: [
-      { chapter: "भाग 1", title: "औद्योगिक संबंध एवं नए श्रम कानून" },
-      { chapter: "भाग 2", title: "सामान्य लेखांकन के सिद्धांत" }
-    ],
-    faqs: [
-      { q: "क्या इसमें अभ्यास प्रश्न शामिल हैं?", a: "हाँ, प्रत्येक अध्याय के अंत में महत्वपूर्ण प्रश्न दिए गए हैं।" }
-    ]
+    fileSize: "14.5 MB",
+    prices: { pdf: 149, usd: 1.99 },
+    oneLiner: "हिंदी माध्यम के लिए 2000+ अति महत्वपूर्ण करेंट अफेयर्स प्रश्न।",
+    description: `वर्ष 2025 से 2026 तक के राष्ट्रीय एवं अंतर्राष्ट्रीय घटनाक्रमों पर आधारित 2000+ प्रश्नों का व्याख्या सहित संग्रह।`,
+    whoShouldRead: ["UPSC एवं स्टेट PSC के हिंदी छात्र।"],
+    whatYoullLearn: ["2000+ व्याख्या सहित वस्तुनिष्ठ प्रश्न।"],
+    tableOfContents: [{ chapter: "भाग 1", title: "राष्ट्रीय एवं अंतर्राष्ट्रीय घटनाक्रम MCQs" }]
   },
+
+  // 9. Modern History RRB JE
+  {
+    id: "modern-history-1000-mcqs-rrb-je",
+    slug: "modern-history-1000-mcqs-rrb-je",
+    title: "आधुनिक इतिहास व संस्कृति: 1000+ MCQ संग्रह RRB JE व NTPC 2025",
+    subtitle: "भारतीय आधुनिक इतिहास एवं कला और संस्कृति संपूर्ण तैयारी",
+    tagline: "रेलवे परीक्षा आधारित 1000+ वस्तुनिष्ठ प्रश्न संग्रह",
+    category: "Competitive Exams",
+    subcategory: "Other Competitive Exams",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-amber-900 to-yellow-950",
+    coverAccent: "#D97706",
+    coverText: "text-amber-100",
+    coverStyle: "exam",
+    coverImage: "/covers/modern-history-1000-mcqs-rrb-je.png",
+    featured: false,
+    bestseller: false,
+    isFree: false,
+    pages: 185,
+    publishedYear: 2025,
+    updatedDate: "2026-07-15",
+    language: "Hindi",
+    fileFormats: ["PDF Digital"],
+    fileSize: "9.8 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "रेलवे आरआरबी जेई एवं एनटीपीसी हेतु आधुनिक इतिहास के 1000+ प्रश्न।",
+    description: `1857 की क्रांति से लेकर 1947 तक के आधुनिक इतिहास एवं भारतीय संस्कृति के 1000 प्रश्नों का संग्रह।`,
+    whoShouldRead: ["RRB JE, NTPC एवं रेलवे अभ्यर्थी।"],
+    whatYoullLearn: ["1857 का संग्राम, स्वतंत्रता आंदोलन।"],
+    tableOfContents: [{ chapter: "भाग 1", title: "1857 क्रांति एवं स्वतंत्रता संग्राम" }]
+  },
+
+  // 10. 100 EPFO Hindi MCQs
+  {
+    id: "100-epfo-hindi-mcqs",
+    slug: "100-epfo-hindi-mcqs",
+    title: "100 High-Quality UPSC EPFO 2025 MCQs in Hindi",
+    subtitle: "Comprehensive Explanations in Hindi for EO/AO & APFC",
+    tagline: "100 अति महत्वपूर्ण चुनिंदा प्रश्न एवं विस्तृत उत्तर",
+    category: "Competitive Exams",
+    subcategory: "UPSC EPFO",
+    examCategory: "upsc-epfo",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-purple-950 to-amber-950",
+    coverAccent: "#A855F7",
+    coverText: "text-purple-100",
+    coverStyle: "exam",
+    coverImage: "/covers/100-epfo-hindi-mcqs.png",
+    featured: false,
+    bestseller: false,
+    isFree: false,
+    pages: 65,
+    publishedYear: 2025,
+    updatedDate: "2026-07-10",
+    language: "Hindi",
+    fileFormats: ["PDF Digital"],
+    fileSize: "4.2 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "UPSC EPFO परीक्षा हेतु 100 उच्च स्तरीय हिंदी अभ्यास प्रश्न।",
+    description: `अंतिम समय के त्वरित अभ्यास के लिए 100 उच्च स्तरीय प्रश्न।`,
+    whoShouldRead: ["UPSC EPFO हिंदी माध्यम अभ्यर्थी।"],
+    whatYoullLearn: ["100 अति महत्वपूर्ण प्रश्न।"],
+    tableOfContents: [{ chapter: "भाग 1", title: "100 EPFO प्रश्न व्याख्या सहित" }]
+  },
+
+  // 11. Samanya Vigyan 500 MCQs Hindi
+  {
+    id: "samanya-vigyan-500-mcqs-hindi",
+    slug: "samanya-vigyan-500-mcqs-hindi",
+    title: "सामान्य विज्ञान 500+ MCQs – आरआरबी जेई व रेलवे",
+    subtitle: "भौतिकी, रसायन एवं जीव विज्ञान संपूर्ण प्रश्न संग्रह",
+    tagline: "आरआरबी जेई एवं रेलवे परीक्षाओं के लिए स्पेशल नोट्स",
+    category: "Competitive Exams",
+    subcategory: "Other Competitive Exams",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-slate-900 to-blue-950",
+    coverAccent: "#2563EB",
+    coverText: "text-blue-100",
+    coverStyle: "exam",
+    coverImage: "/covers/samanya-vigyan-500-mcqs-hindi.png",
+    featured: false,
+    bestseller: false,
+    isFree: false,
+    pages: 155,
+    publishedYear: 2026,
+    updatedDate: "2026-07-22",
+    language: "Hindi",
+    fileFormats: ["PDF Digital"],
+    fileSize: "8.3 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "भौतिकी, रसायन एवं जीव विज्ञान के 500+ हिंदी अभ्यास प्रश्न।",
+    description: `सामान्य विज्ञान के 500+ अति महत्वपूर्ण प्रश्न विस्तृत हिंदी व्याख्या के साथ।`,
+    whoShouldRead: ["RRB JE एवं रेलवे अभ्यर्थी।"],
+    whatYoullLearn: ["फिजिक्स, केमिस्ट्री, बायॉलोजी MCQs."],
+    tableOfContents: [{ chapter: "भाग 1", title: "भौतिक विज्ञान प्रश्न" }]
+  },
+
+  // 12. UPSC EPFO Mock Test 1
+  {
+    id: "upsc-epfo-mock-test-1",
+    slug: "upsc-epfo-mock-test-1",
+    title: "UPSC EPFO/APFC Practice eBook – Full Mock Test 1",
+    subtitle: "Comprehensive 120 Solved Multiple Choice Questions with Explanations",
+    tagline: "Full Length Mock Paper 1 Mapped to UPSC Pattern",
+    category: "Competitive Exams",
+    subcategory: "UPSC EPFO",
+    examCategory: "upsc-epfo",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-amber-700 to-stone-900",
+    coverAccent: "#F59E0B",
+    coverText: "text-amber-50",
+    coverStyle: "exam",
+    coverImage: "/covers/upsc-epfo-mock-test-1.png",
+    featured: false,
+    bestseller: false,
+    isFree: false,
+    pages: 75,
+    publishedYear: 2025,
+    updatedDate: "2026-07-15",
+    language: "English",
+    fileFormats: ["PDF Digital"],
+    fileSize: "4.8 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "120 solved full-length practice questions with step-by-step solutions.",
+    description: `Full Mock Test 1 containing 120 questions strictly according to the latest EPFO exam guidelines.`,
+    whoShouldRead: ["UPSC EPFO EO/AO & APFC candidates."],
+    whatYoullLearn: ["120 solved MCQs"],
+    tableOfContents: [{ chapter: "Mock Test 1", title: "120 Solved Questions" }]
+  },
+
+  // 13. UPSC EPFO Mock Test 2
+  {
+    id: "upsc-epfo-mock-test-2",
+    slug: "upsc-epfo-mock-test-2",
+    title: "UPSC EPFO/APFC Full-Length Mock Test II",
+    subtitle: "120 Topic-Wise Practice Questions with Detailed Explanations",
+    tagline: "Full Length Mock Paper 2 for EPFO Aspirants",
+    category: "Competitive Exams",
+    subcategory: "UPSC EPFO",
+    examCategory: "upsc-epfo",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-purple-950 to-amber-950",
+    coverAccent: "#A855F7",
+    coverText: "text-purple-100",
+    coverStyle: "exam",
+    coverImage: "/covers/upsc-epfo-mock-test-2.png",
+    featured: false,
+    bestseller: false,
+    isFree: false,
+    pages: 75,
+    publishedYear: 2025,
+    updatedDate: "2026-07-18",
+    language: "English",
+    fileFormats: ["PDF Digital"],
+    fileSize: "4.9 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "120 full-length topic-wise practice questions for UPSC EPFO exam.",
+    description: `Full Mock Test Paper 2 designed to test time management and accuracy under exam conditions.`,
+    whoShouldRead: ["UPSC EPFO aspirants."],
+    whatYoullLearn: ["120 topic-wise questions."],
+    tableOfContents: [{ chapter: "Mock Test 2", title: "120 Questions & Answers" }]
+  },
+
+  // 14. Government Schemes Special
+  {
+    id: "upsc-epfo-government-schemes",
+    slug: "upsc-epfo-government-schemes",
+    title: "UPSC EPFO 2025: Government Schemes, Policies & Current Affairs",
+    subtitle: "All-in-One Scheme Special Compendium for EO/AO & APFC",
+    tagline: "Scheme Special Coverage of PM-SYM, PMJJBY, PMSBY, APY & Labour Welfare",
+    category: "Competitive Exams",
+    subcategory: "UPSC EPFO",
+    examCategory: "upsc-epfo",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-stone-900 to-black",
+    coverAccent: "#10B981",
+    coverText: "text-emerald-100",
+    coverStyle: "exam",
+    coverImage: "/covers/upsc-epfo-government-schemes.png",
+    featured: true,
+    bestseller: true,
+    isFree: false,
+    pages: 165,
+    publishedYear: 2025,
+    updatedDate: "2026-08-01",
+    language: "English",
+    fileFormats: ["PDF Digital"],
+    fileSize: "8.9 MB",
+    prices: { pdf: 199, usd: 2.49 },
+    oneLiner: "Comprehensive coverage of all Government Social Security & Ministry Schemes for UPSC EPFO.",
+    description: `All central and state government social security schemes, eligibility criteria, budget allocations, and ministry initiatives.`,
+    whoShouldRead: ["UPSC EPFO EO/AO and APFC candidates."],
+    whatYoullLearn: ["PMJJBY, PMSBY, APY, PM-SYM, Sukanya Samriddhi."],
+    tableOfContents: [{ chapter: "Module 1", title: "Ministry of Labour & Employment Schemes" }]
+  },
+
+  // 15. General Accounting Principles
+  {
+    id: "general-accounting-principles-upsc-epfo",
+    slug: "general-accounting-principles-upsc-epfo",
+    title: "UPSC EPFO 2025: General Accounting Complete Concepts",
+    subtitle: "Master GAAP, Financial Statements, Ledger, Trial Balance & Depreciation",
+    tagline: "Conceptual Blueprint for Non-Commerce Students",
+    category: "Competitive Exams",
+    subcategory: "UPSC EPFO",
+    examCategory: "upsc-epfo",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-emerald-900 to-teal-950",
+    coverAccent: "#10B981",
+    coverText: "text-emerald-50",
+    coverStyle: "exam",
+    coverImage: "/covers/general-accounting-principles-upsc-epfo.png",
+    featured: true,
+    bestseller: true,
+    isFree: false,
+    pages: 185,
+    publishedYear: 2025,
+    updatedDate: "2026-08-05",
+    language: "English",
+    fileFormats: ["PDF Digital"],
+    fileSize: "9.6 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "Step-by-step General Accounting guide tailored for non-commerce UPSC EPFO candidates.",
+    description: `Master accounting debit/credit rules, double entry system, GAAP, trial balance, and error rectification without prior commerce background.`,
+    whoShouldRead: ["UPSC EPFO EO/AO aspirants."],
+    whatYoullLearn: ["Golden rules of accounting", "Financial statements"],
+    tableOfContents: [{ chapter: "Module 1", title: "Golden Rules of Accounting & Journal Entries" }]
+  },
+
+  // 16. Adhunik Bharat 500 MCQs Hindi
+  {
+    id: "adhunik-bharat-500-mcqs-hindi",
+    slug: "adhunik-bharat-500-mcqs-hindi",
+    title: "आधुनिक भारतीय इतिहास: UPSC, EPFO, SSC हेतु 500+ वस्तुनिष्ठ प्रश्न",
+    subtitle: "स्वतंत्रता के लिए भारतीय राष्ट्रीय आंदोलन 500+ MCQs संग्रह",
+    tagline: "UPSC, EPFO, SSC एवं राज्य PCS हेतु अति महत्वपूर्ण प्रश्न",
+    category: "Competitive Exams",
+    subcategory: "UPSC",
+    examCategory: "upsc",
+    author: AUTHORS[2],
+    publisher: "ExamWave / Go Pustak Publishing",
+    coverBg: "from-amber-950 to-stone-950",
+    coverAccent: "#D97706",
+    coverText: "text-amber-100",
+    coverStyle: "exam",
+    coverImage: "/covers/adhunik-bharat-500-mcqs-hindi.png",
+    featured: false,
+    bestseller: true,
+    isFree: false,
+    pages: 160,
+    publishedYear: 2025,
+    updatedDate: "2026-07-28",
+    language: "Hindi",
+    fileFormats: ["PDF Digital"],
+    fileSize: "8.7 MB",
+    prices: { pdf: 99, usd: 1.29 },
+    oneLiner: "भारतीय स्वतंत्रता संग्राम एवं आधुनिक भारत के इतिहास का 500+ हिंदी प्रश्न संग्रह।",
+    description: `1857 की क्रांति, कांग्रेस की स्थापना, महात्मा गांधी के आंदोलन एवं 1947 तक की घटनाओं का व्याख्या सहित प्रश्न संग्रह।`,
+    whoShouldRead: ["UPSC, EPFO एवं स्टेट PSC के हिंदी छात्र।"],
+    whatYoullLearn: ["1857 क्रांति, स्वाधीनता आंदोलन।"],
+    tableOfContents: [{ chapter: "भाग 1", title: "स्वतंत्रता संग्राम एवं राष्ट्रीय आंदोलन MCQs" }]
+  },
+
+  // 17. UPPCS Quick Revision 2026
   {
     id: "uppcs-quick-revision-series-2026",
     slug: "uppcs-quick-revision-series-2026",
     title: "UPPCS Quick Revision Series 2026",
-    subtitle: "Complete Revision Notes for Prelims & Mains: History, Geography, Polity, Economy, Science & UP Special",
+    subtitle: "Complete Revision Notes for Prelims & Mains: History, Geography, Polity, Economy & UP Special",
     tagline: "The Ultimate Quick Revision Guide for Uttar Pradesh Public Service Commission",
     category: "Competitive Exams",
     subcategory: "State PSC",
@@ -616,27 +622,15 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     language: "English",
     fileFormats: ["PDF Digital"],
     fileSize: "11.8 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
+    prices: { pdf: 149, usd: 1.99 },
     oneLiner: "Compact revision guide for UPPCS Prelims & Mains covering General Studies and UP Special GK.",
     description: `Designed specifically for Uttar Pradesh PCS aspirants. Synthesizes History, Geography, Polity, Economy, Science, and UP State Special facts into bulleted revision notes.`,
-    whoShouldRead: [
-      "UPPCS Prelims & Mains 2026 candidates needing fast last-minute revision."
-    ],
-    whatYoullLearn: [
-      "Uttar Pradesh History, Geography, Census 2011 & UP Schemes.",
-      "Point-wise GS Paper 1-4 revision modules."
-    ],
-    tableOfContents: [
-      { chapter: "Module 1", title: "UP Special Knowledge & Census Facts" },
-      { chapter: "Module 2", title: "Indian History & Polity Quick Notes" }
-    ],
-    faqs: [
-      { q: "Is UP Special GK included?", a: "Yes, complete UP State geography, history, and current schemes covered." }
-    ]
+    whoShouldRead: ["UPPCS Prelims & Mains candidates."],
+    whatYoullLearn: ["UP Special Knowledge & Census Facts."],
+    tableOfContents: [{ chapter: "Module 1", title: "UP Special Knowledge & Census Facts" }]
   },
+
+  // 18. Think on Paper
   {
     id: "think-on-paper",
     slug: "think-on-paper",
@@ -661,126 +655,15 @@ Includes clear comparative tables between old labour acts and the New 4 Labour C
     language: "English",
     fileFormats: ["PDF Digital", "EPUB Edition"],
     fileSize: "4.2 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
+    prices: { pdf: 149, usd: 1.99 },
     oneLiner: "Offload working memory RAM onto physical paper using simple structural paper architecture frameworks.",
-    description: `Most people don’t struggle because they lack intelligence, motivation, or information. They struggle because they ask their brains to hold too many thoughts, decisions, and tasks at the same time.
+    description: `Most people don’t struggle because they lack intelligence, motivation, or information. They struggle because they ask their brains to hold too many thoughts, decisions, and tasks at the same time.`,
+    whoShouldRead: ["Engineers, founders, and knowledge workers."],
+    whatYoullLearn: ["How to offload short-term working memory RAM onto paper."],
+    tableOfContents: [{ chapter: "Chapter 1", title: "Your Brain Is a Processor, Not a Hard Drive" }]
+  },
 
-In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the ultimate cognitive superpower for modern knowledge workers, engineers, and exam aspirants.`,
-    whoShouldRead: [
-      "Engineers, founders, and knowledge workers dealing with mental clutter and information overload.",
-      "Competitive exam aspirants needing structured note-taking and deep recall systems.",
-      "Anyone trapped in overthinking who wants to turn messy ideas into crisp physical execution."
-    ],
-    whatYoullLearn: [
-      "How to offload short-term working memory RAM onto paper to lower decision fatigue.",
-      "The neuroscience of handwriting grapheme-motor encoding vs. digital typing.",
-      "The 'One Honest Page' daily morning focus routine.",
-      "Non-linear spatial diagramming for complex multi-variable problems."
-    ],
-    tableOfContents: [
-      { chapter: "Chapter 1", title: "Your Brain Is a Processor, Not a Hard Drive" },
-      { chapter: "Chapter 2", title: "The Neuroscience of Pen on Paper" },
-      { chapter: "Chapter 3", title: "The RAM Purge: Clearing Mental Noise" },
-      { chapter: "Chapter 4", title: "The One Honest Page Morning System" },
-      { chapter: "Chapter 5", title: "Non-Linear Spatial Problem Solving" }
-    ],
-    faqs: [
-      { q: "Do I need expensive stationery?", a: "No. A simple $2 spiral notebook or blank paper sheet works perfectly." },
-      { q: "How is the ebook delivered?", a: "Instantly via secure signed PDF & EPUB download links saved in your My Library." }
-    ]
-  },
-  {
-    id: "upsc-epfo-study-guide",
-    slug: "upsc-epfo-study-guide",
-    title: "UPSC EPFO EO/AO & APFC Comprehensive Study Guide",
-    subtitle: "Complete Exam Blueprint | General Accounting, Industrial Relations, Labour Laws & Social Security",
-    tagline: "High-yield concise notes designed for maximum marks in UPSC EPFO examinations.",
-    category: "Competitive Exams",
-    subcategory: "UPSC EPFO",
-    examCategory: "upsc-epfo",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Exam Prep Cell",
-    coverBg: "from-blue-900 to-slate-950",
-    coverAccent: "#2563EB",
-    coverText: "text-blue-50",
-    coverStyle: "exam",
-    coverImage: "/covers/industrial-relations-labour-laws-2025.png",
-    featured: true,
-    bestseller: true,
-    isFree: false,
-    pages: 240,
-    publishedYear: 2026,
-    updatedDate: "2026-08-05",
-    language: "English",
-    fileFormats: ["PDF Digital", "EPUB Edition"],
-    fileSize: "12.8 MB",
-    prices: {
-      pdf: 199,
-      usd: 2.49
-    },
-    oneLiner: "Targeted, point-wise coverage of General Accounting Principles, Labour Laws, Industrial Relations, and Indian Economy for UPSC EPFO.",
-    description: `Designed specifically for UPSC EPFO Enforcement Officer / Accounts Officer (EO/AO) and Assistant Provident Fund Commissioner (APFC) aspirants.`,
-    whoShouldRead: [
-      "UPSC EPFO EO/AO & APFC aspirants aiming for first-attempt success."
-    ],
-    whatYoullLearn: [
-      "General Accounting Principles (GAAP, Ledger entries, Trial Balance, Depreciation)."
-    ],
-    tableOfContents: [
-      { chapter: "Module 1", title: "General Accounting Principles & Financial Statements" }
-    ],
-    faqs: [
-      { q: "Are the new Labour Codes included?", a: "Yes." }
-    ]
-  },
-  {
-    id: "upsc-current-affairs-june-2026",
-    slug: "upsc-current-affairs-june-2026",
-    title: "UPSC Current Affairs Digest — Monthly Edition",
-    subtitle: "National, International, Economy, Science & Environment | Prelims & Mains Analysis",
-    tagline: "Categorized, objective-plus-analytical current affairs curated for civil services aspirants.",
-    category: "Current Affairs",
-    subcategory: "National",
-    examCategory: "upsc",
-    currentAffairsMonth: "June 2026",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Current Affairs Cell",
-    coverBg: "from-amber-800 to-red-950",
-    coverAccent: "#F59E0B",
-    coverText: "text-amber-50",
-    coverStyle: "digest",
-    coverImage: "/covers/upsc-june-2026-current-affairs-science-tech.png",
-    featured: true,
-    bestseller: false,
-    isFree: true,
-    pages: 95,
-    publishedYear: 2026,
-    updatedDate: "2026-07-01",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "6.5 MB",
-    prices: {
-      pdf: 0,
-      usd: 0
-    },
-    oneLiner: "Free comprehensive monthly current affairs digest with Mains answer pointers and Prelims MCQs.",
-    description: `A 100% free comprehensive current affairs monthly edition covering all major events across Polity, International Relations, Economy, Defence, Environment, and Science & Technology.`,
-    whoShouldRead: [
-      "UPSC CSE Prelims & Mains 2026/2027 aspirants."
-    ],
-    whatYoullLearn: [
-      "Key Supreme Court judgments and Constitutional amendments."
-    ],
-    tableOfContents: [
-      { chapter: "Section 1", title: "Polity & Governance" }
-    ],
-    faqs: [
-      { q: "Is this monthly current affairs ebook completely free?", a: "Yes!" }
-    ]
-  },
+  // 19. The Courage to Practice Freedom
   {
     id: "courage-to-practice-freedom",
     slug: "courage-to-practice-freedom",
@@ -805,25 +688,15 @@ In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the 
     language: "English",
     fileFormats: ["PDF Digital", "EPUB Edition"],
     fileSize: "5.8 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
+    prices: { pdf: 149, usd: 1.99 },
     oneLiner: "Enforce boundaries without permission, break approval-seeking traps, and build unshakeable self-trust.",
-    description: `Most people don’t feel unfree because they lack intelligence or information. They feel unfree because they don’t know how to practice freedom when it costs them comfort, approval, or certainty.`,
-    whoShouldRead: [
-      "Anyone who overthinks decisions waiting for external permission."
-    ],
-    whatYoullLearn: [
-      "Why feeling free comes after acting free, not before."
-    ],
-    tableOfContents: [
-      { chapter: "Chapter 1", title: "Freedom Is Not a Feeling, It Is a Skill" }
-    ],
-    faqs: [
-      { q: "Is this a theoretical philosophy book?", a: "No." }
-    ]
+    description: `Most people don’t feel unfree because they lack intelligence. They feel unfree because they don’t know how to practice freedom when it costs them comfort.`,
+    whoShouldRead: ["Anyone who overthinks decisions waiting for external permission."],
+    whatYoullLearn: ["Why feeling free comes after acting free."],
+    tableOfContents: [{ chapter: "Chapter 1", title: "Freedom Is Not a Feeling" }]
   },
+
+  // 20. Motion vs Action
   {
     id: "motion-vs-action",
     slug: "motion-vs-action",
@@ -848,25 +721,15 @@ In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the 
     language: "English",
     fileFormats: ["PDF Digital", "EPUB Edition"],
     fileSize: "4.9 MB",
-    prices: {
-      pdf: 149,
-      usd: 1.99
-    },
+    prices: { pdf: 149, usd: 1.99 },
     oneLiner: "Break the illusion of fake productivity and eliminate motion traps with execution triggers.",
-    description: `Motion feels like work. Motion is reading another book on productivity, organizing your desk, or writing to-do lists. Action is writing code or submitting the application.`,
-    whoShouldRead: [
-      "Procrastinators hiding behind research and preparation."
-    ],
-    whatYoullLearn: [
-      "The scientific difference between Motion and Action."
-    ],
-    tableOfContents: [
-      { chapter: "Chapter 1", title: "The Illusion of Progress" }
-    ],
-    faqs: [
-      { q: "Is there a Hindi edition?", a: "Yes!" }
-    ]
+    description: `Motion feels like work. Motion is reading another book on productivity. Action is writing code or submitting the application.`,
+    whoShouldRead: ["Procrastinators hiding behind research."],
+    whatYoullLearn: ["The scientific difference between Motion and Action."],
+    tableOfContents: [{ chapter: "Chapter 1", title: "The Illusion of Progress" }]
   },
+
+  // 21. Pragmatic AI
   {
     id: "pragmatic-ai-for-business",
     slug: "pragmatic-ai-for-business",
@@ -891,113 +754,15 @@ In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the 
     language: "English",
     fileFormats: ["PDF Digital", "EPUB Edition"],
     fileSize: "7.1 MB",
-    prices: {
-      pdf: 199,
-      usd: 2.49
-    },
+    prices: { pdf: 199, usd: 2.49 },
     oneLiner: "Practical AI prompt engineering, LLM architecture, and workflow automation for modern professionals.",
-    description: `Pragmatic AI provides an engineering-first blueprint for understanding how Large Language Models (LLMs) operate under the hood.`,
-    whoShouldRead: [
-      "Business managers, founders, and consultants."
-    ],
-    whatYoullLearn: [
-      "How LLMs process tokens and context windows."
-    ],
-    tableOfContents: [
-      { chapter: "Chapter 1", title: "Demystifying LLMs" }
-    ],
-    faqs: [
-      { q: "Do I need coding experience?", a: "No." }
-    ]
+    description: `Pragmatic AI provides an engineering-first blueprint for understanding how Large Language Models (LLMs) operate.`,
+    whoShouldRead: ["Business managers, founders, and consultants."],
+    whatYoullLearn: ["How LLMs process tokens."],
+    tableOfContents: [{ chapter: "Chapter 1", title: "Demystifying LLMs" }]
   },
-  {
-    id: "ssc-cgl-general-awareness-handbook",
-    slug: "ssc-cgl-general-awareness-handbook",
-    title: "SSC CGL & CHSL General Awareness Blueprint",
-    subtitle: "History, Polity, Geography, Economy & Static GK | Point-Wise Revision Notes",
-    tagline: "High-probability static GK and general science notes for SSC Tier 1 & Tier 2.",
-    category: "Competitive Exams",
-    subcategory: "SSC",
-    examCategory: "ssc",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Exam Prep Cell",
-    coverBg: "from-indigo-900 to-slate-900",
-    coverAccent: "#6366F1",
-    coverText: "text-indigo-100",
-    coverStyle: "exam",
-    coverImage: "/covers/complete-geography-notes-hindi-bhugol.png",
-    featured: false,
-    bestseller: true,
-    isFree: false,
-    pages: 180,
-    publishedYear: 2026,
-    updatedDate: "2026-07-20",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "9.2 MB",
-    prices: {
-      pdf: 129,
-      usd: 1.69
-    },
-    oneLiner: "Concise table-formatted revision notes covering History, Geography, Polity, Science, and Static GK for SSC exams.",
-    description: `General Awareness is the make-or-break section in SSC CGL Tier 1 and Tier 2 exams. Distills NCERT fundamentals and previous 15 years SSC questions.`,
-    whoShouldRead: [
-      "SSC CGL, CHSL, CPO, and MTS aspirants."
-    ],
-    whatYoullLearn: [
-      "Indian History Chronology and Polity Articles."
-    ],
-    tableOfContents: [
-      { chapter: "Part 1", title: "Indian History & National Movement" }
-    ],
-    faqs: [
-      { q: "Is this in English?", a: "Yes." }
-    ]
-  },
-  {
-    id: "banking-awareness-po-clerk",
-    slug: "banking-awareness-po-clerk",
-    title: "Mastering Banking & Financial Awareness",
-    subtitle: "For SBI PO, IBPS PO, RBI Grade B & NABARD Examinations",
-    tagline: "Complete coverage of RBI circulars, banking terminology, monetary policy, and digital banking.",
-    category: "Competitive Exams",
-    subcategory: "Banking",
-    examCategory: "banking",
-    author: AUTHORS[2],
-    publisher: "ExamWave / Go Pustak Exam Prep Cell",
-    coverBg: "from-emerald-900 to-teal-950",
-    coverAccent: "#14B8A6",
-    coverText: "text-teal-50",
-    coverStyle: "exam",
-    coverImage: "/covers/indian-economy-550-mcqs-upsc-epfo.png",
-    featured: false,
-    bestseller: false,
-    isFree: false,
-    pages: 160,
-    publishedYear: 2026,
-    updatedDate: "2026-08-01",
-    language: "English",
-    fileFormats: ["PDF Digital"],
-    fileSize: "8.1 MB",
-    prices: {
-      pdf: 139,
-      usd: 1.79
-    },
-    oneLiner: "Essential guide to RBI functions, Monetary Policy, Capital Markets, NPCI payment systems, and financial terms.",
-    description: `Banking Awareness requires clear conceptual understanding of financial systems and current RBI policy developments.`,
-    whoShouldRead: [
-      "SBI PO, IBPS PO/Clerk, and RBI Grade B aspirants."
-    ],
-    whatYoullLearn: [
-      "Functions of RBI, CRR, SLR, Repo Rate."
-    ],
-    tableOfContents: [
-      { chapter: "Module 1", title: "Reserve Bank of India & Monetary Policy" }
-    ],
-    faqs: [
-      { q: "Updated with RBI rates?", a: "Yes." }
-    ]
-  },
+
+  // 22. Free Effective Study Habits Guide
   {
     id: "free-effective-study-habits-guide",
     slug: "free-effective-study-habits-guide",
@@ -1022,23 +787,11 @@ In **Think on Paper**, Pankaj Kumar demonstrates why physical paper remains the 
     language: "English",
     fileFormats: ["PDF Digital"],
     fileSize: "3.8 MB",
-    prices: {
-      pdf: 0,
-      usd: 0
-    },
+    prices: { pdf: 0, usd: 0 },
     oneLiner: "Free practical guide on Active Recall, Spaced Repetition, and the Feynman Technique for rapid learning.",
     description: `Stop rereading textbooks passively! Dr. Ananya Sharma outlines cognitive learning techniques verified by educational neuroscience.`,
-    whoShouldRead: [
-      "Students preparing for school, university, or competitive exams."
-    ],
-    whatYoullLearn: [
-      "Active Recall vs. Passive Reading."
-    ],
-    tableOfContents: [
-      { chapter: "Module 1", title: "Why Rereading Textbooks Fails" }
-    ],
-    faqs: [
-      { q: "Is this free?", a: "Yes!" }
-    ]
+    whoShouldRead: ["Students preparing for competitive exams."],
+    whatYoullLearn: ["Active Recall vs. Passive Reading."],
+    tableOfContents: [{ chapter: "Module 1", title: "Why Rereading Fails" }]
   }
 ];
